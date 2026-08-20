@@ -1,17 +1,17 @@
 {
-  "customer": "美妆达人莉莉",
-  "track": "美妆",
+  "customer": "叶芝彤",
+  "track": "酵素益生菌，大健康，AI赋能",
   "status": "running",
-  "percent": 9,
-  "doneCount": 1,
+  "percent": 36,
+  "doneCount": 4,
   "total": 11,
   "currentStage": {
     "key": "need",
     "name": "客户需求"
   },
   "nextStage": {
-    "key": "analysis",
-    "name": "客户分析"
+    "key": "result",
+    "name": "代运营后数据变化"
   },
   "stages": [
     {
@@ -29,44 +29,44 @@
     {
       "key": "analysis",
       "name": "客户分析",
-      "status": "todo",
-      "percent": 0
+      "status": "done",
+      "percent": 100
     },
     {
       "key": "account",
       "name": "账号分析",
-      "status": "todo",
-      "percent": 0
+      "status": "doing",
+      "percent": 50
     },
     {
       "key": "data",
       "name": "数据分析",
-      "status": "todo",
-      "percent": 0
+      "status": "doing",
+      "percent": 50
     },
     {
       "key": "service",
       "name": "服务内容",
-      "status": "todo",
-      "percent": 0
+      "status": "doing",
+      "percent": 50
     },
     {
       "key": "plan",
       "name": "策划方案",
-      "status": "todo",
-      "percent": 0
+      "status": "done",
+      "percent": 100
     },
     {
       "key": "strategy",
       "name": "应对策略",
-      "status": "todo",
-      "percent": 0
+      "status": "done",
+      "percent": 100
     },
     {
       "key": "implement",
       "name": "实际实施步骤",
-      "status": "todo",
-      "percent": 0
+      "status": "doing",
+      "percent": 50
     },
     {
       "key": "result",
@@ -81,5 +81,5 @@
       "percent": 0
     }
   ],
-  "updatedAt": "2026-08-20T01:45:45.766Z"
+  "updatedAt": "2026-08-20T14:34:52.134Z"
 }
