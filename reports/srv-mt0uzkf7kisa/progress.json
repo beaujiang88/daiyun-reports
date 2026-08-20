@@ -1,0 +1,85 @@
+{
+  "customer": "美妆达人莉莉",
+  "track": "美妆",
+  "status": "running",
+  "percent": 9,
+  "doneCount": 1,
+  "total": 11,
+  "currentStage": {
+    "key": "need",
+    "name": "客户需求"
+  },
+  "nextStage": {
+    "key": "analysis",
+    "name": "客户分析"
+  },
+  "stages": [
+    {
+      "key": "basic",
+      "name": "客户建档",
+      "status": "done",
+      "percent": 100
+    },
+    {
+      "key": "need",
+      "name": "客户需求",
+      "status": "doing",
+      "percent": 50
+    },
+    {
+      "key": "analysis",
+      "name": "客户分析",
+      "status": "todo",
+      "percent": 0
+    },
+    {
+      "key": "account",
+      "name": "账号分析",
+      "status": "todo",
+      "percent": 0
+    },
+    {
+      "key": "data",
+      "name": "数据分析",
+      "status": "todo",
+      "percent": 0
+    },
+    {
+      "key": "service",
+      "name": "服务内容",
+      "status": "todo",
+      "percent": 0
+    },
+    {
+      "key": "plan",
+      "name": "策划方案",
+      "status": "todo",
+      "percent": 0
+    },
+    {
+      "key": "strategy",
+      "name": "应对策略",
+      "status": "todo",
+      "percent": 0
+    },
+    {
+      "key": "implement",
+      "name": "实际实施步骤",
+      "status": "todo",
+      "percent": 0
+    },
+    {
+      "key": "result",
+      "name": "代运营后数据变化",
+      "status": "todo",
+      "percent": 0
+    },
+    {
+      "key": "review",
+      "name": "复盘与续费",
+      "status": "todo",
+      "percent": 0
+    }
+  ],
+  "updatedAt": "2026-08-20T01:45:45.766Z"
+}

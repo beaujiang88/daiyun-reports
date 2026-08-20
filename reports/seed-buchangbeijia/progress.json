@@ -1,0 +1,85 @@
+{
+  "customer": "步长倍佳",
+  "track": "日化·消毒/除臭喷雾",
+  "status": "running",
+  "percent": 55,
+  "doneCount": 6,
+  "total": 11,
+  "currentStage": {
+    "key": "account",
+    "name": "账号分析"
+  },
+  "nextStage": {
+    "key": "result",
+    "name": "代运营后数据变化"
+  },
+  "stages": [
+    {
+      "key": "basic",
+      "name": "客户建档",
+      "status": "done",
+      "percent": 100
+    },
+    {
+      "key": "need",
+      "name": "客户需求",
+      "status": "done",
+      "percent": 100
+    },
+    {
+      "key": "analysis",
+      "name": "客户分析",
+      "status": "done",
+      "percent": 100
+    },
+    {
+      "key": "account",
+      "name": "账号分析",
+      "status": "doing",
+      "percent": 50
+    },
+    {
+      "key": "data",
+      "name": "数据分析",
+      "status": "done",
+      "percent": 100
+    },
+    {
+      "key": "service",
+      "name": "服务内容",
+      "status": "doing",
+      "percent": 50
+    },
+    {
+      "key": "plan",
+      "name": "策划方案",
+      "status": "done",
+      "percent": 100
+    },
+    {
+      "key": "strategy",
+      "name": "应对策略",
+      "status": "done",
+      "percent": 100
+    },
+    {
+      "key": "implement",
+      "name": "实际实施步骤",
+      "status": "doing",
+      "percent": 50
+    },
+    {
+      "key": "result",
+      "name": "代运营后数据变化",
+      "status": "todo",
+      "percent": 0
+    },
+    {
+      "key": "review",
+      "name": "复盘与续费",
+      "status": "todo",
+      "percent": 0
+    }
+  ],
+  "updatedAt": "2026-08-20T03:05:28.238Z"
+}

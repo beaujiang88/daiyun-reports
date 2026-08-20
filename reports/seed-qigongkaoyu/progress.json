@@ -1,0 +1,85 @@
+{
+  "customer": "七公烤鱼",
+  "track": "餐饮·烤鱼",
+  "status": "running",
+  "percent": 64,
+  "doneCount": 7,
+  "total": 11,
+  "currentStage": {
+    "key": "service",
+    "name": "服务内容"
+  },
+  "nextStage": {
+    "key": "implement",
+    "name": "实际实施步骤"
+  },
+  "stages": [
+    {
+      "key": "basic",
+      "name": "客户建档",
+      "status": "done",
+      "percent": 100
+    },
+    {
+      "key": "need",
+      "name": "客户需求",
+      "status": "done",
+      "percent": 100
+    },
+    {
+      "key": "analysis",
+      "name": "客户分析",
+      "status": "done",
+      "percent": 100
+    },
+    {
+      "key": "account",
+      "name": "账号分析",
+      "status": "done",
+      "percent": 100
+    },
+    {
+      "key": "data",
+      "name": "数据分析",
+      "status": "done",
+      "percent": 100
+    },
+    {
+      "key": "service",
+      "name": "服务内容",
+      "status": "doing",
+      "percent": 50
+    },
+    {
+      "key": "plan",
+      "name": "策划方案",
+      "status": "done",
+      "percent": 100
+    },
+    {
+      "key": "strategy",
+      "name": "应对策略",
+      "status": "done",
+      "percent": 100
+    },
+    {
+      "key": "implement",
+      "name": "实际实施步骤",
+      "status": "todo",
+      "percent": 0
+    },
+    {
+      "key": "result",
+      "name": "代运营后数据变化",
+      "status": "todo",
+      "percent": 0
+    },
+    {
+      "key": "review",
+      "name": "复盘与续费",
+      "status": "todo",
+      "percent": 0
+    }
+  ],
+  "updatedAt": "2026-08-20T03:05:28.239Z"
+}
