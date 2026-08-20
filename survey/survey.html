@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>客户信息调查表 · 数果Ai·Vista</title>
+<style>
+  :root{
+    --bg:#f4f5f7; --card:#ffffff; --line:#e5e7eb; --text:#1f2328;
+    --muted:#6b7280; --accent:#2563eb; --accent-soft:#eff6ff;
+    --ok:#16a34a; --ok-soft:#f0fdf4; --warn:#d97706; --warn-soft:#fffbeb;
+    --purple:#7c3aed; --purple-soft:#f5f3ff;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:15px}
+  .wrap{max-width:640px;margin:0 auto;padding:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:14px}
+  .card h2{font-size:16px;margin:0 0 10px;display:flex;align-items:center;gap:6px}
+  .card h2 .num{width:24px;height:24px;border-radius:7px;background:var(--accent-soft);color:var(--accent);font-size:13px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+  .card .desc{font-size:12px;color:var(--muted);margin-bottom:10px}
+  label{display:block;font-size:13px;color:var(--muted);margin-bottom:4px}
+  label .req{color:var(--accent);font-weight:600}
+  input,select,textarea{font:inherit;width:100%;border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:#fff;color:var(--text);-webkit-appearance:none}
+  input:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft)}
+  textarea{min-height:80px;resize:vertical;line-height:1.5}
+  .form-row{margin-bottom:12px}
+  .hint{font-size:11px;color:var(--muted);margin-top:3px}
+  .upload-zone{border:2px dashed var(--line);border-radius:12px;padding:28px 16px;text-align:center;cursor:pointer;transition:border-color .2s,background .2s;background:#fafbfc}
+  .upload-zone:hover,.upload-zone.dragover{border-color:var(--accent);background:var(--accent-soft)}
+  .upload-zone .icon{font-size:32px;margin-bottom:6px}
+  .upload-zone .title{font-size:14px;font-weight:600;color:var(--accent)}
+  .upload-zone .sub{font-size:12px;color:var(--muted);margin-top:4px}
+  .file-list{margin-top:10px}
+  .file-item{display:flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;margin-bottom:6px;background:#fff;font-size:13px}
+  .file-item .fname{flex:1;word-break:break-all}
+  .file-item .fsize{color:var(--muted);font-size:11px;white-space:nowrap}
+  .file-item .fremove{color:#dc2626;cursor:pointer;font-size:18px;padding:0 4px;flex-shrink:0}
+  .btn{font:inherit;border:1px solid var(--line);background:var(--card);border-radius:10px;padding:12px 20px;cursor:pointer;color:var(--text);font-size:15px;font-weight:500;width:100%;transition:background .15s}
+  .btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .btn.primary:hover{background:#1d4ed8}
+  .btn.primary:disabled{opacity:.5;cursor:not-allowed}
+  .badge{display:inline-block;padding:2px 10px;border-radius:999px;font-size:12px;font-weight:500}
+  .b-purple{background:var(--purple-soft);color:var(--purple)}
+  .b-gray{background:#f3f4f6;color:var(--muted)}
+  .b-ok{background:var(--ok-soft);color:var(--ok)}
+  .banner{border-radius:10px;padding:12px 14px;font-size:13px;margin-bottom:14px}
+  .banner.ok{background:var(--ok-soft);color:var(--ok)}
+  .banner.warn{background:var(--warn-soft);color:var(--warn)}
+  .banner.info{background:var(--accent-soft);color:var(--accent)}
+  .success-page{text-align:center;padding:30px 16px}
+  .success-page .big-icon{font-size:56px;margin-bottom:12px}
+  .success-page h2{font-size:20px;margin:0 0 8px;justify-content:center}
+  .success-page .ctype-tag{margin:12px 0}
+  .success-page .note{font-size:13px;color:var(--muted);max-width:380px;margin:16px auto 0}
+  .loading{display:flex;align-items:center;justify-content:center;gap:8px;padding:40px;font-size:14px;color:var(--muted)}
+  .spinner{width:20px;height:20px;border:2px solid var(--line);border-top-color:var(--accent);border-radius:50%;animation:spin .6s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .header-bar{background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;padding:20px 16px;text-align:center}
+  .header-bar h1{font-size:18px;margin:0 0 4px}
+  .header-bar p{font-size:12px;margin:0;opacity:.85}
+  .hidden{display:none!important}
+  .optional-tag{font-size:11px;color:var(--muted);background:#f3f4f6;padding:1px 6px;border-radius:4px;margin-left:4px}
+</style>
+</head>
+<body>
+
+<div class="header-bar">
+  <h1>📋 客户信息调查表</h1>
+  <p>数果Ai·Vista 代运营 · 填写后系统自动分析建档</p>
+</div>
+
+<div class="wrap">
+  <!-- 加载中 -->
+  <div id="loading" class="loading"><span class="spinner"></span> 正在加载问卷…</div>
+
+  <!-- 错误 -->
+  <div id="error-page" class="hidden">
+    <div class="banner warn">⚠️ 问卷链接无效或已过期，请联系客服获取新的问卷链接。</div>
+  </div>
+
+  <!-- 已提交 -->
+  <div id="submitted-page" class="hidden">
+    <div class="success-page">
+      <div class="big-icon">✅</div>
+      <h2>问卷已提交</h2>
+      <div class="ctype-tag" id="submitted-ctype"></div>
+      <p class="note">您的信息已收到，我们会尽快安排专业顾问与您联系。<br>如需修改，请联系您的专属顾问。</p>
+    </div>
+  </div>
+
+  <!-- 问卷表单 -->
+  <div id="survey-form" class="hidden">
+    <div class="banner info">
+      填写说明：请完善以下基础定位信息，这将帮助大模型更精准地进行针对性的产品或人设深度分析。
+    </div>
+
+    <!-- 上传区 -->
+    <div class="card">
+      <h2><span class="num">⬆</span> 一键上传公司资料 & 产品图片</h2>
+      <div class="desc">⭐️ 上传图片、PPT、PDF，即可不用填写后面资料</div>
+      <div class="upload-zone" id="upload-zone" onclick="document.getElementById('file-input').click()">
+        <div class="icon">📎</div>
+        <div class="title">点击或拖拽文件到此处上传</div>
+        <div class="sub">支持 图片 / PPT / PDF · 可多选</div>
+      </div>
+      <input type="file" id="file-input" multiple accept="image/*,.ppt,.pptx,.pdf" class="hidden">
+      <div class="file-list" id="file-list"></div>
+    </div>
+
+    <!-- 1. 基础身份信息 -->
+    <div class="card">
+      <h2><span class="num">1</span> 基础身份信息</h2>
+      <div class="form-row">
+        <label>产品/IP名称 <span class="req">（必填）</span></label>
+        <input id="f-productName" placeholder="公司名称/产品名称/门店名称/IP名称，如：美妆带货达人莉莉">
+      </div>
+      <div class="form-row">
+        <label>称呼 <span class="optional-tag">选填</span></label>
+        <input id="f-contactName" placeholder="（公司或产品可不填）莉莉、李总、王老师">
+      </div>
+    </div>
+
+    <!-- 2. 定位与背景 -->
+    <div class="card">
+      <h2><span class="num">2</span> 定位与背景</h2>
+      <div class="form-row">
+        <label>所属行业或类别</label>
+        <input id="f-industry" placeholder="产品类别/美妆、护肤、数码科技、教育培训">
+      </div>
+      <div class="form-row">
+        <label>描述产品核心卖点/核心人设定位</label>
+        <textarea id="f-positioning" placeholder="描述门店&产品/您最突出的特点或角色身份。如：专业毒舌测评师、温柔邻家大姐姐、硬核技术极客"></textarea>
+      </div>
+      <div class="form-row">
+        <label>详细描述/个人简介 (Bio)</label>
+        <textarea id="f-bio" placeholder="更详细的人设背景介绍，可包括语气风格、行文偏好、过往经历等。" style="min-height:100px"></textarea>
+      </div>
+    </div>
+
+    <!-- 3. 业务与受众 -->
+    <div class="card">
+      <h2><span class="num">3</span> 业务与受众</h2>
+      <div class="form-row">
+        <label>主推产品/服务</label>
+        <input id="f-mainProduct" placeholder="您主要想推广或讨论的内容是什么？如：高性价比国货护肤品、Python编程课程、二手iPhone">
+      </div>
+      <div class="form-row">
+        <label>目标受众群体</label>
+        <input id="f-targetAudience" placeholder="您的粉丝或客户主要是谁？如：18-25岁追求性价比的学生党、30-40岁关注养生的职场人士">
+      </div>
+      <div class="form-row">
+        <label>所在地区</label>
+        <input id="f-region" placeholder="主要覆盖的地域范围。如：江浙沪、全国、一二线城市">
+      </div>
+    </div>
+
+    <!-- 4. 语言风格 -->
+    <div class="card">
+      <h2><span class="num">4</span> 个人IP语言风格特征</h2>
+      <div class="form-row">
+        <label>常用口头禅</label>
+        <textarea id="f-catchphrases" placeholder="请用英文逗号或换行分隔。这能让AI模仿得更像真人。&#10;示例：买它！, 一定要试一下, 姐妹们, 听懂掌声, 绝绝子"></textarea>
+      </div>
+    </div>
+
+    <button class="btn primary" id="submit-btn" onclick="submitSurvey()">
+      📤 提交问卷
+    </button>
+    <div style="height:20px"></div>
+  </div>
+
+  <!-- 提交成功页 -->
+  <div id="success-page" class="hidden">
+    <div class="success-page">
+      <div class="big-icon">🎉</div>
+      <h2>提交成功！</h2>
+      <div class="ctype-tag" id="success-ctype"></div>
+      <p class="note">您的信息已提交，系统已自动完成分析建档。<br>我们会尽快安排专业顾问与您联系，请保持通讯畅通。</p>
+    </div>
+  </div>
+</div>
+
+<script>
+var SURVEY_TOKEN = null;
+var uploadedFiles = [];
+
+/* 静态发布版（部署在 app.workbuddy.link 固定域名，永久在线）：
+   页面托管在云端，问卷加载/提交的 API 必须指向固定的 harness 转发地址。
+   ⚠️ 转发地址变更时，改这里的 SURVEY_API_BASE 后重新部署即可。 */
+var SURVEY_API_BASE = 'https://beaumac-mini.tail9cb361.ts.net:8443';
+var API_BASE = SURVEY_API_BASE;
+
+function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+
+// 从 URL 获取 token
+var params = new URLSearchParams(window.location.search);
+SURVEY_TOKEN = params.get('token');
+if(!SURVEY_TOKEN){
+  document.getElementById('loading').classList.add('hidden');
+  document.getElementById('error-page').classList.remove('hidden');
+} else {
+  loadSurvey();
+}
+
+function loadSurvey(){
+  fetch(API_BASE + '/api/survey/' + SURVEY_TOKEN)
+    .then(function(r){ return r.json(); })
+    .then(function(res){
+      document.getElementById('loading').classList.add('hidden');
+      if(!res.ok){
+        document.getElementById('error-page').classList.remove('hidden');
+        return;
+      }
+      if(res.survey.status === 'submitted'){
+        // 已提交过
+        var ct = res.survey.classifiedType || '个人客户';
+        var badge = ct === '公司客户' ? 'b-purple' : 'b-gray';
+        document.getElementById('submitted-ctype').innerHTML = '<span class="badge ' + badge + '">' + esc(ct) + '</span>';
+        document.getElementById('submitted-page').classList.remove('hidden');
+        return;
+      }
+      // 预填客户名
+      if(res.survey.customerName){
+        var nameField = document.getElementById('f-productName');
+        nameField.value = res.survey.customerName;
+        nameField.placeholder = res.survey.customerName;
+      }
+      document.getElementById('survey-form').classList.remove('hidden');
+      setupUpload();
+    })
+    .catch(function(){
+      document.getElementById('loading').classList.add('hidden');
+      document.getElementById('error-page').classList.remove('hidden');
+    });
+}
+
+function setupUpload(){
+  var zone = document.getElementById('upload-zone');
+  var input = document.getElementById('file-input');
+
+  input.addEventListener('change', function(e){
+    handleFiles(e.target.files);
+    input.value = ''; // 允许重复选择同一文件
+  });
+
+  // 拖拽上传
+  zone.addEventListener('dragover', function(e){
+    e.preventDefault();
+    zone.classList.add('dragover');
+  });
+  zone.addEventListener('dragleave', function(e){
+    e.preventDefault();
+    zone.classList.remove('dragover');
+  });
+  zone.addEventListener('drop', function(e){
+    e.preventDefault();
+    zone.classList.remove('dragover');
+    handleFiles(e.dataTransfer.files);
+  });
+}
+
+function handleFiles(fileList){
+  Array.from(fileList).forEach(function(file){
+    if(file.size > 30 * 1024 * 1024){
+      alert('文件「' + file.name + '」超过 30MB，请压缩后上传');
+      return;
+    }
+    uploadedFiles.push(file);
+  });
+  renderFileList();
+}
+
+function renderFileList(){
+  var el = document.getElementById('file-list');
+  if(!uploadedFiles.length){
+    el.innerHTML = '';
+    return;
+  }
+  el.innerHTML = uploadedFiles.map(function(f, i){
+    var sizeStr = f.size < 1024 ? f.size + 'B' : (f.size < 1024*1024 ? Math.round(f.size/1024) + 'KB' : (f.size/1024/1024).toFixed(1) + 'MB');
+    var icon = '📄';
+    if(f.type && f.type.indexOf('image') >= 0) icon = '🖼️';
+    else if(/\.(pptx?)$/i.test(f.name)) icon = '📊';
+    else if(/\.pdf$/i.test(f.name)) icon = '📕';
+    return '<div class="file-item"><span>' + icon + '</span><span class="fname">' + esc(f.name) + '</span><span class="fsize">' + sizeStr + '</span><span class="fremove" onclick="removeFile(' + i + ')">✕</span></div>';
+  }).join('');
+}
+
+function removeFile(idx){
+  uploadedFiles.splice(idx, 1);
+  renderFileList();
+}
+
+function readFileAsBase64(file){
+  return new Promise(function(resolve, reject){
+    var reader = new FileReader();
+    reader.onload = function(){
+      var base64 = reader.result.split(',')[1];
+      resolve({ filename: file.name, mimeType: file.type || 'application/octet-stream', data: base64, size: file.size });
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+function submitSurvey(){
+  var productName = document.getElementById('f-productName').value.trim();
+  var hasFiles = uploadedFiles.length > 0;
+
+  if(!productName && !hasFiles){
+    alert('请填写「产品/IP名称」或上传资料文件');
+    return;
+  }
+
+  var btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  btn.textContent = '⏳ 提交中…';
+
+  var data = {
+    productName: productName,
+    contactName: document.getElementById('f-contactName').value.trim(),
+    industry: document.getElementById('f-industry').value.trim(),
+    positioning: document.getElementById('f-positioning').value.trim(),
+    bio: document.getElementById('f-bio').value.trim(),
+    mainProduct: document.getElementById('f-mainProduct').value.trim(),
+    targetAudience: document.getElementById('f-targetAudience').value.trim(),
+    region: document.getElementById('f-region').value.trim(),
+    catchphrases: document.getElementById('f-catchphrases').value.trim()
+  };
+
+  // 读取文件为 base64
+  Promise.all(uploadedFiles.map(readFileAsBase64))
+    .then(function(files){
+      var payload = { data: data, files: files };
+      return fetch(API_BASE + '/api/survey/' + SURVEY_TOKEN + '/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(res){
+      if(res.ok){
+        document.getElementById('survey-form').classList.add('hidden');
+        var ct = res.ctype || '个人客户';
+        var badge = ct === '公司客户' ? 'b-purple' : 'b-gray';
+        var reasonHtml = res.reason ? '<div class="note" style="margin-top:8px;font-size:11px;color:var(--muted)">分类依据：' + esc(res.reason) + '</div>' : '';
+        document.getElementById('success-ctype').innerHTML = '<span class="badge ' + badge + '">客户类型：' + esc(ct) + '</span>' + reasonHtml;
+        document.getElementById('success-page').classList.remove('hidden');
+      } else {
+        btn.disabled = false;
+        btn.textContent = '📤 提交问卷';
+        alert('提交失败：' + (res.error || '未知错误'));
+      }
+    })
+    .catch(function(e){
+      btn.disabled = false;
+      btn.textContent = '📤 提交问卷';
+      alert('网络错误，请检查网络后重试');
+    });
+}
+</script>
+</body>
+</html>
