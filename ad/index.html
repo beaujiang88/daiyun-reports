@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SugooAI 数果AI代运营</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --violet: #7c3aed;
+    --magenta: #d946ef;
+    --cyan: #22d3ee;
+    --glass: rgba(10, 14, 28, 0.74);
+    --glass-border: rgba(255, 255, 255, 0.12);
+    --text: #f0f7ff;
+    --muted: #a3b7d9;
+    --bg-fallback: #050914;
+  }
+  body {
+    font-family: -apple-system, "PingFang SC", system-ui, sans-serif;
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    background-color: var(--bg-fallback);
+  }
+  /* 整页全屏背景图（fixed 图层，兼容 iOS） */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background-image: url("assets/hero-bg.jpg");
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+  }
+  /* 背景压暗层，保证内容可读 */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(180deg,
+      rgba(5,9,20,0.35) 0%,
+      rgba(5,9,20,0.42) 40%,
+      rgba(5,9,20,0.55) 75%,
+      rgba(5,9,20,0.72) 100%);
+    pointer-events: none;
+  }
+  .page { max-width: 460px; margin: 0 auto; }
+
+  /* ===== AD BAR (广告栏) ===== */
+  .ad-bar {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(90deg, rgba(26,11,46,0.82), rgba(45,27,78,0.72), rgba(26,11,46,0.82));
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(217,70,239,0.3);
+    height: 36px;
+    display: flex;
+    align-items: center;
+    z-index: 100;
+  }
+  .ad-bar-icon {
+    flex-shrink: 0;
+    width: 28px; height: 28px;
+    display: flex; align-items: center; justify-content: center;
+    margin-left: 10px;
+    background: linear-gradient(135deg, var(--magenta), var(--violet));
+    border-radius: 6px;
+    box-shadow: 0 0 8px rgba(217,70,239,0.4);
+  }
+  .ad-bar-marquee {
+    flex: 1;
+    overflow: hidden;
+    margin-left: 8px;
+    margin-right: 10px;
+  }
+  .ad-bar-track {
+    display: inline-block;
+    white-space: nowrap;
+    animation: marquee 18s linear infinite;
+    font-size: 11px;
+    font-weight: 500;
+    color: #e8d5ff;
+    letter-spacing: 0.5px;
+  }
+  .ad-bar-track span { margin-right: 40px; }
+  .ad-bar-track .hot { color: var(--cyan); font-weight: 700; }
+  .ad-bar-track .mag { color: var(--magenta); font-weight: 700; }
+  @keyframes marquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ===== HERO（透明，透出整页背景海报主视觉） ===== */
+  .hero {
+    position: relative;
+    height: 480px;
+    overflow: hidden;
+  }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg,
+      rgba(5,9,20,0.00) 0%,
+      rgba(5,9,20,0.00) 55%,
+      rgba(5,9,20,0.30) 80%,
+      rgba(5,9,20,0.80) 100%);
+    pointer-events: none;
+  }
+
+  /* ===== DIVIDER ===== */
+  .divider {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--cyan), var(--magenta), var(--violet), var(--cyan), transparent);
+    opacity: 0.8;
+  }
+
+  /* ===== SECTION ===== */
+  .section {
+    padding: 24px 18px 20px;
+    background: var(--glass);
+    border-top: 1px solid var(--glass-border);
+    border-bottom: 1px solid var(--glass-border);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+  .section-header { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
+  .section-bar {
+    width: 3px; height: 16px; border-radius: 2px;
+    background: linear-gradient(180deg, var(--violet), var(--magenta) 55%, var(--cyan));
+  }
+  .section-tag {
+    font-size: 10px; letter-spacing: 2px; font-weight: 500;
+    font-family: "SF Mono", monospace;
+    background: linear-gradient(90deg, var(--cyan), var(--magenta));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .section-line {
+    flex: 1; height: 1px;
+    background: linear-gradient(90deg, rgba(34,211,238,0.35), rgba(217,70,239,0.15), transparent);
+  }
+
+  .section-title { font-size: 16px; font-weight: 700; margin-bottom: 3px; letter-spacing: 1px; color: #fff; }
+  .section-sub { font-size: 10px; color: var(--muted); margin-bottom: 14px; }
+
+  /* ===== POSTER (真实海报 16:9) ===== */
+  .poster {
+    border: 1px solid var(--glass-border); border-radius: 12px; padding: 5px;
+    margin-bottom: 14px;
+    background: rgba(255,255,255,0.06);
+  }
+  .poster-inner {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    background: linear-gradient(135deg, rgba(124,58,237,0.18), rgba(217,70,239,0.10), rgba(34,211,238,0.12));
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .poster-inner img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    cursor: zoom-in;
+  }
+  .poster-hint { font-size: 8px; color: #7d8db0; margin-top: 4px; letter-spacing: 1px; text-align: center; }
+
+  /* 海报放大层 */
+  .poster-lightbox {
+    position: fixed; inset: 0;
+    z-index: 10000;
+    background: rgba(5,9,20,0.92);
+    backdrop-filter: blur(8px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    cursor: zoom-out;
+  }
+  .poster-lightbox.show { display: flex; }
+  .poster-lightbox img {
+    max-width: 100%; max-height: 100%;
+    border-radius: 10px;
+    box-shadow: 0 10px 60px rgba(0,0,0,0.6);
+  }
+
+  /* ===== VIDEOS (真实视频 9:16) ===== */
+  .videos { display: flex; gap: 12px; justify-content: center; margin-bottom: 14px; }
+  .video-card {
+    width: calc(50% - 6px);
+    aspect-ratio: 9 / 16;
+    max-width: 210px;
+    background: rgba(0,0,0,0.45); border-radius: 14px;
+    position: relative; overflow: hidden; flex-shrink: 1; min-width: 0;
+    border: 1px solid rgba(255,255,255,0.10);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35), inset 0 0 0 1px rgba(255,255,255,0.05);
+    cursor: pointer;
+  }
+  .video-card video {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    background: #000;
+  }
+  .video-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(124,58,237,0.06) 0%, rgba(5,9,20,0.0) 30%, rgba(5,9,20,0.0) 60%, rgba(5,9,20,0.65) 100%);
+    pointer-events: none;
+  }
+  .video-tag {
+    position: absolute; top: 6px; left: 6px;
+    font-size: 9px; font-family: "SF Mono", monospace; letter-spacing: 1px;
+    color: var(--cyan); text-shadow: 0 0 6px rgba(34,211,238,0.35);
+    pointer-events: none;
+  }
+  .video-play {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 46px; height: 46px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    border: 2px solid rgba(255,255,255,0.75);
+    background: linear-gradient(135deg, rgba(124,58,237,0.25), rgba(34,211,238,0.25));
+    box-shadow: 0 0 18px rgba(217,70,239,0.25);
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+  .video-card.playing .video-play { opacity: 0; }
+  .video-name { position: absolute; bottom: 12px; left: 12px; font-size: 13px; color: #fff; font-weight: 500; pointer-events: none; text-shadow: 0 1px 4px rgba(0,0,0,0.8); }
+  .video-dur { position: absolute; bottom: 12px; right: 12px; font-size: 9px; color: rgba(255,255,255,0.85); font-family: "SF Mono", monospace; pointer-events: none; text-shadow: 0 1px 4px rgba(0,0,0,0.8); }
+  /* 视频加载中状态 */
+  @keyframes playPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.35); opacity: 0.55; }
+  }
+  .video-card.loading .video-play { animation: playPulse 0.8s ease-in-out infinite; }
+  .video-badge {
+    position: absolute; top: 6px; right: 6px;
+    font-size: 7px; padding: 2px 5px; border-radius: 4px;
+    background: rgba(217,70,239,0.75); color: #fff;
+    font-family: "SF Mono", monospace; letter-spacing: 0.5px;
+    pointer-events: none;
+  }
+
+  /* ===== TEXT ===== */
+  .section-text {
+    font-size: 11px; color: #c9d4ec; line-height: 1.75;
+    text-align: center; margin-bottom: 14px; padding: 0 8px;
+  }
+
+  /* ===== CTA ===== */
+  .cta-wrap { text-align: center; }
+  .cta-btn {
+    border: none; border-radius: 24px;
+    padding: 10px 28px; font-size: 12px; font-weight: 500;
+    cursor: pointer; color: #fff;
+    display: inline-flex; align-items: center; gap: 6px;
+    letter-spacing: 1px; text-decoration: none;
+    background: linear-gradient(135deg, var(--violet), var(--magenta) 55%, var(--cyan));
+    box-shadow: 0 4px 20px rgba(124,58,237,0.35), 0 0 12px rgba(217,70,239,0.15);
+    transition: all 0.2s ease;
+  }
+  .cta-btn:hover { opacity: 0.92; transform: translateY(-2px); box-shadow: 0 6px 24px rgba(124,58,237,0.45); }
+  .cta-btn svg { filter: drop-shadow(0 0 2px rgba(255,255,255,0.4)); }
+
+  /* ===== SHARE FAB (转发按键) ===== */
+  .share-fab {
+    position: fixed;
+    bottom: 24px; right: 20px;
+    z-index: 999;
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, var(--violet), var(--magenta) 55%, var(--cyan));
+    box-shadow: 0 4px 20px rgba(124,58,237,0.5), 0 0 12px rgba(217,70,239,0.3);
+    transition: all 0.2s ease;
+  }
+  .share-fab:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(124,58,237,0.6); }
+  .share-fab:active { transform: scale(0.95); }
+  .share-fab svg { filter: drop-shadow(0 0 3px rgba(255,255,255,0.5)); }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    background: rgba(5,9,20,0.70);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-top: 1px solid var(--glass-border);
+    padding: 14px; text-align: center;
+  }
+  .footer-text {
+    font-size: 9px; color: #7d8db0;
+    letter-spacing: 2px; font-family: "SF Mono", monospace;
+  }
+
+  /* ===== SECTION DIVIDER ===== */
+  .section-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(34,211,238,0.25), rgba(217,70,239,0.25), transparent); }
+
+  /* ===== QR MODAL (二维码弹窗) ===== */
+  .qr-modal {
+    position: fixed; inset: 0;
+    z-index: 10001;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(5,9,20,0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  .qr-modal.show { display: flex; }
+  .qr-card {
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+    background: linear-gradient(180deg, #0f1830 0%, #1a0b2e 100%);
+    border: 1px solid rgba(217,70,239,0.35);
+    border-radius: 18px;
+    padding: 26px 22px 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 30px rgba(217,70,239,0.15);
+    text-align: center;
+    animation: qr-pop 0.25s ease;
+  }
+  @keyframes qr-pop {
+    from { transform: scale(0.92); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+  }
+  .qr-close {
+    position: absolute; top: 10px; right: 10px;
+    width: 28px; height: 28px;
+    border: none; background: rgba(255,255,255,0.08);
+    color: #fff; font-size: 18px; line-height: 1;
+    border-radius: 50%; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+  }
+  .qr-close:hover { background: rgba(255,255,255,0.15); }
+  .qr-title {
+    font-size: 15px; font-weight: 700; color: #fff;
+    margin-bottom: 4px; letter-spacing: 1px;
+  }
+  .qr-subtitle {
+    font-size: 10px; color: var(--muted);
+    margin-bottom: 16px; font-family: "SF Mono", monospace;
+    letter-spacing: 1px;
+  }
+  .qr-img-wrap {
+    width: 220px; height: 220px;
+    margin: 0 auto 14px;
+    padding: 10px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .qr-img-wrap img,
+  .qr-img-wrap canvas {
+    width: 100%; height: 100%;
+    display: block;
+    image-rendering: pixelated;
+  }
+  .qr-tip {
+    font-size: 10px; color: var(--muted);
+    margin-bottom: 14px; line-height: 1.5;
+  }
+  .qr-actions {
+    display: flex; gap: 8px; justify-content: center;
+  }
+  .qr-btn {
+    flex: 1;
+    border: none; border-radius: 20px;
+    padding: 9px 12px; font-size: 11px; font-weight: 500;
+    cursor: pointer; letter-spacing: 1px;
+    display: inline-flex; align-items: center; justify-content: center; gap: 5px;
+    transition: all 0.2s;
+  }
+  .qr-btn-primary {
+    color: #fff;
+    background: linear-gradient(135deg, var(--violet), var(--magenta) 55%, var(--cyan));
+    box-shadow: 0 4px 14px rgba(124,58,237,0.35);
+  }
+  .qr-btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(124,58,237,0.5); }
+  .qr-btn-secondary {
+    color: var(--text);
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  .qr-btn-secondary:hover { background: rgba(255,255,255,0.14); }
+  .qr-btn svg { filter: drop-shadow(0 0 2px rgba(255,255,255,0.4)); }
+
+  /* ===== SHARE TOAST ===== */
+  .share-toast {
+    position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%);
+    z-index: 9999;
+    background: rgba(10,14,28,0.95);
+    border: 1px solid rgba(34,211,238,0.3);
+    border-radius: 8px; padding: 8px 16px;
+    font-size: 11px; color: #e8edff;
+    backdrop-filter: blur(10px);
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .share-toast.show { opacity: 1; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ===== AD BAR (广告栏) ===== -->
+  <div class="ad-bar">
+    <div class="ad-bar-icon">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M11 5.1l-.8.8L8 4.5l-.7.7 2.2 2.2-.8.8-2.2-2.2-.7.7 2.2 2.2-.8.8L4.9 8l-.7.7 2.4 2.4c.4.4 1 .4 1.4 0l3.5-3.5c.4-.4.4-1 0-1.4L9.1 3.8l-.7.7 2.6 2.6zM3 17.5l3.5 3.5 6.5-6.5-3.5-3.5L3 17.5zM20.7 7.3l-4-4c-.4-.4-1-.4-1.4 0L12 6.6 17.4 12l3.3-3.3c.4-.4.4-1 0-1.4z"/></svg>
+    </div>
+    <div class="ad-bar-marquee">
+      <div class="ad-bar-track">
+        <span class="hot">🔥 限时优惠</span>
+        <span>数果AI漫剧套餐 <span class="mag">立减 30%</span></span>
+        <span class="hot">🔥 新客专享</span>
+        <span>AI数字人口播 <span class="mag">首单免费试用</span></span>
+        <span class="hot">🔥 企业团购</span>
+        <span>批量采购享 <span class="mag">额外 8 折</span></span>
+        <span class="hot">🔥 限时优惠</span>
+        <span>数果AI漫剧套餐 <span class="mag">立减 30%</span></span>
+        <span class="hot">🔥 新客专享</span>
+        <span>AI数字人口播 <span class="mag">首单免费试用</span></span>
+        <span class="hot">🔥 企业团购</span>
+        <span>批量采购享 <span class="mag">额外 8 折</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <div class="hero">
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ===== 板块1：数果AI漫剧套餐 ===== -->
+  <div class="section" id="section-manju">
+    <div class="section-header">
+      <div class="section-bar"></div>
+      <div class="section-tag">01 / MANJU</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="section-title">数果AI漫剧套餐</div>
+    <div class="section-sub">一站式 AI 漫剧内容生产解决方案</div>
+
+    <!-- 真实海报 -->
+    <div class="poster">
+      <div class="poster-inner">
+        <img src="assets/manju-poster.jpg" alt="漫剧套餐海报" loading="lazy" onclick="enlargePoster(this.src)">
+      </div>
+      <div class="poster-hint">点击海报可放大查看</div>
+    </div>
+
+    <!-- 真实样板视频 9:16 -->
+    <div class="videos">
+      <div class="video-card" onclick="toggleVideo(this)">
+        <video data-src="assets/manju-video-1.mp4" preload="metadata" playsinline webkit-playsinline></video>
+        <div class="video-overlay"></div>
+        <div class="video-tag">CASE 01</div>
+        <div class="video-badge">NEW</div>
+        <div class="video-play">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+        <div class="video-name">漫剧案例一</div>
+        <div class="video-dur">0:20</div>
+      </div>
+      <div class="video-card" onclick="toggleVideo(this)">
+        <video data-src="assets/manju-video-2.mp4" preload="metadata" playsinline webkit-playsinline></video>
+        <div class="video-overlay"></div>
+        <div class="video-tag">CASE 02</div>
+        <div class="video-play">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+        <div class="video-name">漫剧案例二</div>
+        <div class="video-dur">0:15</div>
+      </div>
+    </div>
+
+    <!-- 介绍文字 -->
+    <div class="section-text">AI 漫剧套餐——从剧本生成到成品交付，覆盖剧本创作、角色生成、画面合成、配音配乐全流程，高效产出高质量漫剧作品。</div>
+
+    <!-- 企微咨询按钮 -->
+    <div class="cta-wrap">
+      <a href="https://work.weixin.qq.com/companion/entrance?corpid=ww128a5c513c1cb319" class="cta-btn" target="_blank" rel="noopener" onclick="openQr(event)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+        添加企业微信咨询
+      </a>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- ===== 板块2：数果AI数字人 ===== -->
+  <div class="section" id="section-digital-human">
+    <div class="section-header">
+      <div class="section-bar"></div>
+      <div class="section-tag">02 / DIGITAL HUMAN</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="section-title">数果AI数字人</div>
+    <div class="section-sub">视频数字人 · 智能口播解决方案</div>
+
+    <!-- 真实海报 -->
+    <div class="poster">
+      <div class="poster-inner">
+        <img src="assets/dh-poster.jpg" alt="数字人介绍海报" loading="lazy" onclick="enlargePoster(this.src)">
+      </div>
+      <div class="poster-hint">点击海报可放大查看</div>
+    </div>
+
+    <!-- 真实样板视频 9:16 -->
+    <div class="videos">
+      <div class="video-card" onclick="toggleVideo(this)">
+        <video data-src="assets/dh-video-1.mp4" preload="metadata" playsinline webkit-playsinline></video>
+        <div class="video-overlay"></div>
+        <div class="video-tag">VIDEO 01</div>
+        <div class="video-badge">NEW</div>
+        <div class="video-play">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+        <div class="video-name">口播案例一</div>
+        <div class="video-dur">0:39</div>
+      </div>
+      <div class="video-card" onclick="toggleVideo(this)">
+        <video data-src="assets/dh-video-2.mp4" preload="metadata" playsinline webkit-playsinline></video>
+        <div class="video-overlay"></div>
+        <div class="video-tag">VIDEO 02</div>
+        <div class="video-play">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+        <div class="video-name">口播案例二</div>
+        <div class="video-dur">0:21</div>
+      </div>
+    </div>
+
+    <!-- 介绍文字 -->
+    <div class="section-text">AI 视频数字人——输入文案即可生成逼真口播视频，无需真人出镜。支持形象定制、多语种配音、表情动作自然，批量产出短视频内容。</div>
+
+    <!-- 企微咨询按钮 -->
+    <div class="cta-wrap">
+      <a href="https://work.weixin.qq.com/companion/entrance?corpid=ww128a5c513c1cb319" class="cta-btn" target="_blank" rel="noopener" onclick="openQr(event)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+        添加企业微信咨询
+      </a>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <div class="footer">
+    <div class="footer-text">SugooAI © 2026 · POWERED BY DATA</div>
+  </div>
+
+</div>
+
+<!-- ===== 海报放大层 ===== -->
+<div class="poster-lightbox" id="posterLightbox" onclick="this.classList.remove('show')">
+  <img id="posterLightboxImg" src="" alt="海报放大">
+</div>
+
+<!-- ===== 转发按键 (SHARE FAB) ===== -->
+<button class="share-fab" id="shareBtn" title="转发分享">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>
+</button>
+
+<!-- ===== QR MODAL (企业微信二维码弹窗) ===== -->
+<div class="qr-modal" id="qrModal" onclick="if(event.target===this)closeQr()">
+  <div class="qr-card">
+    <button class="qr-close" onclick="closeQr()" aria-label="关闭">×</button>
+    <div class="qr-title">扫码添加企业微信</div>
+    <div class="qr-subtitle">CORPID · ww128a5c513c1cb319</div>
+    <div class="qr-img-wrap" id="qrImgWrap"></div>
+    <div class="qr-tip">使用微信扫一扫，添加数果AI专属顾问</div>
+    <div class="qr-actions">
+      <button class="qr-btn qr-btn-primary" onclick="downloadQr()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="#fff"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+        下载二维码
+      </button>
+      <button class="qr-btn qr-btn-secondary" onclick="copyQrLink()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="#fff"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+        复制链接
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SHARE TOAST ===== -->
+<div class="share-toast" id="shareToast">已复制链接，可粘贴转发</div>
+
+<script>
+// ===== 视频播放控制 =====
+function toggleVideo(card) {
+  var video = card.querySelector('video');
+  // 暂停其他视频
+  document.querySelectorAll('.video-card.playing').forEach(function(other) {
+    if (other !== card) {
+      var ov = other.querySelector('video');
+      if (ov) ov.pause();
+      other.classList.remove('playing');
+    }
+  });
+  // 首次点击：blob 整体加载后播放（绕开托管网关不支持 Range 的问题）
+  if (video.dataset.loaded !== '1') {
+    video.dataset.loaded = '1';
+    card.classList.add('loading');
+    var url = video.dataset.src;
+    // iOS 解锁音视频
+    video.play().catch(function(){});
+    fetch(url).then(function(r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.blob();
+    }).then(function(b) {
+      video.src = URL.createObjectURL(b);
+      card.classList.remove('loading');
+      video.addEventListener('ended', function() {
+        card.classList.remove('playing');
+        video.currentTime = 0;
+      });
+      video.play().then(function() {
+        card.classList.add('playing');
+      }).catch(function(){});
+    }).catch(function() {
+      video.dataset.loaded = '';
+      card.classList.remove('loading');
+      showToast('视频加载失败，请重试');
+    });
+    return;
+  }
+  if (video.paused) {
+    video.play().then(function() {
+      card.classList.add('playing');
+    }).catch(function(){});
+  } else {
+    video.pause();
+    card.classList.remove('playing');
+  }
+}
+
+// ===== 海报放大 =====
+function enlargePoster(src) {
+  var lb = document.getElementById('posterLightbox');
+  document.getElementById('posterLightboxImg').src = src;
+  lb.classList.add('show');
+}
+
+// ===== 转发分享 =====
+(function() {
+  var shareBtn = document.getElementById('shareBtn');
+  var toast = document.getElementById('shareToast');
+
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(function() { toast.classList.remove('show'); }, 2000);
+  }
+
+  shareBtn.addEventListener('click', function() {
+    var shareData = {
+      title: 'SugooAI 数果AI代运营',
+      text: '数果AI代运营 - AI漫剧套餐 & AI数字人口播解决方案',
+      url: window.location.href
+    };
+
+    if (navigator.share) {
+      navigator.share(shareData).catch(function(err) {
+        if (err.name !== 'AbortError') fallbackShare();
+      });
+    } else {
+      fallbackShare();
+    }
+  });
+
+  function fallbackShare() {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(window.location.href).then(function() {
+        showToast('已复制链接，可粘贴转发');
+      }).catch(function() {
+        legacyCopy();
+      });
+    } else {
+      legacyCopy();
+    }
+  }
+
+  function legacyCopy() {
+    var textarea = document.createElement('textarea');
+    textarea.value = window.location.href;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    try {
+      document.execCommand('copy');
+      showToast('已复制链接，可粘贴转发');
+    } catch (e) {
+      showToast('请手动复制地址栏链接转发');
+    }
+    document.body.removeChild(textarea);
+  }
+})();
+
+// ===== 企业微信二维码弹窗（使用真实联系二维码） =====
+(function() {
+  var QR_IMG = 'assets/wecom-qr.png';
+  var QR_URL = 'https://work.weixin.qq.com/companion/entrance?corpid=ww128a5c513c1cb319';
+  var rendered = false;
+
+  function ensureQr() {
+    if (rendered) return;
+    var wrap = document.getElementById('qrImgWrap');
+    wrap.innerHTML = '<img src="' + QR_IMG + '" alt="数果AI企业微信二维码" crossorigin="anonymous"/>';
+    wrap.dataset.imgSrc = QR_IMG;
+    rendered = true;
+  }
+
+  window.openQr = function(e) {
+    if (e) { e.preventDefault(); e.stopPropagation(); }
+    ensureQr();
+    document.getElementById('qrModal').classList.add('show');
+  };
+
+  window.closeQr = function() {
+    document.getElementById('qrModal').classList.remove('show');
+  };
+
+  window.downloadQr = function() {
+    var imgSrc = document.getElementById('qrImgWrap').dataset.imgSrc || QR_IMG;
+    // 优先用 fetch+blob 保留原图画质
+    fetch(imgSrc).then(function(r) { return r.blob(); }).then(function(blob) {
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'sugoo-wecom-qr.png';
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(function() { URL.revokeObjectURL(a.href); a.remove(); }, 100);
+      showToast('二维码已下载，可发送给客户');
+    }).catch(function() {
+      // 降级：canvas 重绘（PNG 透明背景会变白底）
+      var img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.onload = function() {
+        var size = Math.max(img.width, img.height, 720);
+        var c = document.createElement('canvas');
+        c.width = c.height = size;
+        var ctx = c.getContext('2d');
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, size, size);
+        // 居中绘制，保持原图比例
+        var scale = Math.min(size / img.width, size / img.height);
+        var w = img.width * scale, h = img.height * scale;
+        ctx.drawImage(img, (size - w) / 2, (size - h) / 2, w, h);
+        c.toBlob(function(b) {
+          var a = document.createElement('a');
+          a.href = URL.createObjectURL(b);
+          a.download = 'sugoo-wecom-qr.png';
+          document.body.appendChild(a);
+          a.click();
+          setTimeout(function() { URL.revokeObjectURL(a.href); a.remove(); }, 100);
+          showToast('二维码已下载，可发送给客户');
+        }, 'image/png');
+      };
+      img.onerror = function() { showToast('二维码下载失败，请重试'); };
+      img.src = imgSrc;
+    });
+  };
+
+  window.copyQrLink = function() {
+    var copyFn = function() {
+      if (navigator.clipboard) {
+        return navigator.clipboard.writeText(QR_URL);
+      }
+      var ta = document.createElement('textarea');
+      ta.value = QR_URL; ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); } catch(e) {}
+      document.body.removeChild(ta);
+      return Promise.resolve();
+    };
+    copyFn().then(function() { showToast('企业微信链接已复制'); });
+  };
+
+  // ESC 关闭
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeQr();
+  });
+})();
+</script>
+
+</body>
+</html>
