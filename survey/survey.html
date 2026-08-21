@@ -184,11 +184,22 @@
 var SURVEY_TOKEN = null;
 var uploadedFiles = [];
 
-/* 静态发布版（部署在 app.workbuddy.link 固定域名，永久在线）：
-   页面托管在云端，问卷加载/提交的 API 必须指向固定的 harness 转发地址。
-   ⚠️ 转发地址变更时，改这里的 SURVEY_API_BASE 后重新部署即可。 */
-var SURVEY_API_BASE = 'https://beaumac-mini.tail9cb361.ts.net:8443';
-var API_BASE = SURVEY_API_BASE;
+/* 统一 API 寻址（2026-08-22 合并 survey-public 硬编码版 + 本地动态版，单一来源）：
+   1) 本机工作台 8787 → 直接本机
+   2) GitHub Pages 公网（beaujiang88.github.io）→ 走 Tailscale Funnel 固定转发（问卷 API 后端在本机 server.js:8787）
+   3) 其它 HTTPS（隧道/转发）→ 页面同源（harness 转发已代理到 8787） */
+var SURVEY_FUNNEL_BASE = 'https://beaumac-mini.tail9cb361.ts.net:8443';
+function getWorkbenchOrigin(){
+  if(location.port === '8787') return location.origin;
+  if(location.protocol === 'https:'){
+    /* GitHub Pages 静态托管不转发 API → 用 Funnel 固定地址（唯一残留依赖：本机开机联网） */
+    if(location.hostname.indexOf('github.io') !== -1) return SURVEY_FUNNEL_BASE;
+    /* 其它 HTTPS 转发（隧道等）→ 页面同源，由转发层代理到 8787 */
+    return location.origin;
+  }
+  return 'http://localhost:8787';
+}
+var API_BASE = getWorkbenchOrigin();
 
 function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
