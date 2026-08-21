@@ -207,7 +207,7 @@ function closeShare(){$("mask").classList.remove("on");$("sheet").classList.remo
 function toast(m){var t=$("toast");t.textContent=m;t.classList.add("on");clearTimeout(t._h);t._h=setTimeout(function(){t.classList.remove("on")},2600)}
 function copyText(txt,msg){function done(){toast(msg)}function fb(){var ta=document.createElement("textarea");ta.value=txt;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand("copy");done()}catch(e){window.prompt("复制内容：",txt)}document.body.removeChild(ta)}
 if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done,fb)}else{fb()}}
-function copyLink(){copyText(shareUrl(),"已复制，去微信粘贴发送给客户");closeShare()}
+function copyLink(){copyText("【AI 漫广代运营】「"+CUST+"」服务进展报告，实时更新，点击查看 👇\n"+shareUrl(),"已复制，去微信粘贴发送给客户");closeShare()}
 function sysShare(){if(!navigator.share)return;navigator.share({title:"客户服务报告 · "+CUST,text:"【AI 漫广代运营】「"+CUST+"」服务进展报告，实时更新",url:shareUrl()}).catch(function(){})}
 function lockBtn(){["fbBtn","apBtn"].forEach(function(i){var b=$(i);if(b)b.disabled=true})}
 function sendFB(kind){var txt=kind==="feedback"?(($("fbText")||{}).value||""):"";if(kind==="feedback"&&txt.trim().length<2){toast("请先填写修改意见");return}lockBtn();if(FB_URL){fetch(FB_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({clientId:CUSTID,kind:kind,content:txt})}).then(function(r){return r.json()}).then(function(d){if(d&&d.ok){toast(kind==="feedback"?"✅ 意见已提交，我们马上处理":"🎉 已确认认可，我们开始执行");setTimeout(function(){location.reload()},1200)}else{toast("提交失败："+((d&&d.error)||"请稍后重试"));}}).catch(function(){fbCopy(kind,txt)})}else{fbCopy(kind,txt)}}

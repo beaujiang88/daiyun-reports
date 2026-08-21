@@ -653,6 +653,8 @@ function enlargePoster(src) {
 (function() {
   var shareBtn = document.getElementById('shareBtn');
   var toast = document.getElementById('shareToast');
+  // 转发文案（与工作台「转发给客户」保持一致）：桌面复制 / 系统分享统一用这句
+  var SHARE_TEXT = '【数果AI】AI漫剧广告代运营 · 漫剧套餐 & 数字人口播，扫码加企业微信免费咨询👇';
 
   function showToast(msg) {
     toast.textContent = msg;
@@ -663,7 +665,7 @@ function enlargePoster(src) {
   shareBtn.addEventListener('click', function() {
     var shareData = {
       title: 'SugooAI 数果AI代运营',
-      text: '数果AI代运营 - AI漫剧套餐 & AI数字人口播解决方案',
+      text: SHARE_TEXT,
       url: window.location.href
     };
 
@@ -678,7 +680,7 @@ function enlargePoster(src) {
 
   function fallbackShare() {
     if (navigator.clipboard) {
-      navigator.clipboard.writeText(window.location.href).then(function() {
+      navigator.clipboard.writeText(SHARE_TEXT + '\n' + window.location.href).then(function() {
         showToast('已复制链接，可粘贴转发');
       }).catch(function() {
         legacyCopy();
@@ -690,7 +692,7 @@ function enlargePoster(src) {
 
   function legacyCopy() {
     var textarea = document.createElement('textarea');
-    textarea.value = window.location.href;
+    textarea.value = SHARE_TEXT + '\n' + window.location.href;
     textarea.style.position = 'fixed';
     textarea.style.opacity = '0';
     document.body.appendChild(textarea);
@@ -773,10 +775,10 @@ function enlargePoster(src) {
   window.copyQrLink = function() {
     var copyFn = function() {
       if (navigator.clipboard) {
-        return navigator.clipboard.writeText(QR_URL);
+        return navigator.clipboard.writeText('【数果AI】企业微信咨询入口，点击/扫码即可添加👇\n' + QR_URL);
       }
       var ta = document.createElement('textarea');
-      ta.value = QR_URL; ta.style.position='fixed'; ta.style.opacity='0';
+      ta.value = '【数果AI】企业微信咨询入口，点击/扫码即可添加👇\n' + QR_URL; ta.style.position='fixed'; ta.style.opacity='0';
       document.body.appendChild(ta); ta.select();
       try { document.execCommand('copy'); } catch(e) {}
       document.body.removeChild(ta);
