@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>客户服务报告 · 叶芝彤</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;background:#f6f7f9;color:#111827;-webkit-font-smoothing:antialiased;line-height:1.6}
+.wrap{max-width:660px;margin:0 auto;padding:0 16px 56px}
+.brand{display:flex;align-items:center;justify-content:space-between;padding:20px 2px 14px}
+.brand-l{display:flex;align-items:center;gap:9px;font-size:14px;font-weight:600;color:#1f2430}
+.brand-l .logo{width:22px;height:22px;border-radius:7px;background:linear-gradient(135deg,#7c3aed,#a855f7);display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700}
+.brand-r{font-size:12px;color:#9ca3af;background:#fff;border:1px solid #e5e7eb;border-radius:999px;padding:5px 12px}
+.hero{background:#fff;border:1px solid #e5e7eb;border-radius:20px;padding:26px 24px 24px;position:relative;overflow:hidden;box-shadow:0 1px 2px rgba(16,24,40,.04),0 8px 24px rgba(16,24,40,.05)}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#7c3aed,#2563eb)}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.tag{font-size:12px;padding:5px 12px;border-radius:999px;background:#f5f3ff;color:#6d28d9;font-weight:500}
+.tag.gray{background:#f3f4f6;color:#6b7280}
+.hero h1{font-size:28px;font-weight:700;letter-spacing:.5px;color:#111827}
+.hero .pic{margin-top:8px;font-size:14px;color:#4b5563;line-height:1.7}
+.hero .sub{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:14px;font-size:14px;color:#4b5563}
+.pill{font-size:12px;font-weight:500;padding:4px 10px;border-radius:999px}
+.pill.ok{background:#ecfdf5;color:#047857}
+.pill.doing{background:#eff6ff;color:#1d4ed8}
+.pill.todo{background:#f3f4f6;color:#6b7280}
+.pcard{background:#fff;border:1px solid #e5e7eb;border-radius:20px;padding:24px;margin-top:16px;box-shadow:0 1px 2px rgba(16,24,40,.04),0 8px 24px rgba(16,24,40,.05)}
+.prow{display:flex;align-items:center;gap:22px}
+.ringwrap{position:relative;width:104px;height:104px;flex-shrink:0}
+.ringnum{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ringnum b{font-size:24px;font-weight:700;color:#1f2430;line-height:1.1}
+.ringnum span{font-size:11px;color:#9ca3af}
+.pinfo{flex:1;min-width:0}
+.pinfo .cur{font-size:16px;font-weight:600;color:#111827}
+.pinfo .cur em{font-style:normal;color:#7c3aed}
+.pinfo .desc{font-size:13px;color:#6b7280;margin-top:6px;line-height:1.7}
+.stepper{display:grid;grid-template-columns:repeat(11,1fr);gap:5px;margin-top:20px}
+.step{height:7px;border-radius:4px;background:#eef0f4}
+.step.ok{background:#16a34a}
+.step.doing{background:#2563eb}
+.legend{display:flex;gap:16px;margin-top:12px;font-size:12px;color:#6b7280}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.sec{margin-top:28px}
+.sec h2{font-size:16px;font-weight:600;color:#111827;margin-bottom:12px;display:flex;align-items:baseline;gap:8px}
+.sec h2 .n{font-size:12px;color:#9ca3af;font-weight:500}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:16px 18px;margin-bottom:10px;display:flex;gap:16px;box-shadow:0 1px 2px rgba(16,24,40,.03)}
+.card.doing{border-color:#bfdbfe;background:#fbfdff}
+.card.todo{opacity:.6}
+.card .num{flex-shrink:0;width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700}
+.card.ok .num{background:#f5f3ff;color:#7c3aed}
+.card.doing .num{background:#eff6ff;color:#1d4ed8}
+.card.todo .num{background:#f3f4f6;color:#9ca3af}
+.card .body{flex:1;min-width:0}
+.card .body .t{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:15px;font-weight:600;color:#111827}
+.badge{font-size:11px;padding:3px 9px;border-radius:999px;font-weight:500}
+.badge.ok{background:#ecfdf5;color:#047857}
+.badge.doing{background:#eff6ff;color:#1d4ed8}
+.badge.todo{background:#f3f4f6;color:#9ca3af}
+.card .body p{margin-top:6px;font-size:13.5px;color:#4b5563;line-height:1.75;word-break:break-word}
+.card.todo .body p{color:#9ca3af}
+.next{margin-top:20px;background:linear-gradient(135deg,#f5f3ff,#eef2ff);border:1px solid #ddd6fe;border-radius:16px;padding:18px 20px}
+.next h3{font-size:14px;font-weight:600;color:#6d28d9;margin-bottom:6px;display:flex;align-items:center;gap:7px}
+.next p{font-size:14px;color:#1f2430;line-height:1.7}
+.footer{text-align:center;color:#9ca3af;font-size:12px;margin-top:36px;line-height:1.9}
+.footer .ln{width:48px;height:1px;background:#e5e7eb;margin:0 auto 12px}
+.fab{position:fixed;right:16px;bottom:24px;display:flex;align-items:center;gap:7px;padding:13px 20px;border-radius:999px;border:none;cursor:pointer;background:linear-gradient(135deg,#7c3aed,#2563eb);color:#fff;font-size:14px;font-weight:600;box-shadow:0 8px 24px rgba(124,58,237,.35);z-index:50;transition:transform .15s}
+.fab:active{transform:scale(.94)}
+.mask{position:fixed;inset:0;background:rgba(17,24,39,.45);z-index:60;opacity:0;pointer-events:none;transition:opacity .2s}
+.mask.on{opacity:1;pointer-events:auto}
+.sheet{position:fixed;left:0;right:0;bottom:0;background:#fff;border-radius:20px 20px 0 0;padding:14px 20px calc(20px + env(safe-area-inset-bottom));z-index:70;transform:translateY(105%);transition:transform .25s;box-shadow:0 -8px 30px rgba(16,24,40,.16)}
+.sheet.on{transform:translateY(0)}
+.sheet .grip{width:36px;height:4px;border-radius:2px;background:#e5e7eb;margin:0 auto 14px}
+.sheet h3{font-size:16px;font-weight:600;color:#111827;text-align:center}
+.sheet .sub{font-size:12px;color:#9ca3af;text-align:center;margin-top:4px}
+.sheet .share-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:14px;padding:14px;border-radius:14px;font-size:15px;font-weight:600;border:none;cursor:pointer}
+.sheet .share-btn.primary{background:linear-gradient(135deg,#7c3aed,#2563eb);color:#fff}
+.sheet .share-btn.ghost{background:#f3f4f6;color:#374151}
+.sheet .tip{font-size:12px;color:#9ca3af;text-align:center;margin-top:14px;line-height:1.7}
+.toast{position:fixed;left:50%;bottom:100px;transform:translateX(-50%) translateY(10px);background:rgba(17,24,39,.88);color:#fff;font-size:13px;padding:10px 20px;border-radius:999px;opacity:0;pointer-events:none;transition:all .25s;z-index:90;white-space:nowrap;max-width:86vw;overflow:hidden;text-overflow:ellipsis}
+.toast.on{opacity:1;transform:translateX(-50%)}
+.fs{background:#fff;border:1px solid #e5e7eb;border-radius:20px;padding:20px;margin-top:16px;box-shadow:0 1px 2px rgba(16,24,40,.03)}
+.fs .fs-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:2px}
+.fs .fs-h h3{font-size:15px;font-weight:600;color:#111827}
+.fs .fs-h .n{font-size:12px;color:#9ca3af;font-weight:500}
+.fs .fs-item{display:flex;gap:12px;padding:13px 0;border-top:1px solid #f3f4f6}
+.fs .fs-item .lab{flex-shrink:0;width:70px;font-size:13px;color:#6b7280;padding-top:2px}
+.fs .fs-item .val{flex:1;min-width:0;font-size:13.5px;color:#374151;line-height:1.75;word-break:break-word}
+.fs .fs-item .val .st{font-size:11px;padding:2px 8px;border-radius:999px;margin-right:8px;font-weight:500}
+.fs .fs-item .val .st.ok{background:#ecfdf5;color:#047857}
+.fs .fs-item .val .st.doing{background:#eff6ff;color:#1d4ed8}
+.fs .fs-item .val .st.todo{background:#f3f4f6;color:#9ca3af}
+.fee-table{width:100%;border-collapse:collapse;margin-top:10px;font-size:13px}
+.fee-table th{background:#f9fafb;color:#6b7280;font-weight:500;text-align:left;padding:9px 12px;border-bottom:1px solid #e5e7eb}
+.fee-table th:first-child,.fee-table td:first-child{padding-left:14px;border-radius:10px 0 0 10px}
+.fee-table td{padding:9px 12px;border-bottom:1px solid #f3f4f6;color:#374151;vertical-align:top}
+.fee-table tr:last-child td{border-bottom:none}
+.fee-table .price{font-weight:700;color:#111827;white-space:nowrap}
+.fee-text{font-size:13.5px;color:#374151;line-height:1.8;margin-top:8px;white-space:pre-line}
+.fbstatus{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:16px 18px;margin-top:16px;display:flex;align-items:center;gap:14px}
+.fbstatus .stamp{flex-shrink:0;width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:20px}
+.fbstatus .stamp.ok{background:#ecfdf5}
+.fbstatus .stamp.doing{background:#eff6ff}
+.fbstatus .stamp.todo{background:#f3f4f6}
+.fbstatus .info b{font-size:15px;color:#111827;display:block}
+.fbstatus .info span{font-size:12.5px;color:#6b7280;line-height:1.6;display:block;margin-top:2px}
+.fblist{margin-top:10px}
+.fbitem{background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:13px 16px;margin-top:8px}
+.fbitem .fb-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.fbitem .fb-top .tag{font-size:11px;padding:2px 9px;border-radius:999px;font-weight:500}
+.fbitem .fb-top .tag.feedback{background:#fef3c7;color:#b45309}
+.fbitem .fb-top .tag.approve{background:#ecfdf5;color:#047857}
+.fbitem .fb-top .tag.unhandled{background:#f3f4f6;color:#6b7280}
+.fbitem .fb-top .tag.handled{background:#ecfdf5;color:#047857}
+.fbitem .fb-top .when{font-size:12px;color:#9ca3af;margin-left:auto}
+.fbitem .fb-content{margin-top:7px;font-size:13.5px;color:#374151;line-height:1.7;white-space:pre-line}
+.fbitem .fb-reply{margin-top:8px;font-size:12.5px;color:#6d28d9;background:#f5f3ff;border-radius:10px;padding:8px 12px}
+.fbform{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:16px 18px;margin-top:12px}
+.fbform textarea{width:100%;min-height:88px;border:1px solid #e5e7eb;border-radius:12px;padding:12px 14px;font-size:14px;font-family:inherit;color:#111827;resize:vertical;box-sizing:border-box;outline:none;transition:border-color .15s}
+.fbform textarea:focus{border-color:#7c3aed}
+.fbform .fb-btns{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.fbform .fb-btn{flex:1;min-width:150px;padding:13px;border-radius:13px;font-size:14.5px;font-weight:600;border:none;cursor:pointer}
+.fbform .fb-btn.primary{background:linear-gradient(135deg,#7c3aed,#2563eb);color:#fff}
+.fbform .fb-btn.approve{background:#ecfdf5;color:#047857;border:1.5px solid #a7f3d0}
+.fbform .fb-btn:disabled{opacity:.55;cursor:not-allowed}
+.fbform .fb-hint{font-size:11.5px;color:#9ca3af;margin-top:9px;line-height:1.6}
+.doc{background:#fff;border:1px solid #e5e7eb;border-radius:20px;padding:22px 22px 8px;margin-top:14px}
+.doc-body{font-size:14px;color:#374151;line-height:1.85}
+.doc-body h2{font-size:17px;color:#111827;margin:26px 0 12px;padding-bottom:8px;border-bottom:1px solid #f0f0f4}
+.doc-body h2:first-child{margin-top:4px}
+.doc-body h3{font-size:15px;color:#1f2937;margin:20px 0 8px}
+.doc-body p{margin:10px 0}
+.doc-body table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px}
+.doc-body th{background:#faf7ff;color:#4c1d95;font-weight:600;text-align:left;padding:9px 12px;border:1px solid #ece7f7}
+.doc-body td{padding:8px 12px;border:1px solid #edeff3;color:#374151;vertical-align:top}
+.doc-body tr:nth-child(even) td{background:#fbfbfd}
+.doc-body ul,.doc-body ol{margin:10px 0 10px 2px;padding-left:22px}
+.doc-body li{margin:5px 0}
+.doc-body blockquote{margin:12px 0;padding:10px 14px;background:#fffbeb;border-left:3px solid #f59e0b;border-radius:0 10px 10px 0;color:#78350f;font-size:13.5px}
+.doc-body blockquote p{margin:0}
+.doc-body hr{border:none;border-top:1px solid #eef0f4;margin:20px 0}
+.doc-body a{color:#7c3aed;text-decoration:none;word-break:break-all}
+.doc-body a:hover{text-decoration:underline}
+.doc-body code{background:#f3f4f6;border-radius:5px;padding:1px 6px;font-size:12.5px;color:#be185d}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-top:14px}
+.kpi{background:linear-gradient(160deg,#fff 0%,#faf7ff 100%);border:1px solid #ece7f7;border-radius:16px;padding:16px 14px;text-align:center}
+.kpi b{font-size:22px;font-weight:700;color:#4c1d95;display:block;line-height:1.2;word-break:break-all}
+.kpi span{font-size:12.5px;color:#6b7280;display:block;margin-top:6px}
+.kpi em{font-style:normal;font-size:11px;color:#9ca3af;display:block;margin-top:4px;line-height:1.5}
+.script{background:#fff;border:1px solid #e5e7eb;border-radius:16px;margin-bottom:10px;box-shadow:0 1px 2px rgba(16,24,40,.03);overflow:hidden}
+.script summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:14px 18px;user-select:none;transition:background .2s}
+.script summary::-webkit-details-marker{display:none}
+.script summary:hover{background:#fafaff}
+.script .s-no{flex-shrink:0;width:34px;height:34px;border-radius:10px;background:#f5f3ff;color:#7c3aed;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.script .s-title{font-size:15px;font-weight:600;color:#111827;min-width:0;flex:1}
+.script .s-arrow{margin-left:auto;flex-shrink:0;width:24px;height:24px;border-radius:8px;background:#f5f3ff;color:#7c3aed;display:flex;align-items:center;justify-content:center;font-size:10px;transition:transform .25s}
+.script[open] summary .s-arrow{transform:rotate(180deg)}
+.script .s-body{padding:0 18px 16px}
+.script .s-hook{margin-top:9px;font-size:13.5px;color:#4b5563;line-height:1.75;word-break:break-word}
+.script .s-shots{margin-top:11px;border-top:1px dashed #eef0f4;padding-top:9px}
+.script .s-shot{display:flex;gap:9px;font-size:12.5px;line-height:1.65;margin-top:7px}
+.script .s-shot>i{flex-shrink:0;font-style:normal;background:#f3f4f6;color:#6d28d9;border-radius:6px;padding:1px 8px;font-size:11px;white-space:nowrap;height:fit-content}
+.script .s-shot-body{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.script .s-v,.script .s-vc{font-size:12.5px;color:#4b5563;line-height:1.6;word-break:break-word}
+.script .s-vc{color:#374151}
+.script .s-v b,.script .s-vc b{color:#6d28d9;font-weight:600;margin-right:3px}
+.script .s-dur{font-style:normal;align-self:flex-start;font-size:10.5px;background:#fefce8;color:#a16207;border:1px solid #fde68a;border-radius:6px;padding:0 6px;margin-top:2px}
+.script .s-note{margin-top:10px;font-size:12px;color:#9ca3af;line-height:1.6}
+@media print{body{background:#fff}.card,.hero,.pcard{box-shadow:none}.fab,.mask,.sheet{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="brand"><div class="brand-l"><span class="logo">漫</span>AI 漫广代运营</div><div class="brand-r">客户服务报告</div></div>
+<div class="hero"><div class="tags"><span class="tag">酵素益生菌，大健康，AI赋能</span><span class="tag gray">待定</span><span class="tag ctype">个人客户</span></div><h1>叶芝彤</h1><p class="pic">## 客户问卷信息 - **产品/IP名称**：叶芝彤 - **称呼**：芝彤 - **所属行业**：酵素益生菌，大健康，AI赋能 - **核心卖点/人设定位**：温柔，知性，专业，大气女主 - **详细描述/Bio**：温柔，且有感染力的表达方式，自媒体达人，国际典雅公主的优雅知性，专业的内容赋能。 - **主推产品/服务**：AI与肠道管理结合 - **目标受众**：30岁以上 - **所在地区**：福建 - **常用口头禅**：很好的！</p><div class="sub"><span class="pill doing">服务进行中</span><span class="pill todo">方案待确认</span><span>当前推进「服务内容」· | 切入方案 | 价格 | 产出 | |----------|------|------| | 托管版（主推） | ¥1</span></div></div>
+<div class="pcard"><div class="prow"><div class="ringwrap"><svg width="104" height="104" viewBox="0 0 104 104" aria-hidden="true"><circle cx="52" cy="52" r="42" fill="none" stroke="#f1f0f7" stroke-width="11"/><circle cx="52" cy="52" r="42" fill="none" stroke="#7c3aed" stroke-width="11" stroke-linecap="round" stroke-dasharray="263.9" stroke-dashoffset="95.0" transform="rotate(-90 52 52)"/></svg><div class="ringnum"><b>64%</b><span>完成度</span></div></div><div class="pinfo"><div class="cur">已完成 <em>7 / 11</em> 阶段</div><div class="desc">当前推进「服务内容」· | 切入方案 | 价格 | 产出 | |----------|------|------| | 托管版（主推） | ¥1</div></div></div><div class="stepper"><div class="step done"></div><div class="step done"></div><div class="step done"></div><div class="step done"></div><div class="step done"></div><div class="step doing"></div><div class="step done"></div><div class="step done"></div><div class="step doing"></div><div class="step todo"></div><div class="step todo"></div></div><div class="legend"><span><i style="background:#16a34a"></i>已完成</span><span><i style="background:#2563eb"></i>进行中</span><span><i style="background:#eef0f4"></i>待开始</span></div></div>
+<div class="sec doc"><h2>📖 客户专属分析报告 <span class="n">门店 · 竞品 · 漫剧方案 · 落地路径</span></h2><div class="doc-body"><h1>叶芝彤（酵素益生菌 · 大健康）运营分析与代运营方案</h1><blockquote>建档日期：2026-08-20 · 数据来源：客户调查问卷、AI 自动分析（ai-analyze.js / DSH deepseek-v4-pro）、对标套路库</blockquote><hr><h2>一、IP 基础画像</h2><table><thead><tr><th>项目</th><th>内容</th></tr></thead><tbody><tr><td>IP 名称</td><td>叶芝彤</td></tr><tr><td>赛道</td><td>酵素益生菌，大健康，AI 赋能</td></tr><tr><td>人设定位</td><td>温柔 · 知性 · 专业 · 大气女主</td></tr><tr><td>Bio</td><td>温柔且有感染力的表达方式，自媒体达人，国际典雅公主的优雅知性，专业的内容赋能</td></tr><tr><td>主推产品/服务</td><td>AI 与肠道管理结合</td></tr><tr><td>目标受众</td><td>30 岁以上</td></tr><tr><td>所在地区</td><td>福建</td></tr><tr><td>口头禅</td><td>很好的！</td></tr><tr><td>客户类型</td><td>个人客户（个体户/自然人）</td></tr></tbody></table><p><strong>关键判断</strong>：这是一个「本人即出镜主体」的个人 IP 起号项目。核心不是卖货，而是用「AI 科技感 + 亲和知性人设」做差异化，把偏玄学的肠道养生做成「可感知、可数据化」的健康管理，先起号立 IP，再私域成交。</p><hr><h2>二、需求与赛道分析</h2><p><strong>需求层级判断为「曝光 → 信任 → 成交」三段式</strong>：先起号涨粉立 IP → 沉淀私域 → 转化酵素益生菌产品（带货 / 知识付费 / 社群）。</p><ul><li>赛道整体上升：大健康 + 肠道管理需求真实，但「酵素/益生菌」纯功效卖货口碑信任差、监管严。</li><li><strong>差异化机会</strong>：用「AI 赋能肠道管理」把养生从「玄学」变成「科学生活方式」，规避纯功效带货的合规雷区。</li><li><strong>待补充硬信息</strong>：现有账号清单、酵素益生菌货源与资质（普通食品 / 保健食品蓝帽子）、成交链路（私域 / 小程序 / 直播间）、预算区间。</li></ul><hr><h2>三、竞品对标分析</h2><ul><li><strong>直接竞品</strong>：益生菌/酵素赛道健康博主力（低价纯功效、信任差）、肠道营养师科普号、大健康知识付费 IP。</li><li><strong>本地机会</strong>：福建本地健康养生 IP 相对蓝海。</li><li><strong>对标短板 = 我们机会</strong>（复用套路库）：无字幕 / 钩子钝 / 无同城/私域闭环 / 无合规标注 → 做「有字幕 + 锋利钩子 + 私域引导 + 合规标注」升级版。</li><li><strong>可借鉴套路</strong>：H1 消费观对立（「对自己好一点」vs「乱花钱」）、H2 年龄/形象焦虑（「30+ 了还熬夜暴食」→ 同龄差距反杀）、观念金句收尾（「最好的自律，是让肠道每天都很好」）。</li></ul><hr><h2>四、内容形态可行性</h2><p><strong>结论：大健康高监管，内容以「温柔对镜口播干货」为主，慎用狗血漫剧（漫剧仅做观念软植入）。</strong></p><ul><li><strong>主形态</strong>：本人温柔对镜/半身出镜口播干货（<code>skills/04-短视频口播脚本策划</code>），60 秒分镜：3 秒钩子 + 痛点 + 干货 + CTA。</li><li><strong>辅助形态</strong>：AI 数字人批量口播（需本人形象采集 ¥150 + 肖像授权，降低出镜频次）。</li><li><strong>漫剧定位</strong>：15s 微漫剧四段式仅用于投流素材软植入（<code>skills/03-狗血抓马漫广导演</code>），不做日常科普主推。</li><li><strong>平台矩阵</strong>：抖音 + 小红书为主（女性健康内容主阵地），视频号承接微信私域；抖音健康类目审核严、慎投。</li></ul><hr><h2>五、创意方案评估</h2><p><strong>内容配比 40/40/20</strong>：</p><ul><li><strong>40% 观念/共鸣</strong>：女性自我管理、肠道健康观念、温柔知性金句。</li><li><strong>40% 专业干货</strong>：AI+肠道管理科普（去功效化，讲「菌群/作息/饮食/情绪」生活方式）。</li><li><strong>20% 人设/IP 日常</strong>：温柔大气女主日常、口头禅「很好的！」、AI 工具幕后。</li></ul><p><strong>选题库方向</strong>：30+ 肠道衰老焦虑、熬夜/外卖/久坐的肠道自救、AI 如何帮你读懂肠道、温柔女主的自律日常、酵素益生菌怎么选（讲配料/活菌/是否适合生活习惯，不功效化）。</p><p><strong>账号三件套</strong>：昵称「叶芝彤」/「芝彤·AI肠道管理」、头像用知性职业照、简介突出「30+ 女性肠道健康生活方式」+ AI 赋能，避免医疗/功效词。</p><hr><h2>六、执行进度与下一步</h2><table><thead><tr><th>阶段</th><th>状态</th><th>说明</th></tr></thead><tbody><tr><td>客户建档</td><td>✅</td><td>问卷自动建档（个人客户，套餐/签约待定）</td></tr><tr><td>客户需求</td><td>🔄</td><td>曝光→信任→成交三段式；预算/账号清单/货源资质待补</td></tr><tr><td>客户分析</td><td>✅</td><td>30+ 女性客群 + AI 赋能肠道管理差异化</td></tr><tr><td>账号分析</td><td>🔄</td><td>无既有账号，默认从 0 起号</td></tr><tr><td>数据分析</td><td>🔄</td><td>套路库复用 + 待上线后抓对标数据</td></tr><tr><td>服务方案</td><td>🔄</td><td>托管版主推 ¥1980/月（22 条 + 双审核 + 月度复盘）</td></tr><tr><td>合规策略</td><td>✅</td><td>大健康零医疗词，参考「步长倍佳」转型</td></tr></tbody></table><p><strong>下一步</strong>：① 确认套餐与账号清单 → ② 补货源资质与成交链路 → ③ 第 1 周账号搭建 + 选题库 50 条 → ④ 口播脚本批量出片。</p><hr><h2>七、一句话总结</h2><p><strong>叶芝彤</strong>是福建「温柔知性专业大气」的女性个人 IP，靠「AI×肠道管理」知识输出起号、私域成交酵素益生菌产品；代运营价值 = <strong>从 0 起号 + 合规知识型内容 + 私域沉淀</strong>，内容以本人温柔口播为主（40/40/20 配比）、AI 数字人放大产能、漫剧仅做投流软植入，全程零医疗词规避大健康监管红线。</p></div></div><div class="fs"><div class="fs-h"><h3>📦 服务方案</h3><span class="n">当前方案内容</span></div><div class="fs-item"><div class="lab">服务内容</div><div class="val"><span class="st doing">进行中</span>| 切入方案 | 价格 | 产出 | |----------|------|------| | 托管版（主推） | ¥1980/月 | 22 条成片 + 双审核 + 月度复盘（本人出镜口播为主 + 轻剧情 + 小红书图文卡片） | | 数字人分身（加购） | 形象采集 ¥150 + 肖像授权 | 本人形象数字人，产能放大/托底稳定更新 | - **平台**：视频号（私域主阵地）+ 小红书（30+ 女性种草）为主，抖音为辅（健康类目审核严、慎投）。 - **投流**：初期不投、先自然流验证；跑通后小红书薯条/视频号加热小额测试。 - **私信**：统一话术承接 + 引导私域微信。 - 条数/平台/投流预算待与客户确认。</div></div><div class="fs-item"><div class="lab">策划方案</div><div class="val"><span class="st done">已完成</span>- **选题库方向**：①肠道健康焦虑（35+ 气色差/胀气/饮食不规律）；②AI 肠道检测/个性化管理科普；③精致生活方式/情绪价值；④客户反馈案例；⑤「很好的！」记忆点系列口播开场。 - **脚本方向**：数字人/本人干货口播（`skills/04-短视频口播脚本策划`，3 秒钩子 + CTA）+ 轻剧情软植入（`skills/03-狗血抓马漫广导演`，两女对话骨架）。 - **40/40/20 配比**：40% 痛点共鸣（健康焦虑/年龄焦虑钩子）+ 40% 人设信任（AI 科普/知性分享/方法论）+ 20% 日常互动（vlog/答疑/客户反馈）。 - **出片**：数果AI（口播数字人）+ Vidu 剧集广告（投流素材，参数铁律见 `知识库/08`）。</div></div></div><div class="sec"><h2>方案确认与意见反馈 <span class="n">你的意见我们都会记录并处理</span></h2><div class="fbstatus"><div class="stamp todo">📋</div><div class="info"><b>方案待确认</b><span>服务方案与收费标准已发送，等待您的确认。可先填写修改意见，也可直接确认认可。</span></div></div><div class="fblist"><h3 style="font-size:14px;color:#6b7280;margin:14px 0 2px">反馈记录</h3><div class="fblist"><div class="fbitem" style="color:#9ca3af;font-size:13px">暂无反馈记录。</div></div></div><div class="fbform"><textarea id="fbText" placeholder="对方案或收费有想调整的地方？在这里告诉我们…（如：套餐条数 / 价格 / 投放平台 / 上线节奏）"></textarea><div class="fb-btns"><button class="fb-btn primary" id="fbBtn" onclick="submitFeedback()">📩 提交修改意见</button><button class="fb-btn approve" id="apBtn" onclick="approvePlan()">✅ 确认认可方案</button></div><div class="fb-hint">点击提交后将自动生成反馈消息，发送给我们即可（也可直接电话/微信联系）。</div></div></div>
+<div class="sec"><h2>服务进展明细 <span class="n">共 11 个阶段</span></h2><div class="card done"><div class="num">01</div><div class="body"><div class="t">客户建档<span class="badge done">已完成</span></div><p>## 客户问卷信息 - **产品/IP名称**：叶芝彤 - **称呼**：芝彤 - **所属行业**：酵素益生菌，大健康，AI赋能 - **核心卖点/人设定位**：温柔，知性，专业，大气女主 - **详细描述/Bio**：温柔，且有感染力的表达方式，自媒体达人，国际典雅公主的优雅知性，专业的内容赋能。 - **主推产品/服务**：AI与肠道管理结合 - **目标受众**：30岁以上 - **所在地区**：福建 - **常用口头禅**：很好的！</p></div></div><div class="card done"><div class="num">02</div><div class="body"><div class="t">客户需求<span class="badge done">已完成</span></div><p>- **核心诉求**：放大个人IP曝光 + 沉淀私域 + 成交（AI 肠道管理服务 / 酵素益生菌产品）。 - **线索形态**：私信 + 私域加V + 成交（个人IP无实体门店，非到店线索）。 - **首月建议目标**：单条播放 2000+、月涨粉 300+、有效私信 30 条。 - **预算/套餐**：待确认（个人客户，建议托管版 ¥1980/月起，先做 1 个月看效果）。 - **期望周期**：1–3 个月跑通内容模型与转化闭环。 - **待补充**：现有账号清单、产品客单价与私域承接方式。</p></div></div><div class="card done"><div class="num">03</div><div class="body"><div class="t">客户分析<span class="badge done">已完成</span></div><p>- **目标客群**：30–55 岁女性为主（尤其 35+ 关注肠道/气色/体态/抗衰的职场女性与宝妈），福建本地 + 全国私域。 - **核心卖点**：①温柔知性专业大气女主的人设亲和力；②「AI×肠道管理」科技差异化——用 AI 检测/个性化管理/生活方式建议做服务化表达，规避「酵素/益生菌」纯功效卖货。 - **竞品**：同赛道酵素/益生菌带货号（低价纯功效、口碑信任差）、健康养生口播号、私域健康管理师；差异化 = 科技感 + 人设 + 合规表达。 - **门店位置**：无实体门店，线上（视频号/小红书/抖音 + 私域微信）为主战场。 - **老板风格**：本人出镜、温柔知性，口头禅「很好的！」可做记忆点，配合度高但需稳定出镜产能。</p></div></div><div class="card done"><div class="num">04</div><div class="body"><div class="t">账号分析<span class="badge done">已完成</span></div><p>- **定位**：AI 肠道健康管理 · 知性女主理人。 - **三件套装修**：昵称「叶芝彤」/「芝彤·AI肠道管理」、头像用知性职业照、简介突出「30+ 女性肠道健康生活方式」+ AI 赋能，避免医疗/功效词。 - **更新节奏**：垂直内容，日更/隔日更。 - **已有账号则**：按停更时长/定位混乱度诊断，必要时重开垂直号。</p></div></div><div class="card done"><div class="num">05</div><div class="body"><div class="t">数据分析<span class="badge done">已完成</span></div><p>- **最近似参考赛道**：美容抗衰/皮肤管理、减肥塑形、SPA/中医理疗、产后修复。 - **6 大钩子复用**：H2 年龄焦虑（「你都 35 岁了」→同龄差距）、H1 消费观对立（「乱花钱」vs「为自己投资」）、H6 体态对比（→适配「气色/肠道状态」）。 - **叙事骨架**：两女对话/闺蜜对比，AI 漫剧好批量产。 - **可借鉴套路**：痛点直击+软植入、素人真实感测评、数字人口播干货、观念金句收尾（「最好的投资是自己的身体」）。 - **对标 4 短板 = 我们机会**：无字幕 / 钩子弱 / 无私信闭环 / 无合规标注。</p></div></div><div class="card doing"><div class="num">06</div><div class="body"><div class="t">服务内容<span class="badge doing">进行中</span></div><p>| 切入方案 | 价格 | 产出 | |----------|------|------| | 托管版（主推） | ¥1980/月 | 22 条成片 + 双审核 + 月度复盘（本人出镜口播为主 + 轻剧情 + 小红书图文卡片） | | 数字人分身（加购） | 形象采集 ¥150 + 肖像授权 | 本人形象数字人，产能放大/托底稳定更新 | - **平台**：视频号（私域主阵地）+ 小红书（30+ 女性种草）为主，抖音为辅（健康类目审核严、慎投）。 - **投流**：初期不投、先自然流验证；跑通后小红书薯条/视频号加热小额测试。 - **私信**：统一话术承接 + 引导私域微信。 - 条数/平台/投流预算待与客户确认。</p></div></div><div class="card done"><div class="num">07</div><div class="body"><div class="t">策划方案<span class="badge done">已完成</span></div><p>- **选题库方向**：①肠道健康焦虑（35+ 气色差/胀气/饮食不规律）；②AI 肠道检测/个性化管理科普；③精致生活方式/情绪价值；④客户反馈案例；⑤「很好的！」记忆点系列口播开场。 - **脚本方向**：数字人/本人干货口播（`skills/04-短视频口播脚本策划`，3 秒钩子 + CTA）+ 轻剧情软植入（`skills/03-狗血抓马漫广导演`，两女对话骨架）。 - **40/40/20 配比**：40% 痛点共鸣（健康焦虑/年龄焦虑钩子）+ 40% 人设信任（AI 科普/知性分享/方法论）+ 20% 日常互动（vlog/答疑/客户反馈）。 - **出片**：数果AI（口播数字人）+ Vidu 剧集广告（投流素材，参数铁律见 `知识库/08`）。</p></div></div><div class="card done"><div class="num">08</div><div class="body"><div class="t">应对策略<span class="badge done">已完成</span></div><p>- ❌ 医疗功效：治疗/预防/改善便秘/减肥/排毒/清肠/润肠/提高免疫力/降三高等。 - ❌ 功效数据与成分夸大：XX 天见效/阻断吸收/燃脂。 - ❌ 疾病与治疗词、普通食品宣称保健功能。 - ✅ 改写：肠道健康管理/生活方式/气色状态/舒适轻盈/均衡饮食。 - 负面评论 3 小时响应，统一安抚话术、不承诺疗效、引导私域 1v1；外发挂「效果因人而异」标注。 - **备选**：软植入被判违规/限流 → 切纯口播干货 + 合规标注；本人出镜受限 → 数字人分身 + 图文卡片托底。</p></div></div><div class="card doing"><div class="num">09</div><div class="body"><div class="t">实际实施步骤<span class="badge doing">进行中</span></div><p>- 第 1 周：账号搭建 + 三件套装修 + 合规词表建立 + 选题库 50 条。 - 第 2 周：口播脚本批量输出（04 skill）+ 首批 10–15 条出片（本人出镜/数字人）+ 封面。 - 第 3 周：隔日更/日更 + 小红书图文同步 + 私信承接 + 引导私域。 - 第 4 周：数据复盘（播放/涨粉/私信）→ 迭代选题 → 续费/升级沟通。</p></div></div><div class="card todo"><div class="num">10</div><div class="body"><div class="t">代运营后数据变化<span class="badge todo">待开始</span></div><p>待启动</p></div></div><div class="card todo"><div class="num">11</div><div class="body"><div class="t">复盘与续费<span class="badge todo">待开始</span></div><p>待启动</p></div></div></div>
+<div class="next"><h3>下一步计划</h3><p>待补充：在客户分析中填写下一步计划。</p></div><div class="footer"><div class="ln"></div>本报告由服务中台自动生成 · 实时同步
+<br>更新于 2026-08-20 08:00</div>
+</div>
+<button class="fab" onclick="openShare()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>转发</button>
+<div class="mask" id="mask" onclick="closeShare()"></div>
+<div class="sheet" id="sheet"><div class="grip"></div><h3>转发给客户</h3><div class="sub">客户打开链接即可查看实时进展</div><button class="share-btn primary" onclick="copyLink()">复制链接</button><button class="share-btn ghost" id="sysShare" onclick="sysShare()" style="display:none">系统分享…</button><div class="tip">在微信中打开后，也可点右上角「···」<br>直接转发给客户或客户群</div></div>
+<div class="toast" id="toast"></div>
+<script>
+var CUST="叶芝彤";
+var CUSTID="seed-yezhitong";
+var FB_URL="";
+var PUB="https://beaujiang88.github.io/daiyun-reports/reports";
+var PUB_LINK=PUB?PUB+"/"+CUSTID+"/index.html":"";
+function shareUrl(){return PUB_LINK||location.href}
+function $(i){return document.getElementById(i)}
+function openShare(){$("mask").classList.add("on");$("sheet").classList.add("on");if(navigator.share)$("sysShare").style.display="flex"}
+function closeShare(){$("mask").classList.remove("on");$("sheet").classList.remove("on")}
+function toast(m){var t=$("toast");t.textContent=m;t.classList.add("on");clearTimeout(t._h);t._h=setTimeout(function(){t.classList.remove("on")},2600)}
+function copyText(txt,msg){function done(){toast(msg)}function fb(){var ta=document.createElement("textarea");ta.value=txt;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand("copy");done()}catch(e){window.prompt("复制内容：",txt)}document.body.removeChild(ta)}
+if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done,fb)}else{fb()}}
+function copyLink(){copyText("【AI 漫广代运营】「"+CUST+"」服务进展报告，实时更新，点击查看 👇\n"+shareUrl(),"已复制，去微信粘贴发送给客户");closeShare()}
+function sysShare(){if(!navigator.share)return;navigator.share({title:"客户服务报告 · "+CUST,text:"【AI 漫广代运营】「"+CUST+"」服务进展报告，实时更新",url:shareUrl()}).catch(function(){})}
+function lockBtn(){["fbBtn","apBtn"].forEach(function(i){var b=$(i);if(b)b.disabled=true})}
+function sendFB(kind){var txt=kind==="feedback"?(($("fbText")||{}).value||""):"";if(kind==="feedback"&&txt.trim().length<2){toast("请先填写修改意见");return}lockBtn();if(FB_URL){fetch(FB_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({clientId:CUSTID,kind:kind,content:txt})}).then(function(r){return r.json()}).then(function(d){if(d&&d.ok){toast(kind==="feedback"?"✅ 意见已提交，我们马上处理":"🎉 已确认认可，我们开始执行");setTimeout(function(){location.reload()},1200)}else{toast("提交失败："+((d&&d.error)||"请稍后重试"));}}).catch(function(){fbCopy(kind,txt)})}else{fbCopy(kind,txt)}}
+function fbCopy(kind,txt){var msg=kind==="feedback"?"【客户反馈】「"+CUST+"」修改意见：\n"+txt+"\n\n报告链接："+shareUrl():"【客户确认】「"+CUST+"」已确认认可服务方案与收费标准，可开始执行。\n\n报告链接："+shareUrl();copyText(msg,kind==="feedback"?"已复制反馈消息，请发送给我们":"已复制确认消息，请发送给我们")}
+function submitFeedback(){sendFB("feedback")}
+function approvePlan(){sendFB("approve")}
+</script>
+</body>
+</html>

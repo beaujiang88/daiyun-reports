@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>客户服务报告 · 我</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;background:#f6f7f9;color:#111827;-webkit-font-smoothing:antialiased;line-height:1.6}
+.wrap{max-width:660px;margin:0 auto;padding:0 16px 56px}
+.brand{display:flex;align-items:center;justify-content:space-between;padding:20px 2px 14px}
+.brand-l{display:flex;align-items:center;gap:9px;font-size:14px;font-weight:600;color:#1f2430}
+.brand-l .logo{width:22px;height:22px;border-radius:7px;background:linear-gradient(135deg,#7c3aed,#a855f7);display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700}
+.brand-r{font-size:12px;color:#9ca3af;background:#fff;border:1px solid #e5e7eb;border-radius:999px;padding:5px 12px}
+.hero{background:#fff;border:1px solid #e5e7eb;border-radius:20px;padding:26px 24px 24px;position:relative;overflow:hidden;box-shadow:0 1px 2px rgba(16,24,40,.04),0 8px 24px rgba(16,24,40,.05)}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#7c3aed,#2563eb)}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.tag{font-size:12px;padding:5px 12px;border-radius:999px;background:#f5f3ff;color:#6d28d9;font-weight:500}
+.tag.gray{background:#f3f4f6;color:#6b7280}
+.hero h1{font-size:28px;font-weight:700;letter-spacing:.5px;color:#111827}
+.hero .pic{margin-top:8px;font-size:14px;color:#4b5563;line-height:1.7}
+.hero .sub{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:14px;font-size:14px;color:#4b5563}
+.pill{font-size:12px;font-weight:500;padding:4px 10px;border-radius:999px}
+.pill.ok{background:#ecfdf5;color:#047857}
+.pill.doing{background:#eff6ff;color:#1d4ed8}
+.pill.todo{background:#f3f4f6;color:#6b7280}
+.pcard{background:#fff;border:1px solid #e5e7eb;border-radius:20px;padding:24px;margin-top:16px;box-shadow:0 1px 2px rgba(16,24,40,.04),0 8px 24px rgba(16,24,40,.05)}
+.prow{display:flex;align-items:center;gap:22px}
+.ringwrap{position:relative;width:104px;height:104px;flex-shrink:0}
+.ringnum{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ringnum b{font-size:24px;font-weight:700;color:#1f2430;line-height:1.1}
+.ringnum span{font-size:11px;color:#9ca3af}
+.pinfo{flex:1;min-width:0}
+.pinfo .cur{font-size:16px;font-weight:600;color:#111827}
+.pinfo .cur em{font-style:normal;color:#7c3aed}
+.pinfo .desc{font-size:13px;color:#6b7280;margin-top:6px;line-height:1.7}
+.stepper{display:grid;grid-template-columns:repeat(11,1fr);gap:5px;margin-top:20px}
+.step{height:7px;border-radius:4px;background:#eef0f4}
+.step.ok{background:#16a34a}
+.step.doing{background:#2563eb}
+.legend{display:flex;gap:16px;margin-top:12px;font-size:12px;color:#6b7280}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.sec{margin-top:28px}
+.sec h2{font-size:16px;font-weight:600;color:#111827;margin-bottom:12px;display:flex;align-items:baseline;gap:8px}
+.sec h2 .n{font-size:12px;color:#9ca3af;font-weight:500}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:16px 18px;margin-bottom:10px;display:flex;gap:16px;box-shadow:0 1px 2px rgba(16,24,40,.03)}
+.card.doing{border-color:#bfdbfe;background:#fbfdff}
+.card.todo{opacity:.6}
+.card .num{flex-shrink:0;width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700}
+.card.ok .num{background:#f5f3ff;color:#7c3aed}
+.card.doing .num{background:#eff6ff;color:#1d4ed8}
+.card.todo .num{background:#f3f4f6;color:#9ca3af}
+.card .body{flex:1;min-width:0}
+.card .body .t{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:15px;font-weight:600;color:#111827}
+.badge{font-size:11px;padding:3px 9px;border-radius:999px;font-weight:500}
+.badge.ok{background:#ecfdf5;color:#047857}
+.badge.doing{background:#eff6ff;color:#1d4ed8}
+.badge.todo{background:#f3f4f6;color:#9ca3af}
+.card .body p{margin-top:6px;font-size:13.5px;color:#4b5563;line-height:1.75;word-break:break-word}
+.card.todo .body p{color:#9ca3af}
+.next{margin-top:20px;background:linear-gradient(135deg,#f5f3ff,#eef2ff);border:1px solid #ddd6fe;border-radius:16px;padding:18px 20px}
+.next h3{font-size:14px;font-weight:600;color:#6d28d9;margin-bottom:6px;display:flex;align-items:center;gap:7px}
+.next p{font-size:14px;color:#1f2430;line-height:1.7}
+.footer{text-align:center;color:#9ca3af;font-size:12px;margin-top:36px;line-height:1.9}
+.footer .ln{width:48px;height:1px;background:#e5e7eb;margin:0 auto 12px}
+.fab{position:fixed;right:16px;bottom:24px;display:flex;align-items:center;gap:7px;padding:13px 20px;border-radius:999px;border:none;cursor:pointer;background:linear-gradient(135deg,#7c3aed,#2563eb);color:#fff;font-size:14px;font-weight:600;box-shadow:0 8px 24px rgba(124,58,237,.35);z-index:50;transition:transform .15s}
+.fab:active{transform:scale(.94)}
+.mask{position:fixed;inset:0;background:rgba(17,24,39,.45);z-index:60;opacity:0;pointer-events:none;transition:opacity .2s}
+.mask.on{opacity:1;pointer-events:auto}
+.sheet{position:fixed;left:0;right:0;bottom:0;background:#fff;border-radius:20px 20px 0 0;padding:14px 20px calc(20px + env(safe-area-inset-bottom));z-index:70;transform:translateY(105%);transition:transform .25s;box-shadow:0 -8px 30px rgba(16,24,40,.16)}
+.sheet.on{transform:translateY(0)}
+.sheet .grip{width:36px;height:4px;border-radius:2px;background:#e5e7eb;margin:0 auto 14px}
+.sheet h3{font-size:16px;font-weight:600;color:#111827;text-align:center}
+.sheet .sub{font-size:12px;color:#9ca3af;text-align:center;margin-top:4px}
+.sheet .share-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:14px;padding:14px;border-radius:14px;font-size:15px;font-weight:600;border:none;cursor:pointer}
+.sheet .share-btn.primary{background:linear-gradient(135deg,#7c3aed,#2563eb);color:#fff}
+.sheet .share-btn.ghost{background:#f3f4f6;color:#374151}
+.sheet .tip{font-size:12px;color:#9ca3af;text-align:center;margin-top:14px;line-height:1.7}
+.toast{position:fixed;left:50%;bottom:100px;transform:translateX(-50%) translateY(10px);background:rgba(17,24,39,.88);color:#fff;font-size:13px;padding:10px 20px;border-radius:999px;opacity:0;pointer-events:none;transition:all .25s;z-index:90;white-space:nowrap;max-width:86vw;overflow:hidden;text-overflow:ellipsis}
+.toast.on{opacity:1;transform:translateX(-50%)}
+.fs{background:#fff;border:1px solid #e5e7eb;border-radius:20px;padding:20px;margin-top:16px;box-shadow:0 1px 2px rgba(16,24,40,.03)}
+.fs .fs-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:2px}
+.fs .fs-h h3{font-size:15px;font-weight:600;color:#111827}
+.fs .fs-h .n{font-size:12px;color:#9ca3af;font-weight:500}
+.fs .fs-item{display:flex;gap:12px;padding:13px 0;border-top:1px solid #f3f4f6}
+.fs .fs-item .lab{flex-shrink:0;width:70px;font-size:13px;color:#6b7280;padding-top:2px}
+.fs .fs-item .val{flex:1;min-width:0;font-size:13.5px;color:#374151;line-height:1.75;word-break:break-word}
+.fs .fs-item .val .st{font-size:11px;padding:2px 8px;border-radius:999px;margin-right:8px;font-weight:500}
+.fs .fs-item .val .st.ok{background:#ecfdf5;color:#047857}
+.fs .fs-item .val .st.doing{background:#eff6ff;color:#1d4ed8}
+.fs .fs-item .val .st.todo{background:#f3f4f6;color:#9ca3af}
+.fee-table{width:100%;border-collapse:collapse;margin-top:10px;font-size:13px}
+.fee-table th{background:#f9fafb;color:#6b7280;font-weight:500;text-align:left;padding:9px 12px;border-bottom:1px solid #e5e7eb}
+.fee-table th:first-child,.fee-table td:first-child{padding-left:14px;border-radius:10px 0 0 10px}
+.fee-table td{padding:9px 12px;border-bottom:1px solid #f3f4f6;color:#374151;vertical-align:top}
+.fee-table tr:last-child td{border-bottom:none}
+.fee-table .price{font-weight:700;color:#111827;white-space:nowrap}
+.fee-text{font-size:13.5px;color:#374151;line-height:1.8;margin-top:8px;white-space:pre-line}
+.fbstatus{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:16px 18px;margin-top:16px;display:flex;align-items:center;gap:14px}
+.fbstatus .stamp{flex-shrink:0;width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:20px}
+.fbstatus .stamp.ok{background:#ecfdf5}
+.fbstatus .stamp.doing{background:#eff6ff}
+.fbstatus .stamp.todo{background:#f3f4f6}
+.fbstatus .info b{font-size:15px;color:#111827;display:block}
+.fbstatus .info span{font-size:12.5px;color:#6b7280;line-height:1.6;display:block;margin-top:2px}
+.fblist{margin-top:10px}
+.fbitem{background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:13px 16px;margin-top:8px}
+.fbitem .fb-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.fbitem .fb-top .tag{font-size:11px;padding:2px 9px;border-radius:999px;font-weight:500}
+.fbitem .fb-top .tag.feedback{background:#fef3c7;color:#b45309}
+.fbitem .fb-top .tag.approve{background:#ecfdf5;color:#047857}
+.fbitem .fb-top .tag.unhandled{background:#f3f4f6;color:#6b7280}
+.fbitem .fb-top .tag.handled{background:#ecfdf5;color:#047857}
+.fbitem .fb-top .when{font-size:12px;color:#9ca3af;margin-left:auto}
+.fbitem .fb-content{margin-top:7px;font-size:13.5px;color:#374151;line-height:1.7;white-space:pre-line}
+.fbitem .fb-reply{margin-top:8px;font-size:12.5px;color:#6d28d9;background:#f5f3ff;border-radius:10px;padding:8px 12px}
+.fbform{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:16px 18px;margin-top:12px}
+.fbform textarea{width:100%;min-height:88px;border:1px solid #e5e7eb;border-radius:12px;padding:12px 14px;font-size:14px;font-family:inherit;color:#111827;resize:vertical;box-sizing:border-box;outline:none;transition:border-color .15s}
+.fbform textarea:focus{border-color:#7c3aed}
+.fbform .fb-btns{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.fbform .fb-btn{flex:1;min-width:150px;padding:13px;border-radius:13px;font-size:14.5px;font-weight:600;border:none;cursor:pointer}
+.fbform .fb-btn.primary{background:linear-gradient(135deg,#7c3aed,#2563eb);color:#fff}
+.fbform .fb-btn.approve{background:#ecfdf5;color:#047857;border:1.5px solid #a7f3d0}
+.fbform .fb-btn:disabled{opacity:.55;cursor:not-allowed}
+.fbform .fb-hint{font-size:11.5px;color:#9ca3af;margin-top:9px;line-height:1.6}
+.doc{background:#fff;border:1px solid #e5e7eb;border-radius:20px;padding:22px 22px 8px;margin-top:14px}
+.doc-body{font-size:14px;color:#374151;line-height:1.85}
+.doc-body h2{font-size:17px;color:#111827;margin:26px 0 12px;padding-bottom:8px;border-bottom:1px solid #f0f0f4}
+.doc-body h2:first-child{margin-top:4px}
+.doc-body h3{font-size:15px;color:#1f2937;margin:20px 0 8px}
+.doc-body p{margin:10px 0}
+.doc-body table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px}
+.doc-body th{background:#faf7ff;color:#4c1d95;font-weight:600;text-align:left;padding:9px 12px;border:1px solid #ece7f7}
+.doc-body td{padding:8px 12px;border:1px solid #edeff3;color:#374151;vertical-align:top}
+.doc-body tr:nth-child(even) td{background:#fbfbfd}
+.doc-body ul,.doc-body ol{margin:10px 0 10px 2px;padding-left:22px}
+.doc-body li{margin:5px 0}
+.doc-body blockquote{margin:12px 0;padding:10px 14px;background:#fffbeb;border-left:3px solid #f59e0b;border-radius:0 10px 10px 0;color:#78350f;font-size:13.5px}
+.doc-body blockquote p{margin:0}
+.doc-body hr{border:none;border-top:1px solid #eef0f4;margin:20px 0}
+.doc-body a{color:#7c3aed;text-decoration:none;word-break:break-all}
+.doc-body a:hover{text-decoration:underline}
+.doc-body code{background:#f3f4f6;border-radius:5px;padding:1px 6px;font-size:12.5px;color:#be185d}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-top:14px}
+.kpi{background:linear-gradient(160deg,#fff 0%,#faf7ff 100%);border:1px solid #ece7f7;border-radius:16px;padding:16px 14px;text-align:center}
+.kpi b{font-size:22px;font-weight:700;color:#4c1d95;display:block;line-height:1.2;word-break:break-all}
+.kpi span{font-size:12.5px;color:#6b7280;display:block;margin-top:6px}
+.kpi em{font-style:normal;font-size:11px;color:#9ca3af;display:block;margin-top:4px;line-height:1.5}
+.script{background:#fff;border:1px solid #e5e7eb;border-radius:16px;margin-bottom:10px;box-shadow:0 1px 2px rgba(16,24,40,.03);overflow:hidden}
+.script summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:14px 18px;user-select:none;transition:background .2s}
+.script summary::-webkit-details-marker{display:none}
+.script summary:hover{background:#fafaff}
+.script .s-no{flex-shrink:0;width:34px;height:34px;border-radius:10px;background:#f5f3ff;color:#7c3aed;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.script .s-title{font-size:15px;font-weight:600;color:#111827;min-width:0;flex:1}
+.script .s-arrow{margin-left:auto;flex-shrink:0;width:24px;height:24px;border-radius:8px;background:#f5f3ff;color:#7c3aed;display:flex;align-items:center;justify-content:center;font-size:10px;transition:transform .25s}
+.script[open] summary .s-arrow{transform:rotate(180deg)}
+.script .s-body{padding:0 18px 16px}
+.script .s-hook{margin-top:9px;font-size:13.5px;color:#4b5563;line-height:1.75;word-break:break-word}
+.script .s-shots{margin-top:11px;border-top:1px dashed #eef0f4;padding-top:9px}
+.script .s-shot{display:flex;gap:9px;font-size:12.5px;line-height:1.65;margin-top:7px}
+.script .s-shot>i{flex-shrink:0;font-style:normal;background:#f3f4f6;color:#6d28d9;border-radius:6px;padding:1px 8px;font-size:11px;white-space:nowrap;height:fit-content}
+.script .s-shot-body{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.script .s-v,.script .s-vc{font-size:12.5px;color:#4b5563;line-height:1.6;word-break:break-word}
+.script .s-vc{color:#374151}
+.script .s-v b,.script .s-vc b{color:#6d28d9;font-weight:600;margin-right:3px}
+.script .s-dur{font-style:normal;align-self:flex-start;font-size:10.5px;background:#fefce8;color:#a16207;border:1px solid #fde68a;border-radius:6px;padding:0 6px;margin-top:2px}
+.script .s-note{margin-top:10px;font-size:12px;color:#9ca3af;line-height:1.6}
+@media print{body{background:#fff}.card,.hero,.pcard{box-shadow:none}.fab,.mask,.sheet{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="brand"><div class="brand-l"><span class="logo">漫</span>AI 漫广代运营</div><div class="brand-r">客户服务报告</div></div>
+<div class="hero"><div class="tags"><span class="tag">待定</span><span class="tag gray">待定</span><span class="tag ctype">个人客户</span></div><h1>我</h1><p class="pic">我 · 未填赛道 · 客户类型：个人客户 来源：客户调查问卷自动建档 [AI分析] 客户类型=个人客户（个体户/自然人，走个人收款/简易合同）；名称与产品/IP名均为「我」，判定为占位符/未实名，需回访确认真实姓名或品牌名；赛道未填、联系人未填。一句话画像：信息未齐的冷启动个人IP，赛道待定。备注：来源=客户调查问卷，默认分类（个体户/自然人=个人客户）。</p><div class="sub"><span class="pill doing">服务进行中</span><span class="pill todo">方案待确认</span><span>当前推进「服务内容」· 套餐待定，默认推荐托管版¥1980/月=22条成片/月+脚本+双审核+月度复盘；可加购数字人分身（形象采集¥150+肖像</span></div></div>
+<div class="pcard"><div class="prow"><div class="ringwrap"><svg width="104" height="104" viewBox="0 0 104 104" aria-hidden="true"><circle cx="52" cy="52" r="42" fill="none" stroke="#f1f0f7" stroke-width="11"/><circle cx="52" cy="52" r="42" fill="none" stroke="#7c3aed" stroke-width="11" stroke-linecap="round" stroke-dasharray="263.9" stroke-dashoffset="95.0" transform="rotate(-90 52 52)"/></svg><div class="ringnum"><b>64%</b><span>完成度</span></div></div><div class="pinfo"><div class="cur">已完成 <em>7 / 11</em> 阶段</div><div class="desc">当前推进「服务内容」· 套餐待定，默认推荐托管版¥1980/月=22条成片/月+脚本+双审核+月度复盘；可加购数字人分身（形象采集¥150+肖像</div></div></div><div class="stepper"><div class="step done"></div><div class="step done"></div><div class="step done"></div><div class="step done"></div><div class="step done"></div><div class="step doing"></div><div class="step done"></div><div class="step done"></div><div class="step doing"></div><div class="step todo"></div><div class="step todo"></div></div><div class="legend"><span><i style="background:#16a34a"></i>已完成</span><span><i style="background:#2563eb"></i>进行中</span><span><i style="background:#eef0f4"></i>待开始</span></div></div>
+<div class="sec doc"><h2>📖 客户专属分析报告 <span class="n">门店 · 竞品 · 漫剧方案 · 落地路径</span></h2><div class="doc-body"><h1>我（）运营分析与代运营方案</h1><blockquote>建档日期：2026-08-21 · 来源：客户调查问卷 + AI 自动分析（统一分析路径）</blockquote><hr><h2>一、产品基础画像</h2><p>我 · 未填赛道 · 客户类型：个人客户 来源：客户调查问卷自动建档</p><p>[AI分析] 客户类型=个人客户（个体户/自然人，走个人收款/简易合同）；名称与产品/IP名均为「我」，判定为占位符/未实名，需回访确认真实姓名或品牌名；赛道未填、联系人未填。一句话画像：信息未齐的冷启动个人IP，赛道待定。备注：来源=客户调查问卷，默认分类（个体户/自然人=个人客户）。</p><h2>二、需求与赛道分析</h2><p>问卷未填核心需求，需回访确认三件事：①要什么——同城到店线索/私域加V线索，还是纯曝光/成交；②预算——建议个人客户托管版¥1980/月起，先跑1个月验证；③期望周期——建议1–3个月跑通内容模型。默认假设：要同城到店或私域加V线索，首月目标有效私信30条、单条播放2000+、涨粉300+，待客户确认后锁定。</p><h2>三、竞品对标分析</h2><p>赛道未填，目标客群/卖点/竞品/门店/老板风格暂无法定，先给通用框架、待赛道确定后填充：①目标客群——按赛道锁定25–45岁核心消费人群；②卖点——从「情绪共鸣+人设信任+差异化」三选一；③竞品——同城同赛道3家对标；④门店位置——有实体店走「到店线索」，无店走「私域成交」；⑤老板风格——本人是否出镜、能否稳定产出，决定用「真人出镜口播」还是「AI漫剧/数字人」。回访时逐项确认。</p><p>赛道未填，暂无法做细分对标，先用通用套路库兜底（待赛道确定后从对标库/玩法库选细分赛道）：6大钩子=H1消费观对立、H2年龄/形象焦虑、H3奢侈品降维、H4观念反转、H5行业共鸣梗、H6体态对比；叙事骨架=两女对话/闺蜜对比/母女对话（AI漫剧最稳）；15秒四段式=0-3s冲突钩子→3-11s痛点剧情→11-14s专业观点→14-15s私信引导；对标4短板=我们的机会：无字幕/钩子弱/无同城闭环/无合规标注。待定赛道后从参考赛道（餐饮/日化/美业/减脂/普拉提/产康/SPA/律所/装修/房产/心理/月子/婚庆/财税/口腔/宠物/民宿/教培）选最接近的对标号3个拆解。</p><h2>四、账号与漫广可行性</h2><p>无存量账号数据，按从0起号方案准备（待赛道确定后细化）：①定位——垂直人设号，昵称用真实姓名/品牌名；②三件套装修——头像（真人职业照/品牌LOGO）+昵称+简介（一句话价值主张+私信引导，规避违禁词）；③平台——视频号（私域主阵地）+小红书（种草）+抖音（量），按赛道选主平台；④节奏——日更/隔日更，垂直不混发。若客户已有账号，回访拿到账号清单后转「诊断优化」：看停更时长/定位混乱度，必要时重开垂直号。</p><p>套餐待定，默认推荐托管版¥1980/月=22条成片/月+脚本+双审核+月度复盘；可加购数字人分身（形象采集¥150+肖像授权）放大产能。平台默认视频号+小红书为主、抖音为辅。投流：初期不投先自然流验证，跑通后小额测试（小红书薯条/视频号加热）。私信：统一话术承接+引导私域/到店。条数/平台/投流预算待客户确认后锁定，签约后再出排期。</p><h2>五、创意/策划方案</h2><p>选题库与脚本方向需赛道确定后填充，先给通用40/40/20配比+骨架：40%痛点共鸣（H1/H2/H6情绪钩子）+40%人设信任（干货/观点/方法论）+20%日常互动（vlog/答疑/客户反馈）。脚本方向按赛道分层选skill：A类高流量赛道走强冲突微漫剧（漫剧导演+漫广导演）、B类信任转化走70%漫剧+30%数字人口播、C类高监管走纯数字人干货口播。出片=数果AI/Vidu（快速版/720p/9:16/15s内/润色关/BGM开）；封面走make_cover_full.py流水线，主标题8-14字钩子。</p><h2>六、合规策略与执行进度</h2><p>通用合规红线已可复用（赛道确定后再叠加该赛道违禁词表）：①规避一切医疗敏感词（药厂/药名/功效数据/疾病治疗词/成分夸大）；②功效类宣称一律软植入+挂「效果因人而异」+「虚拟演绎/内容剧情演绎」标注；③违禁词——不用「美白/紧致/修复/治疗/预防/杀菌/杀灭率」等，改情绪/生活方式表达；④负面评论3小时响应，统一安抚话术、不承诺效果、引导私域1v1；⑤备选方案——软植入被判违规/限流→切纯口播干货+合规标注；真人出镜受限→数字人分身+图文卡片托底；单模型出片不稳定→切Seedance 2.5备用链路。</p><p>前置条件=回访确认真实姓名/赛道/需求/账号清单+签约后启动。通用4周排期：第1周账号搭建（三件套装修+合规词表+选题库50条）；第2周批量出脚本（按赛道分层选skill）+首批10-15条出片+封面；第3周日更/隔日更+私信承接+引导到店/私域；第4周数据复盘（播放/涨粉/私信）→迭代选题→续费沟通。待赛道确定后细化到具体选题。</p><h2>七、一句话总结</h2><blockquote>由统一分析路径自动生成初稿。模式 B/C（高监管 / 门店类）需人工深化对标与合规章节后回填本文件。</blockquote></div></div><div class="fs"><div class="fs-h"><h3>📦 服务方案</h3><span class="n">当前方案内容</span></div><div class="fs-item"><div class="lab">服务内容</div><div class="val"><span class="st doing">进行中</span>套餐待定，默认推荐托管版¥1980/月=22条成片/月+脚本+双审核+月度复盘；可加购数字人分身（形象采集¥150+肖像授权）放大产能。平台默认视频号+小红书为主、抖音为辅。投流：初期不投先自然流验证，跑通后小额测试（小红书薯条/视频号加热）。私信：统一话术承接+引导私域/到店。条数/平台/投流预算待客户确认后锁定，签约后再出排期。</div></div><div class="fs-item"><div class="lab">策划方案</div><div class="val"><span class="st done">已完成</span>选题库与脚本方向需赛道确定后填充，先给通用40/40/20配比+骨架：40%痛点共鸣（H1/H2/H6情绪钩子）+40%人设信任（干货/观点/方法论）+20%日常互动（vlog/答疑/客户反馈）。脚本方向按赛道分层选skill：A类高流量赛道走强冲突微漫剧（漫剧导演+漫广导演）、B类信任转化走70%漫剧+30%数字人口播、C类高监管走纯数字人干货口播。出片=数果AI/Vidu（快速版/720p/9:16/15s内/润色关/BGM开）；封面走make_cover_full.py流水线，主标题8-14字钩子。</div></div></div><div class="sec"><h2>方案确认与意见反馈 <span class="n">你的意见我们都会记录并处理</span></h2><div class="fbstatus"><div class="stamp todo">📋</div><div class="info"><b>方案待确认</b><span>服务方案与收费标准已发送，等待您的确认。可先填写修改意见，也可直接确认认可。</span></div></div><div class="fblist"><h3 style="font-size:14px;color:#6b7280;margin:14px 0 2px">反馈记录</h3><div class="fblist"><div class="fbitem" style="color:#9ca3af;font-size:13px">暂无反馈记录。</div></div></div><div class="fbform"><textarea id="fbText" placeholder="对方案或收费有想调整的地方？在这里告诉我们…（如：套餐条数 / 价格 / 投放平台 / 上线节奏）"></textarea><div class="fb-btns"><button class="fb-btn primary" id="fbBtn" onclick="submitFeedback()">📩 提交修改意见</button><button class="fb-btn approve" id="apBtn" onclick="approvePlan()">✅ 确认认可方案</button></div><div class="fb-hint">点击提交后将自动生成反馈消息，发送给我们即可（也可直接电话/微信联系）。</div></div></div>
+<div class="sec"><h2>服务进展明细 <span class="n">共 11 个阶段</span></h2><div class="card done"><div class="num">01</div><div class="body"><div class="t">客户建档<span class="badge done">已完成</span></div><p>我 · 未填赛道 · 客户类型：个人客户 来源：客户调查问卷自动建档 [AI分析] 客户类型=个人客户（个体户/自然人，走个人收款/简易合同）；名称与产品/IP名均为「我」，判定为占位符/未实名，需回访确认真实姓名或品牌名；赛道未填、联系人未填。一句话画像：信息未齐的冷启动个人IP，赛道待定。备注：来源=客户调查问卷，默认分类（个体户/自然人=个人客户）。</p></div></div><div class="card done"><div class="num">02</div><div class="body"><div class="t">客户需求<span class="badge done">已完成</span></div><p>问卷未填核心需求，需回访确认三件事：①要什么——同城到店线索/私域加V线索，还是纯曝光/成交；②预算——建议个人客户托管版¥1980/月起，先跑1个月验证；③期望周期——建议1–3个月跑通内容模型。默认假设：要同城到店或私域加V线索，首月目标有效私信30条、单条播放2000+、涨粉300+，待客户确认后锁定。</p></div></div><div class="card done"><div class="num">03</div><div class="body"><div class="t">客户分析<span class="badge done">已完成</span></div><p>赛道未填，目标客群/卖点/竞品/门店/老板风格暂无法定，先给通用框架、待赛道确定后填充：①目标客群——按赛道锁定25–45岁核心消费人群；②卖点——从「情绪共鸣+人设信任+差异化」三选一；③竞品——同城同赛道3家对标；④门店位置——有实体店走「到店线索」，无店走「私域成交」；⑤老板风格——本人是否出镜、能否稳定产出，决定用「真人出镜口播」还是「AI漫剧/数字人」。回访时逐项确认。</p></div></div><div class="card done"><div class="num">04</div><div class="body"><div class="t">账号分析<span class="badge done">已完成</span></div><p>无存量账号数据，按从0起号方案准备（待赛道确定后细化）：①定位——垂直人设号，昵称用真实姓名/品牌名；②三件套装修——头像（真人职业照/品牌LOGO）+昵称+简介（一句话价值主张+私信引导，规避违禁词）；③平台——视频号（私域主阵地）+小红书（种草）+抖音（量），按赛道选主平台；④节奏——日更/隔日更，垂直不混发。若客户已有账号，回访拿到账号清单后转「诊断优化」：看停更时长/定位混乱度，必要时重开垂直号。</p></div></div><div class="card done"><div class="num">05</div><div class="body"><div class="t">数据分析<span class="badge done">已完成</span></div><p>赛道未填，暂无法做细分对标，先用通用套路库兜底（待赛道确定后从对标库/玩法库选细分赛道）：6大钩子=H1消费观对立、H2年龄/形象焦虑、H3奢侈品降维、H4观念反转、H5行业共鸣梗、H6体态对比；叙事骨架=两女对话/闺蜜对比/母女对话（AI漫剧最稳）；15秒四段式=0-3s冲突钩子→3-11s痛点剧情→11-14s专业观点→14-15s私信引导；对标4短板=我们的机会：无字幕/钩子弱/无同城闭环/无合规标注。待定赛道后从参考赛道（餐饮/日化/美业/减脂/普拉提/产康/SPA/律所/装修/房产/心理/月子/婚庆/财税/口腔/宠物/民宿/教培）选最接近的对标号3个拆解。</p></div></div><div class="card doing"><div class="num">06</div><div class="body"><div class="t">服务内容<span class="badge doing">进行中</span></div><p>套餐待定，默认推荐托管版¥1980/月=22条成片/月+脚本+双审核+月度复盘；可加购数字人分身（形象采集¥150+肖像授权）放大产能。平台默认视频号+小红书为主、抖音为辅。投流：初期不投先自然流验证，跑通后小额测试（小红书薯条/视频号加热）。私信：统一话术承接+引导私域/到店。条数/平台/投流预算待客户确认后锁定，签约后再出排期。</p></div></div><div class="card done"><div class="num">07</div><div class="body"><div class="t">策划方案<span class="badge done">已完成</span></div><p>选题库与脚本方向需赛道确定后填充，先给通用40/40/20配比+骨架：40%痛点共鸣（H1/H2/H6情绪钩子）+40%人设信任（干货/观点/方法论）+20%日常互动（vlog/答疑/客户反馈）。脚本方向按赛道分层选skill：A类高流量赛道走强冲突微漫剧（漫剧导演+漫广导演）、B类信任转化走70%漫剧+30%数字人口播、C类高监管走纯数字人干货口播。出片=数果AI/Vidu（快速版/720p/9:16/15s内/润色关/BGM开）；封面走make_cover_full.py流水线，主标题8-14字钩子。</p></div></div><div class="card done"><div class="num">08</div><div class="body"><div class="t">应对策略<span class="badge done">已完成</span></div><p>通用合规红线已可复用（赛道确定后再叠加该赛道违禁词表）：①规避一切医疗敏感词（药厂/药名/功效数据/疾病治疗词/成分夸大）；②功效类宣称一律软植入+挂「效果因人而异」+「虚拟演绎/内容剧情演绎」标注；③违禁词——不用「美白/紧致/修复/治疗/预防/杀菌/杀灭率」等，改情绪/生活方式表达；④负面评论3小时响应，统一安抚话术、不承诺效果、引导私域1v1；⑤备选方案——软植入被判违规/限流→切纯口播干货+合规标注；真人出镜受限→数字人分身+图文卡片托底；单模型出片不稳定→切Seedance 2.5备用链路。</p></div></div><div class="card doing"><div class="num">09</div><div class="body"><div class="t">实际实施步骤<span class="badge doing">进行中</span></div><p>前置条件=回访确认真实姓名/赛道/需求/账号清单+签约后启动。通用4周排期：第1周账号搭建（三件套装修+合规词表+选题库50条）；第2周批量出脚本（按赛道分层选skill）+首批10-15条出片+封面；第3周日更/隔日更+私信承接+引导到店/私域；第4周数据复盘（播放/涨粉/私信）→迭代选题→续费沟通。待赛道确定后细化到具体选题。</p></div></div><div class="card todo"><div class="num">10</div><div class="body"><div class="t">代运营后数据变化<span class="badge todo">待开始</span></div><p>预期目标（运营后补实际数据）：起号期单条播放500→2万+、月涨粉+1500、有效私信线索30条/月、私域/到店成交转化。第4周/月末用「播放/涨粉/线索/成交」四维前后对比回填实际值。</p></div></div><div class="card todo"><div class="num">11</div><div class="body"><div class="t">复盘与续费<span class="badge todo">待开始</span></div><p>计划（运营后补实际复盘）：月度复盘=播放/涨粉/私信线索/成交ROI四维度，对标首月目标逐项核销；续费策略=ROI达标→升级深度全案陪跑或加购数字人分身，未达标→复盘选题迭代原因并给第2月方案；转介绍=同城同赛道客户转介绍。月末归档到知识库/客户档案/我.md并登记索引。</p></div></div></div>
+<div class="next"><h3>下一步计划</h3><p>待补充：在客户分析中填写下一步计划。</p></div><div class="footer"><div class="ln"></div>本报告由服务中台自动生成 · 实时同步
+<br>更新于 2026-08-21 08:00</div>
+</div>
+<button class="fab" onclick="openShare()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>转发</button>
+<div class="mask" id="mask" onclick="closeShare()"></div>
+<div class="sheet" id="sheet"><div class="grip"></div><h3>转发给客户</h3><div class="sub">客户打开链接即可查看实时进展</div><button class="share-btn primary" onclick="copyLink()">复制链接</button><button class="share-btn ghost" id="sysShare" onclick="sysShare()" style="display:none">系统分享…</button><div class="tip">在微信中打开后，也可点右上角「···」<br>直接转发给客户或客户群</div></div>
+<div class="toast" id="toast"></div>
+<script>
+var CUST="我";
+var CUSTID="seed-wo";
+var FB_URL="";
+var PUB="https://beaujiang88.github.io/daiyun-reports/reports";
+var PUB_LINK=PUB?PUB+"/"+CUSTID+"/index.html":"";
+function shareUrl(){return PUB_LINK||location.href}
+function $(i){return document.getElementById(i)}
+function openShare(){$("mask").classList.add("on");$("sheet").classList.add("on");if(navigator.share)$("sysShare").style.display="flex"}
+function closeShare(){$("mask").classList.remove("on");$("sheet").classList.remove("on")}
+function toast(m){var t=$("toast");t.textContent=m;t.classList.add("on");clearTimeout(t._h);t._h=setTimeout(function(){t.classList.remove("on")},2600)}
+function copyText(txt,msg){function done(){toast(msg)}function fb(){var ta=document.createElement("textarea");ta.value=txt;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand("copy");done()}catch(e){window.prompt("复制内容：",txt)}document.body.removeChild(ta)}
+if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done,fb)}else{fb()}}
+function copyLink(){copyText("【AI 漫广代运营】「"+CUST+"」服务进展报告，实时更新，点击查看 👇\n"+shareUrl(),"已复制，去微信粘贴发送给客户");closeShare()}
+function sysShare(){if(!navigator.share)return;navigator.share({title:"客户服务报告 · "+CUST,text:"【AI 漫广代运营】「"+CUST+"」服务进展报告，实时更新",url:shareUrl()}).catch(function(){})}
+function lockBtn(){["fbBtn","apBtn"].forEach(function(i){var b=$(i);if(b)b.disabled=true})}
+function sendFB(kind){var txt=kind==="feedback"?(($("fbText")||{}).value||""):"";if(kind==="feedback"&&txt.trim().length<2){toast("请先填写修改意见");return}lockBtn();if(FB_URL){fetch(FB_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({clientId:CUSTID,kind:kind,content:txt})}).then(function(r){return r.json()}).then(function(d){if(d&&d.ok){toast(kind==="feedback"?"✅ 意见已提交，我们马上处理":"🎉 已确认认可，我们开始执行");setTimeout(function(){location.reload()},1200)}else{toast("提交失败："+((d&&d.error)||"请稍后重试"));}}).catch(function(){fbCopy(kind,txt)})}else{fbCopy(kind,txt)}}
+function fbCopy(kind,txt){var msg=kind==="feedback"?"【客户反馈】「"+CUST+"」修改意见：\n"+txt+"\n\n报告链接："+shareUrl():"【客户确认】「"+CUST+"」已确认认可服务方案与收费标准，可开始执行。\n\n报告链接："+shareUrl();copyText(msg,kind==="feedback"?"已复制反馈消息，请发送给我们":"已复制确认消息，请发送给我们")}
+function submitFeedback(){sendFB("feedback")}
+function approvePlan(){sendFB("approve")}
+</script>
+</body>
+</html>

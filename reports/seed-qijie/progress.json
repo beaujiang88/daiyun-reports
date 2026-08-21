@@ -1,6 +1,6 @@
 {
-  "customer": "七公烤鱼",
-  "track": "餐饮·烤鱼",
+  "customer": "淇姐",
+  "track": "大健康·肠道管理（益生菌×酵素）",
   "status": "running",
   "percent": 64,
   "doneCount": 7,
@@ -10,8 +10,8 @@
     "name": "服务内容"
   },
   "nextStage": {
-    "key": "implement",
-    "name": "实际实施步骤"
+    "key": "result",
+    "name": "代运营后数据变化"
   },
   "stages": [
     {
@@ -65,8 +65,8 @@
     {
       "key": "implement",
       "name": "实际实施步骤",
-      "status": "todo",
-      "percent": 0
+      "status": "doing",
+      "percent": 50
     },
     {
       "key": "result",
@@ -81,5 +81,5 @@
       "percent": 0
     }
   ],
-  "updatedAt": "2026-08-21T20:24:55.788Z"
+  "updatedAt": "2026-08-21T20:24:55.798Z"
 }
