@@ -6,140 +6,344 @@
 <title>数果AI · 功能使用教程</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;background:#f6f7f9;color:#111827;-webkit-font-smoothing:antialiased;line-height:1.7}
-.wrap{max-width:680px;margin:0 auto;padding:0 16px 64px}
-.brand{display:flex;align-items:center;justify-content:space-between;padding:20px 2px 14px}
-.brand-l{display:flex;align-items:center;gap:9px;font-size:14px;font-weight:600;color:#1f2430}
-.brand-l .logo{width:22px;height:22px;border-radius:7px;background:linear-gradient(135deg,#7c3aed,#a855f7);display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700}
-.brand-r{font-size:12px;color:#9ca3af;background:#fff;border:1px solid #e5e7eb;border-radius:999px;padding:5px 12px}
-.hero{background:#fff;border:1px solid #e5e7eb;border-radius:20px;padding:28px 24px 24px;position:relative;overflow:hidden;box-shadow:0 1px 2px rgba(16,24,40,.04),0 8px 24px rgba(16,24,40,.05)}
-.hero::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#7c3aed,#2563eb)}
-.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
-.tag{font-size:12px;padding:5px 12px;border-radius:999px;background:#f5f3ff;color:#6d28d9;font-weight:500}
-.tag.gray{background:#f3f4f6;color:#6b7280}
-.hero h1{font-size:27px;font-weight:700;letter-spacing:.5px;color:#111827}
-.hero .pic{margin-top:10px;font-size:15px;color:#4b5563}
-.hero .sub{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:16px;font-size:14px;color:#4b5563}
-.sect{margin-top:28px}
-.sect h2{font-size:17px;font-weight:700;color:#1f2430;display:flex;align-items:center;gap:8px}
-.sect h2 .no{width:22px;height:22px;border-radius:7px;background:linear-gradient(135deg,#7c3aed,#2563eb);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}
-.card{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:16px;box-shadow:0 1px 2px rgba(16,24,40,.04)}
-.card b{font-size:14px;color:#1f2430;display:flex;align-items:center;gap:6px}
-.card .ico{font-size:15px}
-.card p{font-size:12.5px;color:#6b7280;margin-top:6px;line-height:1.6}
-.pcard{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:20px;margin-top:14px;box-shadow:0 1px 2px rgba(16,24,40,.04)}
-.flow{display:flex;flex-direction:column;gap:0;margin-top:14px}
-.frow{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px dashed #eef0f4}
-.frow:last-child{border-bottom:none}
-.fno{width:26px;height:26px;border-radius:50%;background:#f5f3ff;color:#6d28d9;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
-.fbody b{font-size:14px;color:#1f2430}
-.fbody p{font-size:13px;color:#6b7280;margin-top:2px}
-.list{margin-top:10px}
-.li{display:flex;gap:10px;align-items:flex-start;padding:9px 0;font-size:14px;color:#374151}
-.li .dot{width:7px;height:7px;border-radius:50%;background:#7c3aed;margin-top:8px;flex-shrink:0}
-.li.gray .dot{background:#9ca3af}
-.note{font-size:12px;color:#9ca3af;margin-top:10px}
-.cta{margin-top:28px;background:linear-gradient(135deg,#7c3aed,#2563eb);border-radius:20px;padding:24px;color:#fff;text-align:center}
-.cta b{font-size:17px;display:block}
-.cta p{font-size:13.5px;margin-top:8px;opacity:.92}
-.cta .btn{display:inline-block;margin-top:16px;background:#fff;color:#6d28d9;font-size:14px;font-weight:600;padding:11px 26px;border-radius:999px;text-decoration:none}
-.foot{text-align:center;font-size:11.5px;color:#9ca3af;margin-top:24px}
-@media(max-width:480px){.grid{grid-template-columns:1fr}}
+:root{--bg:#f4f5f7;--card:#fff;--line:#e5e7eb;--text:#1f2328;--muted:#6b7280;--accent:#7c3aed;--accent2:#2563eb;--ok:#16a34a;--warn:#d97706;--danger:#dc2626}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased}
+header{background:var(--card);border-bottom:1px solid var(--line);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:20}
+.brand{display:flex;align-items:center;gap:10px}
+.logo{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,#7c3aed,#2563eb);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px}
+.brand b{font-size:15px;display:block;line-height:1.2}
+.brand span{font-size:11px;color:var(--muted)}
+.progress{display:flex;align-items:center;gap:10px}
+.pbar{width:130px;height:8px;background:#eef0f4;border-radius:99px;overflow:hidden}
+.pbar i{display:block;height:100%;background:linear-gradient(90deg,#7c3aed,#2563eb);border-radius:99px;transition:width .4s}
+.ptext{font-size:12px;color:var(--muted)}
+.reset{border:1px solid var(--line);background:#fff;color:var(--muted);border-radius:8px;padding:6px 12px;font-size:12px;cursor:pointer}
+.layout{display:flex;max-width:1180px;margin:0 auto;min-height:calc(100vh - 63px)}
+nav{width:232px;flex-shrink:0;background:var(--card);border-right:1px solid var(--line);padding:14px 10px;position:sticky;top:63px;height:calc(100vh - 63px);overflow-y:auto}
+nav .nt{font-size:11px;color:var(--muted);padding:4px 10px 8px;font-weight:600}
+.ch{display:flex;align-items:center;gap:8px;padding:9px 10px;border-radius:9px;cursor:pointer;font-size:13px;color:#374151;border:none;background:none;width:100%;text-align:left}
+.ch:hover{background:#f5f3ff}
+.ch.active{background:linear-gradient(135deg,#f5f3ff,#eff6ff);color:var(--accent);font-weight:600}
+.ch .n{width:20px;height:20px;border-radius:6px;background:#f3f4f6;color:var(--muted);font-size:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ch.active .n{background:var(--accent);color:#fff}
+.ch.done .n{background:#ecfdf5;color:var(--ok)}
+.ch .ck{margin-left:auto;font-size:12px;color:var(--ok);opacity:0}
+.ch.done .ck{opacity:1}
+main{flex:1;padding:22px;min-width:0}
+.hero{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:0 1px 2px rgba(16,24,40,.04);margin-bottom:16px}
+.hero h1{font-size:22px;display:flex;align-items:center;gap:10px}
+.hero .desc{font-size:13.5px;color:var(--muted);margin-top:8px}
+.badge{display:inline-block;padding:3px 10px;border-radius:999px;font-size:11.5px;font-weight:600;margin-right:6px;vertical-align:middle}
+.b-ok{background:#ecfdf5;color:var(--ok)}
+.b-warn{background:#fffbeb;color:var(--warn)}
+.b-url{background:#eff6ff;color:var(--accent2)}
+.steps{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 1px 2px rgba(16,24,40,.04)}
+.steps h2{font-size:16px;margin-bottom:4px}
+.steps .stip{font-size:12.5px;color:var(--muted);margin-bottom:14px}
+.step{border:1px solid var(--line);border-radius:12px;margin-bottom:10px;overflow:hidden}
+.step-h{display:flex;align-items:center;gap:12px;padding:13px 16px;cursor:pointer;background:#fff;user-select:none}
+.step-h:hover{background:#fafbfc}
+.step.open .step-h{background:linear-gradient(135deg,#f5f3ff,#eff6ff)}
+.sno{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#7c3aed,#2563eb);color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.step.done .sno{background:#ecfdf5;color:var(--ok)}
+.sbody{flex:1;font-size:14px;font-weight:600}
+.smeta{font-size:11px;color:var(--muted);font-weight:400;display:block}
+.sarrow{color:#9ca3af;transition:transform .2s;flex-shrink:0}
+.step.open .sarrow{transform:rotate(90deg)}
+.scont{display:none;padding:4px 18px 18px 56px;border-top:1px dashed var(--line)}
+.step.open .scont{display:block}
+.scont p{font-size:13.5px;color:#374151;margin-bottom:10px}
+.scont ol{margin:6px 0 10px 20px}
+.scont li{font-size:13.5px;color:#374151;margin-bottom:5px}
+.scont img{max-width:100%;border:1px solid var(--line);border-radius:10px;margin:10px 0 6px;display:block}
+.scont .imgnote{font-size:11.5px;color:var(--muted);margin-bottom:8px}
+table{width:100%;border-collapse:collapse;font-size:12.5px;margin:8px 0 12px}
+th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:#f9fafb;color:var(--muted);font-weight:600}
+.tip{background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:11px 14px;font-size:12.5px;color:#92400e;margin-top:6px}
+.tip b{display:block;margin-bottom:4px;color:#b45309}
+.cb{display:inline-flex;align-items:center;gap:6px;margin-top:10px;font-size:12.5px;color:var(--ok);cursor:pointer;user-select:none}
+.cb input{accent-color:var(--ok);width:15px;height:15px}
+.navbtns{display:flex;justify-content:space-between;margin-top:18px}
+.nbtn{border:none;border-radius:10px;padding:11px 22px;font-size:14px;font-weight:600;cursor:pointer}
+.nbtn.prev{background:#fff;border:1px solid var(--line);color:var(--muted)}
+.nbtn.next{background:linear-gradient(135deg,#7c3aed,#2563eb);color:#fff}
+.nbtn:disabled{opacity:.4;cursor:not-allowed}
+.foot{text-align:center;font-size:11.5px;color:#9ca3af;padding:20px 0 32px}
+@media(max-width:820px){
+  .layout{flex-direction:column}
+  nav{width:100%;position:static;height:auto;border-right:none;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:4px;padding:10px}
+  nav .nt{width:100%}
+  .ch{width:auto}
+  main{padding:14px}
+  .scont{padding-left:18px}
+}
 </style>
 </head>
 <body>
-<div class="wrap">
+<header>
   <div class="brand">
-    <div class="brand-l"><span class="logo">AI</span>数果AI · Vista · AI 微漫剧代运营</div>
-    <div class="brand-r">功能使用教程</div>
+    <div class="logo">AI</div>
+    <div><b>数果AI · 功能使用教程</b><span>AI 微漫剧代运营 · 可交互图文分步教程</span></div>
   </div>
-
-  <div class="hero">
-    <div class="tags">
-      <span class="tag">AI 微漫剧广告</span>
-      <span class="tag">数字人口播</span>
-      <span class="tag">批量混剪</span>
-      <span class="tag gray">15 秒竖屏</span>
-    </div>
-    <h1>数果AI 是什么？</h1>
-    <p class="pic">数果AI 是一套 AI 内容生产引擎：把「一段剧本」变成一条<b>15 秒竖屏微漫剧广告</b>，把「一段文案」变成<b>数字人口播视频</b>，还能批量出图、批量混剪、多平台分发。我们用它，为您的品牌持续产出可投放的 AI 短视频内容。</p>
-    <div class="sub"><span class="tag gray">AI 生产引擎</span><span class="tag gray">剧本 → 成片</span><span class="tag gray">全程平台内完成</span></div>
+  <div class="progress">
+    <div class="pbar"><i id="pfill" style="width:0%"></i></div>
+    <span class="ptext" id="ptext">0 / 12 章</span>
+    <button class="reset" onclick="resetAll()">重置进度</button>
   </div>
-
-  <div class="sect">
-    <h2><span class="no">1</span>平台能做什么（功能地图）</h2>
-    <div class="grid">
-      <div class="card"><b><span class="ico">🎬</span>AI 漫剧广告</b><p>Vidu 剧集广告：剧本式提示词一键生成 15s 竖屏微漫剧，段子软植入、自动配乐，是我们的核心出片方式</p></div>
-      <div class="card"><b><span class="ico">🗣️</span>数字人口播</b><p>形象 + 声音克隆，真人出镜零成本替代：科普、口播、IP 人设视频批量生产</p></div>
-      <div class="card"><b><span class="ico">🔁</span>爆款复刻 / 批量混剪</b><p>对标爆款批量出片，矩阵账号低成本起量</p></div>
-      <div class="card"><b><span class="ico">✨</span>一句话生成 / 图生视频</b><p>素材快速起量：一张图或一句话变成动态视频</p></div>
-      <div class="card"><b><span class="ico">🖼️</span>AI 绘画 / 商品图</b><p>商品海报、模特换装、AI 图片生成，本地商家的电商物料</p></div>
-      <div class="card"><b><span class="ico">🧠</span>IP 智能体</b><p>老板个人 IP 的数字分身，高客单业务的信任建立</p></div>
-      <div class="card"><b><span class="ico">📤</span>聚合发布 / 多平台分发</b><p>小红书、抖音等渠道一键分发，同城运营落地</p></div>
-    </div>
-  </div>
-
-  <div class="sect">
-    <h2><span class="no">2</span>我们怎么用（出片链路）</h2>
-    <div class="pcard">
-      <div class="flow">
-        <div class="frow"><div class="fno">1</div><div class="fbody"><b>剧本</b><p>围绕您的产品与卖点，写「段子软植入」的剧情脚本</p></div></div>
-        <div class="frow"><div class="fno">2</div><div class="fbody"><b>分镜 + 提示词</b><p>剧本转成分镜语言与 AI 提示词（平台「漫广导演」或本地导演技能）</p></div></div>
-        <div class="frow"><div class="fno">3</div><div class="fbody"><b>AI 出片</b><p>数果AI Vidu 剧集广告生成成片：快速版 / 720p / 9:16 / 15s 内 / 自动配乐</p></div></div>
-        <div class="frow"><div class="fno">4</div><div class="fbody"><b>合规审核</b><p>规避医疗敏感词与绝对化用语，外发前逐条过审</p></div></div>
-        <div class="frow"><div class="fno">5</div><div class="fbody"><b>分发投放</b><p>成片交付 + 多平台发布/投放建议</p></div></div>
-        <div class="frow"><div class="fno">6</div><div class="fbody"><b>复盘迭代</b><p>数据反馈 → 迭代下一批内容，月度复盘</p></div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="sect">
-    <h2><span class="no">3</span>您能拿到什么</h2>
-    <div class="pcard">
-      <div class="list">
-        <div class="li"><span class="dot"></span><div><b>成片交付：</b>15s 竖屏 AI 微漫剧广告（可投流、可发视频号/抖音/小红书）</div></div>
-        <div class="li"><span class="dot"></span><div><b>专属服务报告：</b>每个客户一条公网链接，服务进展实时更新，随时点开查看</div></div>
-        <div class="li"><span class="dot"></span><div><b>内容组合：</b>微漫剧引流 + 数字人口播建立信任 + 图文卡片的组合打法</div></div>
-        <div class="li gray"><span class="dot"></span><div><b>效果说明：</b>AI 内容效果与品类、投放、运营相关，效果因人而异，我们会以数据复盘不断迭代</div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="sect">
-    <h2><span class="no">4</span>合作流程</h2>
-    <div class="pcard">
-      <div class="flow">
-        <div class="frow"><div class="fno">1</div><div class="fbody"><b>客户建档</b><p>基本信息与联系方式登记，建立专属档案</p></div></div>
-        <div class="frow"><div class="fno">2</div><div class="fbody"><b>需求收集</b><p>1 分钟问卷 + 沟通，明确您的产品与目标</p></div></div>
-        <div class="frow"><div class="fno">3</div><div class="fbody"><b>客户分析</b><p>赛道、竞品、受众画像分析，定打法</p></div></div>
-        <div class="frow"><div class="fno">4</div><div class="fbody"><b>策划方案</b><p>选题、脚本方向、出片节奏与分发计划</p></div></div>
-        <div class="frow"><div class="fno">5</div><div class="fbody"><b>实施出片</b><p>按方案产出微漫剧/口播/图文内容</p></div></div>
-        <div class="frow"><div class="fno">6</div><div class="fbody"><b>服务报告</b><p>专属链接呈现进展与成果</p></div></div>
-        <div class="frow"><div class="fno">7</div><div class="fbody"><b>复盘续费</b><p>数据复盘，持续优化下一阶段</p></div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="sect">
-    <h2><span class="no">5</span>您需要配合什么</h2>
-    <div class="pcard">
-      <div class="list">
-        <div class="li"><span class="dot"></span>提供产品介绍 / 产品图（越多越好，用于 AI 参考图控制主体一致）</div>
-        <div class="li"><span class="dot"></span>提供过往宣传素材 / 卖点清单 / 禁忌词说明</div>
-        <div class="li"><span class="dot"></span>确认脚本方向与出片节奏，重要内容 1-2 次确认即可</div>
-        <div class="li"><span class="dot"></span>提供账号信息（发布/投放平台）用于分发</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="cta">
-    <b>想了解您的品牌怎么用 AI 微漫剧获客？</b>
-    <p>扫码加企业微信，免费咨询定制方案</p>
-    <a class="btn" href="https://beaujiang88.github.io/daiyun-reports/ad/index.html">查看漫剧套餐与数字人口播 →</a>
-  </div>
-
-  <div class="foot">数果AI · Vista · AI 微漫剧代运营 ｜ 内容效果因人而异，以实际数据为准</div>
+</header>
+<div class="layout">
+  <nav id="chapters"></nav>
+  <main id="view"></main>
 </div>
+<div class="foot">数果AI · Vista · AI 微漫剧代运营 ｜ 界面截图实测于 2026-08-22，平台改版后以平台实际为准</div>
+
+<script>
+/* ============ 教程数据（12 章，来自 知识库/教程库/数果AI/） ============ */
+const DATA = [
+{
+  id:'01', icon:'🗺️', title:'平台总览与导航', status:'界面实测', url:'https://sugoo.asia/zh/',
+  desc:'先看懂数果AI 的「地图」：顶部导航管业务方向，左侧菜单管创作工具，右上角管身份与钱。',
+  image:'assets/01-首页-导航地图.jpg', imageNote:'1 智能体广场（出片主入口）· 2 内容发布（账号托管）· 3 分销赚钱（推广）· 4 开通会员 · 5 我的资产（任务/素材总库）',
+  steps:[
+    {t:'进入平台', d:'浏览器打开数果AI 前台，用本机登录态（.browser-profiles/sugoo）或扫码登录。', detail:'前台地址 https://sugoo.asia/zh/，登录后默认落在首页。租户后台在 tenant.sugoo.asia（见第 12 章）。'},
+    {t:'认识顶部导航（8 个业务入口）', d:'首页 / IP视频 / GEO推广 / 智能体广场 / 数字人 / 智能获客 / 内容发布 / 分销赚钱。', table:[['菜单','直达 URL','干什么'],['首页','/','平台入口、数字人卡片'],['IP视频','/ip-agent','IP 智能体工作台（第 6 章）'],['GEO推广','/geo','GEO 工作台（第 8 章）'],['智能体广场','/agent-list','全部工作流·出片主入口（第 3 章）'],['数字人','/digital-human','形象/声音克隆（第 4 章）'],['内容发布','/publish/platform','聚合发布授权（第 7 章）'],['分销赚钱','/affiliate','推广中心（第 11 章）']]},
+    {t:'认识左侧菜单（创作工具树）', d:'短剧操作台 / AI视频创作 / 内容获客 / 图片AI / 行业灵感库 / 多平台运营 / 个人中心 / 我的资产。', detail:'左侧菜单是创作工具树：AI视频创作（视频生成、智能创作）、图片AI（图片生成、AI模特换装、AI绘画、设计agent）、个人中心（订单记录/算力记录/数据大屏/推广中心）。'},
+    {t:'认识右上角（身份与钱）', d:'开通会员 / 邀请有礼 / 头像（个人中心）/ 搜索框。', detail:'出片消耗算力（我的资产任务列可见），会员是套餐权益，两者分开看（第 10 章）。'},
+    {t:'记下直达 URL（可收藏）', d:'常用页面的直达链接，绕过层层点击。', table:[['功能','直达 URL'],['短剧操作台','/drama_studio'],['智能体广场','/agent-list'],['我的资产','/my-assets'],['IP视频','/ip-agent'],['GEO推广','/geo'],['内容发布','/publish/platform'],['数字人','/digital-human'],['个人中心','/user']]},
+  ],
+  tips:['导航两套并存：顶部菜单与左侧菜单都能进功能，以各章「直达 URL」为准','旧文档里的「智能创作/智能体广场」为旧版导航，现智能体广场 = /agent-list','生成任务费算力，会员是权益，两者分开看']
+},
+{
+  id:'02', icon:'🎬', title:'短剧操作台', status:'界面实测', url:'https://sugoo.asia/zh/drama_studio',
+  desc:'短篇小说创作工作台：小说原文 → AI 改写剧本 → 分镜 → 角色 → 场景 → 配乐 → 成片，一条流水线。',
+  image:'assets/02-短剧操作台.jpg', imageNote:'1 剧本（起点）· 2 分镜 · 3 成片（终点）· 4 小说原始内容（输入区）· 5 生成此镜视频 · 6 历史项目',
+  steps:[
+    {t:'进入工作台', d:'左侧菜单「短剧操作台」或直达 /drama_studio，默认停在「剧本」标签页。', detail:'右上角可看「历史项目」与积分余额。'},
+    {t:'导入/编写剧本', d:'在「小说原始内容」区粘贴小说段落或手写故事 → 让 AI 改写 → 生成「AI 改写完稿剧本」。', detail:'剧本在底部时间轴上排列，可拖动安排顺序与时长。'},
+    {t:'配置分镜（逐个镜头）', d:'右侧「分镜详细调节」面板，对每个镜头配置：', table:[['调节项','说明'],['已配置角色','选择/新增角色（角色页维护）'],['已配置场景','选择/更换场景（场景页维护）'],['动画动作描述','该镜头的动作描述'],['输入旁白解说','旁白文案'],['配音台词','角色台词'],['配乐音轨','背景音乐']]},
+    {t:'生成镜头视频', d:'点「生成此镜视频」→ 等待生成（时间轴上有进度）。'},
+    {t:'合成成片', d:'所有镜头生成后，到「成片」标签页合成最终视频 → 「我的资产」查看/下载（第 5 章）。'},
+  ],
+  tips:['角色/场景先建后引：分镜面板引用的角色场景来自「角色/场景」标签页，先建再选','时间轴是编排核心：镜头顺序、时长在时间轴上调整','本工作台适合剧情向短剧；15s 漫广广告走第 3 章的 Vidu 剧集广告，不要混用']
+},
+{
+  id:'03', icon:'⚙️', title:'智能体广场 · 工作流出片', status:'Vidu 已跑通', url:'https://sugoo.asia/zh/agent-list',
+  desc:'出片主入口：全部工作流清单。漫广/视频/声音/图片都从这发起。',
+  image:'assets/03-智能体广场.jpg', imageNote:'1 Seedance 视频 · 2 视频复刻 · 3 声音克隆 · 4 图片生成',
+  steps:[
+    {t:'进入智能体广场', d:'顶部导航「智能体广场」或直达 /agent-list（页面标题「全部智能体」）。', detail:'每个卡片一个出片能力，点卡片进入对应工作流页。'},
+    {t:'认识全部智能体（9 个）', d:'Vidu 剧集广告 / Seedance 视频 / HappyHorse 视频 / 视频复刻 / 带风格带货视频 / 声音克隆 / 图片生成 / 电商详情页 / 场景图生成。', table:[['智能体','直达 URL'],['Vidu 剧集广告','/workflow/662a4ef7-…（我们核心）'],['Seedance 视频','/workflow/8fdcfb36-…'],['HappyHorse 视频','/workflow/eed9452a-…'],['视频复刻','/workflow/ca019174-…'],['带风格带货视频','/workflow/1827d2d5-…'],['声音克隆','/workflow/c90b1ff4-…'],['图片生成','/workflow/8fb73db8-…'],['电商详情页','/workflow/b214c40f-…'],['场景图生成','/workflow/18fd744d-…']]},
+    {t:'Vidu 剧集广告：填参数（关键）', d:'直达 /workflow/662a4ef7-…（页面标题「Vidu 剧集广告」），按表填。', image:'assets/03-Vidu剧集广告.jpg', imageNote:'1 场景模板版本 · 2 视频生成提示词 · 3 生成视频时长 · 4 自动润色（关）· 5 参考图像 · 6 开始运行', table:[['字段','可选值','默认','我们的标准'],['场景模板版本','short_drama_ads / 快速版','—','快速版 short_drama_ads_fast'],['视频生成提示词','文本框','空','剧本式 ≤2000 字符'],['生成视频时长','4-15/20/25/30 秒','20','15 秒内'],['自动润色提示词','开/关','关','关（用自己剧本）'],['参考图像','上传','空','有产品图就传（控主体一致）']]},
+    {t:'Vidu 剧集广告：开始运行与取片', d:'点「开始运行」→ 任务进队列 → 我的资产→任务查看（第 5 章）。', detail:'⏱ 约 5-18 分钟（实测 1062s≈17.7min），每 5 分钟看一次，期间不重复提交。成功 → 复制「视频地址」（S3 链接 24h 有效）→ 立即 curl 下载。'},
+    {t:'声音克隆：克隆音色', d:'直达 /workflow/c90b1ff4-…，填参考音频链接（或素材库选）+ 音色前缀标识 → 开始运行。', image:'assets/03-声音克隆.jpg', imageNote:'1 参考音频链接（3-10 秒人声）· 2 音色前缀标识 · 3 开始运行', table:[['字段','要求'],['参考音频链接','3-10 秒清晰人声，WAV/MP3'],['音色前缀标识','命名前缀，建议 1-10 字符']], detail:'克隆结果进「我的资产 → 音色库」，供数字人/配音调用。'},
+  ],
+  tips:['Vidu 漫广：勿用标准版、勿开润色（会改坏自己写好的剧本）','生成中不要重复提交（占算力）','视频地址 24h 过期，成功立刻下载并 curl 校验','漫广剧本合规红线：规避医疗敏感词，段子软植入（08 号规范）']
+},
+{
+  id:'04', icon:'🗣️', title:'数字人', status:'界面实测', url:'https://sugoo.asia/zh/digital-human',
+  desc:'不用真人出镜：30 秒视频克隆形象 + 声音克隆音色 → 自动写脚本/自动剪辑/一键分发，24 小时产出口播。',
+  image:'assets/04-数字人.jpg', imageNote:'1 形象克隆（30 秒视频复刻）· 2 声音克隆（音色复制）· 3 视频合成（批量出片）',
+  steps:[
+    {t:'形象克隆', d:'进入数字人页 → 点「形象克隆」→ 上传 30 秒本人视频（正面、光线充足）→ 等待复刻完成。', detail:'克隆好的形象进「我的资产 → 数字人库」。'},
+    {t:'声音克隆', d:'点「声音克隆」→ 上传 3-10 秒清晰人声音频（WAV/MP3）→ 高保真复制音色（详细参数见第 3 章）。'},
+    {t:'合成口播视频', d:'选择数字人形象 + 音色 → 输入口播文案（可用爆款脚本改写）→ 点「视频合成」/一键生成 → 自动配口型、剪辑成片。', detail:'口播文案可来自 skills/04-短视频口播脚本策划（3 秒钩子 + CTA）。'},
+    {t:'一键分发（可选）', d:'成片走「一键分发」→ 绑定平台账号 → 发布（第 7 章）。'},
+  ],
+  tips:['克隆素材质量决定效果：视频要正脸清晰、音频要干净','数字人用于建立信任/科普（70% 占比打法），漫剧广告仍走 Vidu（第 3 章）','医疗/功效类口播同样过合规审核']
+},
+{
+  id:'05', icon:'🗃️', title:'我的资产', status:'界面实测', url:'https://sugoo.asia/zh/my-assets',
+  desc:'所有生成结果的「总仓库」：任务进度、成片、图片、音色、数字人全在这看与取。',
+  image:'assets/05-我的资产.jpg', imageNote:'1 任务（任务记录）· 2 视频（成片库）· 3 数字人库（克隆形象）· 4 音色库（克隆声音）',
+  steps:[
+    {t:'进入我的资产', d:'左侧菜单「我的资产」或直达 /my-assets。'},
+    {t:'认识 9 个标签页', d:'任务 / 文案 / 图片 / 视频 / 音频 / 数字人库 / 音色库 / 软件 / 图文。', table:[['标签','装什么'],['任务','所有工作流运行记录'],['文案','生成的文案/剧本'],['图片','生成的图片'],['视频','生成的视频成片'],['数字人库','已克隆的数字人形象'],['音色库','已克隆的声音']]},
+    {t:'查看任务状态', d:'任务列表列：名称 / 类型 / 状态 / 创建时间 / 耗时 / 消耗算力 / 操作。', detail:'状态：✅ 成功（绿）· ❌ 失败（红）· 运行中（等待）。漫广约 5-18 分钟，每 5 分钟看一次。'},
+    {t:'取片（查看详情 + 下载）', d:'点「查看」→ 详情页显示执行摘要（template/ratio/resolution/duration/model）+ 视频地址（S3 签名 URL，24h 有效）。', detail:'立即下载：curl -fsSL "<视频URL>" -o 成片.mp4 → ffprobe 校验时长/分辨率/音轨 → 归入 漫广输出/ 或客户目录。'},
+  ],
+  tips:['状态判断纪律：只有任务栏明确显示「失败」才判失败；「运行中」继续等；查询不到回任务栏核实（用户纠正）','视频地址 24h 过期，成功立刻下载','消耗算力列可见每次任务成本，批量任务前先看余额（第 10 章）']
+},
+{
+  id:'06', icon:'🧠', title:'IP视频（IP 智能体工作台）', status:'界面实测', url:'https://sugoo.asia/zh/ip-agent',
+  desc:'给老板/达人建「数字分身 IP」：人设档案 + 参考视频 → 文案润色 → 一键生成数字人视频 → 绑定账号发布。',
+  image:'assets/06-IP视频.jpg', imageNote:'1 参考视频 · 2 数字人合成 · 3 一键生成数字人视频 · 4 发布分发 · 5 选择发布账号',
+  steps:[
+    {t:'选择/创建 IP', d:'左侧「选择 IP」→ 已有 IP（如「Ai蒋老师」）或新建。', table:[['档案字段','说明'],['称呼','IP 名字/称呼'],['目标人群','给谁看'],['所在地区','同城定位'],['主营产品','卖什么'],['直播话术','话术库'],['简介','IP 简介']], detail:'面板显示项目完整度（如 88%），补齐档案字段可提升。'},
+    {t:'上传参考视频（可选）', d:'中间「参考视频」：上传本地视频或粘贴链接作风格参考；「历史记录」可回看。'},
+    {t:'数字人合成', d:'1. 选择数字人形象 → 2. 提取原稿（提交素材视频/文本）→ 3. 人设润色稿（AI 按人设润色）→ 4. 修改后「保存润色稿修改」→ 5. 点「一键生成数字人视频」。', detail:'润色示例：「同岁不同命？体态赢一切！」+ 口播正文，然后一键出片。'},
+    {t:'预览结果', d:'右侧「视频结果」区预览；不满意回改文案/形象重生成。'},
+    {t:'发布分发', d:'右侧「发布分发」→ 待发布视频 →「视频库添加」→「选择发布账号」（需先绑定，见第 7 章）。'},
+  ],
+  tips:['IP 档案字段越全，润色稿越贴人设（盯着完整度指标补）','发布前必须先在第 7 章「内容发布」绑定平台账号，否则卡在选账号','数字人形象/音色需先在第 4 章克隆好','口播正文走脚本规范（3 秒钩子 + CTA）']
+},
+{
+  id:'07', icon:'📤', title:'内容发布 · 多平台运营', status:'界面实测', url:'https://sugoo.asia/zh/publish/platform',
+  desc:'全网账号统一托管：8 个社交平台账号授权绑定，出片一键分发；未绑定则所有发布环节卡住。',
+  image:'assets/07-内容发布.jpg', imageNote:'1 新增授权（绑定账号）· 2 新增账号授权（绑定入口）· 3 账号配额（可用额度）· 4 支持平台（8 大平台）',
+  steps:[
+    {t:'进入授权中心', d:'顶部导航「内容发布」或直达 /publish/platform（左侧菜单「多平台运营」同源）。', detail:'顶部显示：支持平台（8 个）、账号配额已用 X/Y、搜索框、状态筛选（全部/正常/排线需重授权）。'},
+    {t:'新增授权（绑定账号）', d:'点「新增授权」/「新增账号授权」→ 选平台 → 弹出授权窗口 → 扫码/登录授权 → 完成绑定。', detail:'绑定后账号出现在列表，状态「正常」。'},
+    {t:'发布内容', d:'1. 在 IP视频「发布分发」或工作流结果页选「发布」→ 2. 选目标平台+模板 → 3. 编辑文案与素材 → 4. 设置发布时间与频率 → 5. 审核后自动发布。'},
+  ],
+  tips:['先绑定账号再谈发布：IP视频提示「暂无已绑定账号」= 没来这授权','账号配额有限（示例 0/2），绑定前规划主发平台','平台授权会过期（需重授权），发布前检查状态筛选','内容合规与平台规则仍要人工把关']
+},
+{
+  id:'08', icon:'🔍', title:'GEO推广（GEO 工作台）', status:'界面实测', url:'https://sugoo.asia/zh/geo',
+  desc:'让品牌内容被 AI 搜索/问答收录：关键词库 + 批量生成内容 → 发布公众号/媒体 → 跟踪百度收录与 GEO 分析。',
+  image:'assets/08-GEO推广.jpg', imageNote:'1 内容生成向导（批量生成）· 2 关键词库（关键词管理）· 3 微信发布（公众号发布）· 4 更多工具（扩展工具）',
+  steps:[
+    {t:'进入 GEO 工作台', d:'顶部导航「GEO推广」或直达 /geo（页面标题「欢迎来到GEO工作台」）。', table:[['左侧分区','模块'],['概览','内容创作/AI创作/生成规则/内容库/数据收集/关键词库/问题库'],['素材管理','知识库/素材库/水印库'],['渠道发布','微信公众号/媒体发布/文章发布/多平台发布'],['效果分析','百度收录/GEO分析']]},
+    {t:'建关键词库', d:'「进入关键词库」→ 录入品牌/品类核心关键词（如「厦门 运动康复」）。'},
+    {t:'沉淀问题库', d:'「问题库」→ 由关键词衍生用户常问问题（与知识库联动）。'},
+    {t:'批量生成内容', d:'「内容生成向导」→ 选关键词/问题 → 批量生成内容草稿 → 进「内容库」。'},
+    {t:'渠道发布 + 效果监控', d:'「微信发布」/「媒体发布」/「文章发布」→ 选择渠道发布 → 「百度收录」看收录 → 「GEO分析」看 AI 搜索表现 → 迭代。'},
+  ],
+  tips:['数据总览初始全 0：先建关键词/问题/内容才有东西可发布','微信发布依赖公众号配置，别跳步','GEO 是长线运营（收录见效慢），与短视频出片节奏分开看']
+},
+{
+  id:'09', icon:'🖼️', title:'图片AI', status:'界面实测', url:'https://sugoo.asia/zh/agent-list',
+  desc:'商品图/海报/电商素材工厂：图片生成、AI 模特换装、AI 绘画、设计 agent 四个入口。',
+  image:'assets/03-智能体广场.jpg', imageNote:'图片生成工作流入口（编号 4 = 图片生成）；AI 模特换装/AI 绘画/设计 agent 在左侧「图片AI」展开菜单',
+  steps:[
+    {t:'图片生成（通用）', d:'进「图片生成」工作流（第 3 章智能体清单）→ 填主体描述/参考图/提示词/用途 → 开始运行 → 结果进「我的资产→图片」。', detail:'直达 /workflow/8fb73db8-…'},
+    {t:'AI 模特换装（Nana Banana）', d:'左侧「图片AI → AI模特换装」→ 上传模特图/商品图 → 指定换装要求 → 生成换装后商品图。'},
+    {t:'AI 绘画', d:'左侧「AI绘画」→ 输入绘画提示词（风格/主体/构图）→ 生成 → 用于封面/插画/氛围图。'},
+    {t:'设计 agent（多用途图片设计）', d:'左侧「设计agent」→ 选设计类型（电商详情页等）→ 输入产品信息 → 生成设计稿 → 我的资产取图。'},
+  ],
+  tips:['AI 渲染文字不稳：带文字的封面用叠字方式（tools/make_cover*.py）而非 AI 直出','产品图优先用实拍/PPT 提取素材做参考图，控制主体一致性','涉及人物肖像（换装）注意授权']
+},
+{
+  id:'10', icon:'👤', title:'个人中心与算力', status:'界面实测', url:'https://sugoo.asia/zh/user',
+  desc:'管账户、看钱、查记录：基本资料、订单记录、算力记录、数据大屏、会员套餐、账号安全。',
+  image:'assets/10-个人中心.jpg', imageNote:'1 基本信息（资料管理）· 2 会员与权益（套餐）· 3 账号安全（绑定/改密）· 4 订单记录（子菜单）',
+  steps:[
+    {t:'进入个人中心', d:'左侧菜单「个人中心」或直达 /user。', table:[['子菜单','看什么'],['订单记录','购买记录（会员/算力包）'],['算力记录','算力收支明细'],['数据大屏','平台运营数据'],['推广中心','分销赚钱（第 11 章）'],['我的资产','任务/素材（第 5 章）']]},
+    {t:'基本信息', d:'用户 ID / 昵称 / 更换头像 / 保存。'},
+    {t:'会员与权益', d:'会员与权益叠加包 / 核心会员套餐（购买入口）/ 生效中的权益叠加包。'},
+    {t:'账号安全', d:'绑定邮箱 / 手机号 / 微信 / 修改登录密码。'},
+    {t:'算力与会员的关系（重要认知）', d:'出片消耗算力/积分（我的资产任务列可见）；会员是套餐权益，两者独立；批量出片前查「算力记录」余额。'},
+  ],
+  tips:['算力不足时平台提示充值，别在余额不足时批量提交任务','绑定手机/微信便于找回；登录凭据不共享','会员套餐按出片量规划，不是越贵越好']
+},
+{
+  id:'11', icon:'💸', title:'分销赚钱（推广中心）', status:'界面实测', url:'https://sugoo.asia/zh/affiliate',
+  desc:'邀请返佣：用邀请码/链接拉新，赚现金佣金与算力系数。',
+  image:'assets/11-分销赚钱.jpg', imageNote:'1 可提现佣金（收益）· 2 邀请人数（团队规模）· 3 复制链接（推广链接）· 4 邀请码',
+  steps:[
+    {t:'进入推广中心', d:'顶部导航「分销赚钱」或直达 /affiliate（个人中心→推广中心同源）。', detail:'页面标题「推广中心」，中间显示当前等级权益与数据。'},
+    {t:'复制推广链接', d:'右上角「推广工具」→ 复制链接分享给好友（示例：https://sugoo.asia/?invite=E9345C11，邀请码 E9345C11）。'},
+    {t:'跟踪收益', d:'数据卡：可提现佣金 / 邀请人数 / 累计算力 / 当前状态；底部「邀请记录」表：用户/层级/上级/消费总额/贡献佣金/贡献算力/加入时间。', table:[['项','说明'],['等级权益','一级/二级现金佣金 % + 算力系数'],['可提现佣金','累计待提现（¥）'],['邀请人数','通过链接注册的用户数'],['累计算力','团队贡献算力']]},
+  ],
+  tips:['邀请记录「消费总额 ¥0.00」= 好友注册未消费，佣金按消费后结算','推广链接用于获客场景，别混入内部文档','佣金数据以平台结算为准']
+},
+{
+  id:'12', icon:'🛠️', title:'租户管理后台', status:'待实地勘察', url:'https://tenant.sugoo.asia/zh/marketplace',
+  desc:'运营方「控制台」：前台挂什么智能体、装什么插件、页面怎么装修、用户订单怎么管，全在这。',
+  steps:[
+    {t:'入口与登录', d:'直达 https://tenant.sugoo.asia/zh/marketplace · 登录：租户 ID + 管理员账号 + 密码 + 验证码（密码用户自登，我们不碰）。', detail:'本机登录态：.browser-profiles/sugoo-tenant。示意图待实地勘察后补。'},
+    {t:'认识主菜单', d:'工作台/数据看板 · 应用市场 · 插件（AI能力/应用组件/营销运营/渠道发布/系统插件/行业定制）· 页面装修 · 灵感库/素材管理 · 用户列表/订单列表/运行记录 · 顶部主题/预览/部署。'},
+    {t:'认识核心插件（给前台供能）', d:'智能体集成（Coze 等）、授权中心（Coze/Dify/N8n/OpenAI 凭证）、自动化工作流（节点编排）、多维表格（类飞书）、Hermes Agent（租户默认智能体）、知识库（火山引擎）、OpenClaw（设备管理）。'},
+    {t:'操作要点', d:'后台是「搭平台」的地盘：装插件 → 前台可见；页面装修 → 主题/预览/部署；用户/订单/运行记录 → 管理终端用户与任务。'},
+  ],
+  tips:['后台配置影响前台全局（装修/插件），改动前确认影响面','登录密码由用户保管，绝不代登录/代改密','日常出片只动前台；进后台仅限配置插件/页面/看用户订单']
+}
+];
+
+/* ============ 渲染逻辑 ============ */
+const LS_KEY = 'dshTutorialDone_v1';
+let cur = 0;          // 当前章节
+let openStep = -1;    // 当前展开步骤（-1 无）
+let done = {};        // {chId: {s: {stepIdx: true}}}
+try { done = JSON.parse(localStorage.getItem(LS_KEY) || '{}'); } catch(e){}
+
+const $ = s => document.querySelector(s);
+
+function totalSteps(){ return DATA.reduce((a,c)=>a+c.steps.length,0); }
+function doneCount(){
+  let n = 0;
+  DATA.forEach(c=>{ const s = (done[c.id]||{}).s||{}; Object.keys(s).forEach(()=>n++); });
+  return n;
+}
+function updateProgress(){
+  const total = totalSteps(), dn = doneCount();
+  $('#pfill').style.width = (total ? dn/total*100 : 0) + '%';
+  $('#ptext').textContent = dn + ' / ' + total + ' 步';
+}
+function renderChapters(){
+  $('#chapters').innerHTML = '<div class="nt">教程目录（12 章）</div>' + DATA.map((c, i) => {
+    const st = Object.keys((done[c.id]||{}).s || {}).length;
+    const all = st === c.steps.length && c.steps.length > 0;
+    return '<button class="ch' + (i===cur?' active':'') + (all?' done':'') + '" onclick="goChapter(' + i + ')">'
+      + '<span class="n">' + (i+1) + '</span>' + c.title + '<span class="ck">✓</span></button>';
+  }).join('');
+}
+function goChapter(i){
+  cur = i; openStep = -1;
+  renderChapters(); renderView();
+  window.scrollTo({top:0});
+}
+function openStepAt(i){
+  openStep = openStep === i ? -1 : i;
+  renderView(false);
+}
+function markStep(ch, si){
+  done[ch] = done[ch] || { s:{} };
+  if (done[ch].s[si]) delete done[ch].s[si]; else done[ch].s[si] = true;
+  localStorage.setItem(LS_KEY, JSON.stringify(done));
+  updateProgress(); renderChapters(); renderView(false);
+}
+function resetAll(){
+  if(!confirm('确认清空全部学习进度？')) return;
+  done = {}; localStorage.removeItem(LS_KEY);
+  updateProgress(); renderChapters(); renderView();
+}
+function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function renderView(scroll){
+  const c = DATA[cur];
+  const stepsHtml = c.steps.map((s, i) => {
+    const isOpen = openStep === i;
+    const isDone = !!((done[c.id]||{}).s||{})[i];
+    const tbl = s.table ? '<table>' + s.table.map((r, ri) => '<tr>' + r.map(cell => ri===0?'<th>'+esc(cell)+'</th>':'<td>'+esc(cell)+'</td>').join('') + '</tr>').join('') + '</table>' : '';
+    const img = s.image ? '<img src="' + s.image + '" alt="' + esc(s.t) + '">' : '';
+    const note = s.imageNote ? '<div class="imgnote">📷 ' + esc(s.imageNote) + '</div>' : '';
+    const tip = s.tip ? '<div class="tip">' + esc(s.tip) + '</div>' : '';
+    return '<div class="step' + (isOpen?' open':'') + (isDone?' done':'') + '">'
+      + '<div class="step-h" onclick="openStepAt(' + i + ')">'
+      + '<div class="sno">' + (isDone?'✓':(i+1)) + '</div>'
+      + '<div class="sbody">' + esc(s.t) + '<span class="smeta">' + esc(s.d||'') + '</span></div>'
+      + '<span class="sarrow">▶</span></div>'
+      + '<div class="scont">' + (s.detail?'<p>'+esc(s.detail)+'</p>':'') + tbl + img + note + tip
+      + '<label class="cb"><input type="checkbox" ' + (isDone?'checked':'') + ' onchange="markStep(\'' + c.id + '\',' + i + ')"> 标记这一步已完成</label>'
+      + '</div></div>';
+  }).join('');
+  const tipsHtml = c.tips ? '<div class="tip" style="background:#fef2f2;border-color:#fecaca;color:#991b1b"><b>⚠️ 避坑清单</b>' + c.tips.map(t=>'· '+esc(t)).join('<br>') + '</div>' : '';
+  const imgTop = c.image ? '<div style="margin-top:14px"><img src="' + c.image + '" alt="示意" style="max-width:100%;border:1px solid var(--line);border-radius:10px"><div class="imgnote">📷 ' + esc(c.imageNote) + '</div></div>' : '';
+  $('#view').innerHTML =
+    '<div class="hero"><h1>' + c.icon + ' ' + esc(c.title) + '</h1>'
+    + '<div style="margin-top:8px"><span class="badge b-ok">✅ ' + esc(c.status) + '</span><span class="badge b-url">🔗 ' + esc(c.url) + '</span></div>'
+    + '<div class="desc">' + esc(c.desc) + '</div>' + imgTop + '</div>'
+    + '<div class="steps"><h2>分步操作（点击每步展开）</h2><div class="stip">共 ' + c.steps.length + ' 步 · 点击步骤卡片展开详细说明与配图 · 底部可标记完成</div>'
+    + stepsHtml + tipsHtml + '</div>'
+    + '<div class="navbtns">'
+    + '<button class="nbtn prev" onclick="navStep(-1)" ' + (cur===0 && openStep<0 ? 'disabled':'') + '>← 上一步</button>'
+    + '<button class="nbtn next" onclick="navStep(1)">下一步 →</button>'
+    + '</div>';
+  updateProgress(); renderChapters();
+  if (scroll !== false) window.scrollTo({top:0});
+}
+/* 上一步/下一步：先跨步骤，章末跨章 */
+function navStep(dir){
+  const c = DATA[cur];
+  if (dir === 1) {
+    if (openStep < c.steps.length - 1) { openStepAt(openStep + 1); return; }
+    if (cur < DATA.length - 1) { cur++; openStep = 0; renderChapters(); renderView(); return; }
+    return;
+  }
+  if (openStep > 0) { openStepAt(openStep - 1); return; }
+  if (cur > 0) { cur--; openStep = DATA[cur].steps.length - 1; renderChapters(); renderView(); return; }
+}
+goChapter(0);
+</script>
 </body>
 </html>
