@@ -122,8 +122,8 @@ th{background:#f9fafb;color:var(--muted);font-weight:600}
   </div>
   <div class="progress">
     <div class="pbar"><i id="pfill" style="width:0%"></i></div>
-    <span class="ptext" id="ptext">0 / 12 章</span>
-    <button class="badge-btn" onclick="openBadgeWall()">🏆 <span id="bcnt">0</span>/16</button>
+    <span class="ptext" id="ptext">0 / 13 章</span>
+    <button class="badge-btn" onclick="openBadgeWall()">🏆 <span id="bcnt">0</span>/17</button>
     <button class="reset" onclick="resetAll()">重置进度</button>
   </div>
 </header>
@@ -138,7 +138,7 @@ th{background:#f9fafb;color:var(--muted);font-weight:600}
   <div class="bwall">
     <button class="bw-close" onclick="closeBadgeWall()">✕</button>
     <h2>🏆 勋章墙</h2>
-    <div class="sub">完成教程步骤解锁勋章，集齐 16 枚成为「数果AI 全栈大师」</div>
+    <div class="sub">完成教程步骤解锁勋章，集齐 17 枚成为「数果AI 全栈大师」</div>
     <div class="bgrid" id="bgrid"></div>
   </div>
 </div>
@@ -304,10 +304,24 @@ const DATA = [
     {t:'操作要点', d:'后台是「搭平台」的地盘：装插件 → 前台可见；页面装修 → 主题/预览/部署；用户/订单/运行记录 → 管理终端用户与任务。'},
   ],
   tips:['后台配置影响前台全局（装修/插件），改动前确认影响面','登录密码由用户保管，绝不代登录/代改密','日常出片只动前台；进后台仅限配置插件/页面/看用户订单']
+},
+{
+  id:'13', icon:'💡', title:'行业灵感库 · 一键复用灵感与提示词', status:'做同款已跑通', url:'https://sugoo.asia/zh/inspiration-gallery',
+  desc:'抄作业神器：灵感库里别人做好的作品（海报/漫剧/视频），点「做同款」一键把完整提示词和参数带进工作流，改改就能出片。',
+  image:'assets/13-灵感库-列表.jpg', imageNote:'1 电商营销（分类）· 2 热点节日（分类）· 3 时令节气（分类）· 4 做同款（一键复用按钮）',
+  steps:[
+    {t:'进入灵感库', d:'左侧菜单「行业灵感库」（点开）→「发现灵感」；或直达 /inspiration-gallery。', detail:'页面标题「发现灵感」，顶部一排类型分类，中间是灵感卡片网格。'},
+    {t:'认识分类（8 个类型，各选一例）', d:'电商营销（PETLOVE 双11/618大促/LANCOME）· 热点节日（双11狂欢/520告白/父亲节）· 时令节气（大雪/谷雨/夏至）· 海报设计 · ICON&LOGO · UI设计 · 字体设计 · IP设计。', table:[['类型','示例灵感','用途'],['电商营销','PETLOVE 双11萌宠节 / 618 大促','促销海报，换品名复用'],['热点节日','520 告白 / 父亲节 / 母亲节','节日营销海报'],['时令节气','大雪 / 谷雨 / 小满 / 夏至','节气海报，节气营销'],['海报设计','通用设计海报','模板复用'],['ICON&LOGO','图标/Logo','品牌物料'],['UI设计','界面设计','网页/App'],['字体设计','字体海报','排版'],['IP设计','IP 形象','品牌 IP']]},
+    {t:'挑灵感', d:'看卡片：预览图 + 作者 + 复用次数 + 做同款按钮。', detail:'复用次数高的 = 被验证过的热门款，优先选。'},
+    {t:'点「做同款」', d:'点击卡片上的「做同款」→ 自动跳转到对应工作流（如 Vidu 剧集广告），提示词与参数已全部预填好。', image:'assets/13-灵感库-做同款.jpg', imageNote:'1 视频生成提示词（完整剧本已预填）· 2 开始运行（直接出片）', detail:'URL 自动带上 inspiration_id + 预填参数：场景模板=快速版、720p、9:16、BGM开、水印关、参考图像已带。'},
+    {t:'按需微调', d:'换产品/品牌时改提示词里的产品名与画面描述；参考图换成自己的产品图；时长记得改 15 秒内（08 号铁律）。'},
+    {t:'开始运行 → 取片', d:'点「开始运行」→ 我的资产→任务查看（约 5-18 分钟）→ 复制视频地址 → curl 下载（教程 05）。'},
+  ],
+  tips:['做同款 ≠ 直接外发：提示词是别人的创意，涉及品牌要改成自己的，并过合规审核','漫广合规红线不变：复用段子灵感时仍规避医疗敏感词，段子软植入（08 号规范）','灵感里的参考图是原作者的，商用前确认授权或替换自己的产品图','预填时长默认 20s，我们标准 15 秒内——记得改']
 }
 ];
 
-/* ============ 勋章系统（16 枚：12 章 + 4 里程碑） ============ */
+/* ============ 勋章系统（17 枚：13 章 + 4 里程碑） ============ */
 const BADGES = [
   {id:'ch01', ico:'🗺️', name:'导航新手',   cond:'完成第 1 章「平台总览与导航」', ch:'01'},
   {id:'ch02', ico:'🎬', name:'短剧学徒',   cond:'完成第 2 章「短剧操作台」', ch:'02'},
@@ -321,10 +335,11 @@ const BADGES = [
   {id:'ch10', ico:'👤', name:'账户管理员', cond:'完成第 10 章「个人中心与算力」', ch:'10'},
   {id:'ch11', ico:'💸', name:'分销合伙人', cond:'完成第 11 章「分销赚钱」', ch:'11'},
   {id:'ch12', ico:'🛠️', name:'后台管理员', cond:'完成第 12 章「租户管理后台」', ch:'12'},
+  {id:'ch13', ico:'💡', name:'灵感捕手',    cond:'完成第 13 章「行业灵感库」', ch:'13'},
   {id:'ms3', ico:'⭐', name:'初级学徒',    cond:'完成任意 3 章', n:3},
   {id:'ms6', ico:'🥈', name:'进阶达人',    cond:'完成任意 6 章', n:6},
   {id:'ms9', ico:'🥇', name:'高级专家',    cond:'完成任意 9 章', n:9},
-  {id:'ms12',ico:'🏆', name:'全栈大师',    cond:'完成全部 12 章', n:12},
+  {id:'ms13',ico:'🏆', name:'全栈大师',    cond:'完成全部 13 章', n:13},
 ];
 let seenBadges = {};
 try { seenBadges = JSON.parse(localStorage.getItem('dshBadgeSeen_v1') || '{}'); } catch(e){}
@@ -376,7 +391,7 @@ function checkNewBadges(){
   $('#ce-big').textContent = b.ico;
   $('#ce-name').textContent = '🎖️ 解锁勋章：' + b.name;
   $('#ce-desc').textContent = b.cond;
-  $('#ce-tip').textContent = '已解锁 ' + badgeCount() + ' / 16 枚 · 继续加油，集齐成为「数果AI 全栈大师」！';
+  $('#ce-tip').textContent = '已解锁 ' + badgeCount() + ' / 17 枚 · 继续加油，集齐成为「数果AI 全栈大师」！';
   $('#celebrate').classList.add('show');
   fireConfetti();
   window._pendingBadges = fresh.slice(1);
@@ -392,7 +407,7 @@ function closeCelebrate(){
     $('#ce-big').textContent = next.ico;
     $('#ce-name').textContent = '🎖️ 解锁勋章：' + next.name;
     $('#ce-desc').textContent = next.cond;
-    $('#ce-tip').textContent = '已解锁 ' + badgeCount() + ' / 16 枚 · 继续加油！';
+    $('#ce-tip').textContent = '已解锁 ' + badgeCount() + ' / 17 枚 · 继续加油！';
     $('#celebrate').classList.add('show');
     fireConfetti();
   }
@@ -432,7 +447,7 @@ function updateProgress(){
   $('#ptext').textContent = dn + ' / ' + total + ' 步';
 }
 function renderChapters(){
-  $('#chapters').innerHTML = '<div class="nt">教程目录（12 章）</div>' + DATA.map((c, i) => {
+  $('#chapters').innerHTML = '<div class="nt">教程目录（13 章）</div>' + DATA.map((c, i) => {
     const st = Object.keys((done[c.id]||{}).s || {}).length;
     const all = st === c.steps.length && c.steps.length > 0;
     return '<button class="ch' + (i===cur?' active':'') + (all?' done':'') + '" onclick="goChapter(' + i + ')">'
