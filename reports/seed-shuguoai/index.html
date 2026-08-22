@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>数果AI · 功能使用教程</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;background:#f6f7f9;color:#111827;-webkit-font-smoothing:antialiased;line-height:1.7}
+.wrap{max-width:680px;margin:0 auto;padding:0 16px 64px}
+.brand{display:flex;align-items:center;justify-content:space-between;padding:20px 2px 14px}
+.brand-l{display:flex;align-items:center;gap:9px;font-size:14px;font-weight:600;color:#1f2430}
+.brand-l .logo{width:22px;height:22px;border-radius:7px;background:linear-gradient(135deg,#7c3aed,#a855f7);display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700}
+.brand-r{font-size:12px;color:#9ca3af;background:#fff;border:1px solid #e5e7eb;border-radius:999px;padding:5px 12px}
+.hero{background:#fff;border:1px solid #e5e7eb;border-radius:20px;padding:28px 24px 24px;position:relative;overflow:hidden;box-shadow:0 1px 2px rgba(16,24,40,.04),0 8px 24px rgba(16,24,40,.05)}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#7c3aed,#2563eb)}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.tag{font-size:12px;padding:5px 12px;border-radius:999px;background:#f5f3ff;color:#6d28d9;font-weight:500}
+.tag.gray{background:#f3f4f6;color:#6b7280}
+.hero h1{font-size:27px;font-weight:700;letter-spacing:.5px;color:#111827}
+.hero .pic{margin-top:10px;font-size:15px;color:#4b5563}
+.hero .sub{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:16px;font-size:14px;color:#4b5563}
+.sect{margin-top:28px}
+.sect h2{font-size:17px;font-weight:700;color:#1f2430;display:flex;align-items:center;gap:8px}
+.sect h2 .no{width:22px;height:22px;border-radius:7px;background:linear-gradient(135deg,#7c3aed,#2563eb);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:16px;box-shadow:0 1px 2px rgba(16,24,40,.04)}
+.card b{font-size:14px;color:#1f2430;display:flex;align-items:center;gap:6px}
+.card .ico{font-size:15px}
+.card p{font-size:12.5px;color:#6b7280;margin-top:6px;line-height:1.6}
+.pcard{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:20px;margin-top:14px;box-shadow:0 1px 2px rgba(16,24,40,.04)}
+.flow{display:flex;flex-direction:column;gap:0;margin-top:14px}
+.frow{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px dashed #eef0f4}
+.frow:last-child{border-bottom:none}
+.fno{width:26px;height:26px;border-radius:50%;background:#f5f3ff;color:#6d28d9;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.fbody b{font-size:14px;color:#1f2430}
+.fbody p{font-size:13px;color:#6b7280;margin-top:2px}
+.list{margin-top:10px}
+.li{display:flex;gap:10px;align-items:flex-start;padding:9px 0;font-size:14px;color:#374151}
+.li .dot{width:7px;height:7px;border-radius:50%;background:#7c3aed;margin-top:8px;flex-shrink:0}
+.li.gray .dot{background:#9ca3af}
+.note{font-size:12px;color:#9ca3af;margin-top:10px}
+.cta{margin-top:28px;background:linear-gradient(135deg,#7c3aed,#2563eb);border-radius:20px;padding:24px;color:#fff;text-align:center}
+.cta b{font-size:17px;display:block}
+.cta p{font-size:13.5px;margin-top:8px;opacity:.92}
+.cta .btn{display:inline-block;margin-top:16px;background:#fff;color:#6d28d9;font-size:14px;font-weight:600;padding:11px 26px;border-radius:999px;text-decoration:none}
+.foot{text-align:center;font-size:11.5px;color:#9ca3af;margin-top:24px}
+@media(max-width:480px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">
+    <div class="brand-l"><span class="logo">AI</span>数果AI · Vista · AI 微漫剧代运营</div>
+    <div class="brand-r">功能使用教程</div>
+  </div>
+
+  <div class="hero">
+    <div class="tags">
+      <span class="tag">AI 微漫剧广告</span>
+      <span class="tag">数字人口播</span>
+      <span class="tag">批量混剪</span>
+      <span class="tag gray">15 秒竖屏</span>
+    </div>
+    <h1>数果AI 是什么？</h1>
+    <p class="pic">数果AI 是一套 AI 内容生产引擎：把「一段剧本」变成一条<b>15 秒竖屏微漫剧广告</b>，把「一段文案」变成<b>数字人口播视频</b>，还能批量出图、批量混剪、多平台分发。我们用它，为您的品牌持续产出可投放的 AI 短视频内容。</p>
+    <div class="sub"><span class="tag gray">AI 生产引擎</span><span class="tag gray">剧本 → 成片</span><span class="tag gray">全程平台内完成</span></div>
+  </div>
+
+  <div class="sect">
+    <h2><span class="no">1</span>平台能做什么（功能地图）</h2>
+    <div class="grid">
+      <div class="card"><b><span class="ico">🎬</span>AI 漫剧广告</b><p>Vidu 剧集广告：剧本式提示词一键生成 15s 竖屏微漫剧，段子软植入、自动配乐，是我们的核心出片方式</p></div>
+      <div class="card"><b><span class="ico">🗣️</span>数字人口播</b><p>形象 + 声音克隆，真人出镜零成本替代：科普、口播、IP 人设视频批量生产</p></div>
+      <div class="card"><b><span class="ico">🔁</span>爆款复刻 / 批量混剪</b><p>对标爆款批量出片，矩阵账号低成本起量</p></div>
+      <div class="card"><b><span class="ico">✨</span>一句话生成 / 图生视频</b><p>素材快速起量：一张图或一句话变成动态视频</p></div>
+      <div class="card"><b><span class="ico">🖼️</span>AI 绘画 / 商品图</b><p>商品海报、模特换装、AI 图片生成，本地商家的电商物料</p></div>
+      <div class="card"><b><span class="ico">🧠</span>IP 智能体</b><p>老板个人 IP 的数字分身，高客单业务的信任建立</p></div>
+      <div class="card"><b><span class="ico">📤</span>聚合发布 / 多平台分发</b><p>小红书、抖音等渠道一键分发，同城运营落地</p></div>
+    </div>
+  </div>
+
+  <div class="sect">
+    <h2><span class="no">2</span>我们怎么用（出片链路）</h2>
+    <div class="pcard">
+      <div class="flow">
+        <div class="frow"><div class="fno">1</div><div class="fbody"><b>剧本</b><p>围绕您的产品与卖点，写「段子软植入」的剧情脚本</p></div></div>
+        <div class="frow"><div class="fno">2</div><div class="fbody"><b>分镜 + 提示词</b><p>剧本转成分镜语言与 AI 提示词（平台「漫广导演」或本地导演技能）</p></div></div>
+        <div class="frow"><div class="fno">3</div><div class="fbody"><b>AI 出片</b><p>数果AI Vidu 剧集广告生成成片：快速版 / 720p / 9:16 / 15s 内 / 自动配乐</p></div></div>
+        <div class="frow"><div class="fno">4</div><div class="fbody"><b>合规审核</b><p>规避医疗敏感词与绝对化用语，外发前逐条过审</p></div></div>
+        <div class="frow"><div class="fno">5</div><div class="fbody"><b>分发投放</b><p>成片交付 + 多平台发布/投放建议</p></div></div>
+        <div class="frow"><div class="fno">6</div><div class="fbody"><b>复盘迭代</b><p>数据反馈 → 迭代下一批内容，月度复盘</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sect">
+    <h2><span class="no">3</span>您能拿到什么</h2>
+    <div class="pcard">
+      <div class="list">
+        <div class="li"><span class="dot"></span><div><b>成片交付：</b>15s 竖屏 AI 微漫剧广告（可投流、可发视频号/抖音/小红书）</div></div>
+        <div class="li"><span class="dot"></span><div><b>专属服务报告：</b>每个客户一条公网链接，服务进展实时更新，随时点开查看</div></div>
+        <div class="li"><span class="dot"></span><div><b>内容组合：</b>微漫剧引流 + 数字人口播建立信任 + 图文卡片的组合打法</div></div>
+        <div class="li gray"><span class="dot"></span><div><b>效果说明：</b>AI 内容效果与品类、投放、运营相关，效果因人而异，我们会以数据复盘不断迭代</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sect">
+    <h2><span class="no">4</span>合作流程</h2>
+    <div class="pcard">
+      <div class="flow">
+        <div class="frow"><div class="fno">1</div><div class="fbody"><b>客户建档</b><p>基本信息与联系方式登记，建立专属档案</p></div></div>
+        <div class="frow"><div class="fno">2</div><div class="fbody"><b>需求收集</b><p>1 分钟问卷 + 沟通，明确您的产品与目标</p></div></div>
+        <div class="frow"><div class="fno">3</div><div class="fbody"><b>客户分析</b><p>赛道、竞品、受众画像分析，定打法</p></div></div>
+        <div class="frow"><div class="fno">4</div><div class="fbody"><b>策划方案</b><p>选题、脚本方向、出片节奏与分发计划</p></div></div>
+        <div class="frow"><div class="fno">5</div><div class="fbody"><b>实施出片</b><p>按方案产出微漫剧/口播/图文内容</p></div></div>
+        <div class="frow"><div class="fno">6</div><div class="fbody"><b>服务报告</b><p>专属链接呈现进展与成果</p></div></div>
+        <div class="frow"><div class="fno">7</div><div class="fbody"><b>复盘续费</b><p>数据复盘，持续优化下一阶段</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sect">
+    <h2><span class="no">5</span>您需要配合什么</h2>
+    <div class="pcard">
+      <div class="list">
+        <div class="li"><span class="dot"></span>提供产品介绍 / 产品图（越多越好，用于 AI 参考图控制主体一致）</div>
+        <div class="li"><span class="dot"></span>提供过往宣传素材 / 卖点清单 / 禁忌词说明</div>
+        <div class="li"><span class="dot"></span>确认脚本方向与出片节奏，重要内容 1-2 次确认即可</div>
+        <div class="li"><span class="dot"></span>提供账号信息（发布/投放平台）用于分发</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta">
+    <b>想了解您的品牌怎么用 AI 微漫剧获客？</b>
+    <p>扫码加企业微信，免费咨询定制方案</p>
+    <a class="btn" href="https://beaujiang88.github.io/daiyun-reports/ad/index.html">查看漫剧套餐与数字人口播 →</a>
+  </div>
+
+  <div class="foot">数果AI · Vista · AI 微漫剧代运营 ｜ 内容效果因人而异，以实际数据为准</div>
+</div>
+</body>
+</html>
