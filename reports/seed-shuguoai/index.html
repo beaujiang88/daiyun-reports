@@ -20,6 +20,10 @@ header{background:var(--card);border-bottom:1px solid var(--line);padding:14px 2
 .reset{border:1px solid var(--line);background:#fff;color:var(--muted);border-radius:8px;padding:6px 12px;font-size:12px;cursor:pointer}
 .badge-btn{border:1px solid #fde68a;background:linear-gradient(135deg,#fffbeb,#fef3c7);color:#b45309;border-radius:8px;padding:6px 12px;font-size:12px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:5px}
 .badge-btn:hover{border-color:#f59e0b}
+/* 勋章引导横幅 */
+.kbanner{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;background:linear-gradient(135deg,#fffbeb,#fef3c7);border:1px solid #fde68a;border-radius:12px;padding:10px 14px;margin-bottom:14px;font-size:12.5px;color:#92400e}
+.kbanner b{font-size:13px}
+.kbanner .go{background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border:none;border-radius:8px;padding:6px 14px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap}
 /* 勋章墙弹窗 */
 .mask{position:fixed;inset:0;background:rgba(17,24,39,.55);z-index:100;display:none;align-items:center;justify-content:center;padding:16px}
 .mask.show{display:flex}
@@ -259,14 +263,14 @@ const DATA = [
   tips:['数据总览初始全 0：先建关键词/问题/内容才有东西可发布','微信发布依赖公众号配置，别跳步','GEO 是长线运营（收录见效慢），与短视频出片节奏分开看']
 },
 {
-  id:'09', icon:'🖼️', title:'图片AI', status:'界面实测', url:'https://sugoo.asia/zh/agent-list',
+  id:'09', icon:'🖼️', title:'图片AI', status:'界面实测', url:'https://sugoo.asia/zh/model-swap',
   desc:'商品图/海报/电商素材工厂：图片生成、AI 模特换装、AI 绘画、设计 agent 四个入口。',
-  image:'assets/03-智能体广场.jpg', imageNote:'图片生成工作流入口（编号 4 = 图片生成）；AI 模特换装/AI 绘画/设计 agent 在左侧「图片AI」展开菜单',
+  image:'assets/09-图片生成.jpg', imageNote:'1 提示词（输入生成内容）· 2 参考图列表（上传参考图）· 3 图片比例（正方形/宽屏/竖版）· 4 开始运行',
   steps:[
-    {t:'图片生成（通用）', d:'进「图片生成」工作流（第 3 章智能体清单）→ 填主体描述/参考图/提示词/用途 → 开始运行 → 结果进「我的资产→图片」。', detail:'直达 /workflow/8fb73db8-…'},
-    {t:'AI 模特换装（Nana Banana）', d:'左侧「图片AI → AI模特换装」→ 上传模特图/商品图 → 指定换装要求 → 生成换装后商品图。'},
-    {t:'AI 绘画', d:'左侧「AI绘画」→ 输入绘画提示词（风格/主体/构图）→ 生成 → 用于封面/插画/氛围图。'},
-    {t:'设计 agent（多用途图片设计）', d:'左侧「设计agent」→ 选设计类型（电商详情页等）→ 输入产品信息 → 生成设计稿 → 我的资产取图。'},
+    {t:'图片生成（Image2 生图·稳定）', d:'左侧「图片AI → 图片生成」或直达 /workflow/2dcf304c-…，填提示词 → 传参考图（可选）→ 选图片比例 → 开始运行 → 结果进「我的资产→图片」。', image:'assets/09-图片生成.jpg', imageNote:'1 提示词 · 2 参考图列表 · 3 图片比例 · 4 开始运行', table:[['字段','说明'],['提示词','描述要生成的内容'],['参考图列表','可上传多张参考图（图片/视频/PDF/文档）'],['图片比例','正方形/宽屏/竖版']]},
+    {t:'AI 模特换装', d:'左侧「图片AI → AI模特换装」或直达 /model-swap → 上传服装原图 → 添加模特 → 选生成模式（质量/速度优先）→ 提示词（可选，追加妆造/姿势/光影）→ 立即生成。', image:'assets/09-AI模特换装.jpg', imageNote:'1 服装原图（上传/链接）· 2 选择模特（可加多个）· 3 生成模式（质量/速度优先）· 4 立即生成', table:[['字段','说明'],['服装原图','上传或粘贴链接'],['选择模特','可添加多个模特'],['生成模式','质量优先 / 速度优先'],['每个模特生成数量','默认 1'],['提示词（可选）','追加特征/妆造/姿势/光影']]},
+    {t:'AI 绘画', d:'左侧「AI绘画」或直达 /ai-painting → 输入绘画提示词（风格/主体/构图）→ 生成 → 用于封面/插画/氛围图。'},
+    {t:'设计 agent（多用途图片设计）', d:'左侧「设计agent」或直达 /design-workbench → 选设计类型（电商详情页等）→ 输入产品信息 → 生成设计稿 → 我的资产取图。'},
   ],
   tips:['AI 渲染文字不稳：带文字的封面用叠字方式（tools/make_cover*.py）而非 AI 直出','产品图优先用实拍/PPT 提取素材做参考图，控制主体一致性','涉及人物肖像（换装）注意授权']
 },
@@ -311,7 +315,8 @@ const DATA = [
   image:'assets/13-灵感库-列表.jpg', imageNote:'1 电商营销（分类）· 2 热点节日（分类）· 3 时令节气（分类）· 4 做同款（一键复用按钮）',
   steps:[
     {t:'进入灵感库', d:'左侧菜单「行业灵感库」（点开）→「发现灵感」；或直达 /inspiration-gallery。', detail:'页面标题「发现灵感」，顶部一排类型分类，中间是灵感卡片网格。'},
-    {t:'认识分类（8 个类型，各选一例）', d:'电商营销（PETLOVE 双11/618大促/LANCOME）· 热点节日（双11狂欢/520告白/父亲节）· 时令节气（大雪/谷雨/夏至）· 海报设计 · ICON&LOGO · UI设计 · 字体设计 · IP设计。', table:[['类型','示例灵感','用途'],['电商营销','PETLOVE 双11萌宠节 / 618 大促','促销海报，换品名复用'],['热点节日','520 告白 / 父亲节 / 母亲节','节日营销海报'],['时令节气','大雪 / 谷雨 / 小满 / 夏至','节气海报，节气营销'],['海报设计','通用设计海报','模板复用'],['ICON&LOGO','图标/Logo','品牌物料'],['UI设计','界面设计','网页/App'],['字体设计','字体海报','排版'],['IP设计','IP 形象','品牌 IP']]},
+    {t:'认识分类（16 个类型）', d:'全部 · 电商营销 · 创意建筑 · 热点节日 · 时令节气 · 海报设计 · UI设计 · 字体设计 · IP设计 · 文旅宣传 · 创意人物 · 艺术风格 · 商务科技 · 宠物动物 · 服饰 · 视频。', table:[['类型','示例灵感','类型','示例灵感'],['电商营销','PETLOVE 双11 / 618大促','文旅宣传','旅游目的地海报'],['热点节日','520告白 / 父亲节','创意人物','人物海报'],['时令节气','大雪 / 谷雨 / 夏至','艺术风格','艺术类模板'],['海报设计','通用海报','商务科技','科技/商务图'],['UI设计','界面设计','宠物动物','宠物海报'],['字体设计','字体海报','服饰','服装海报'],['IP设计','IP 形象','视频','漫剧/短视频（见下）']]},
+    {t:'视频分类 · 学习示例（多选几个）', d:'点「视频」分类可看到可复用的视频灵感，做同款进入视频工作流：', table:[['示例视频','内容类型','复用数'],['咖啡馆两闺蜜对话','漫剧段子（社死反转）','6+'],['办公室双人商谈','剧情/访谈','4'],['白发动漫角色','动画/游戏','3'],['蓝色礼服女性','时尚/模特','1'],['户外山海旅游','文旅宣传','0+']], detail:'复用数 = 被做成同款的次数，越高越热门。点任意卡片的「做同款」即预填该视频的完整提示词。'},
     {t:'挑灵感', d:'看卡片：预览图 + 作者 + 复用次数 + 做同款按钮。', detail:'复用次数高的 = 被验证过的热门款，优先选。'},
     {t:'点「做同款」', d:'点击卡片上的「做同款」→ 自动跳转到对应工作流（如 Vidu 剧集广告），提示词与参数已全部预填好。', image:'assets/13-灵感库-做同款.jpg', imageNote:'1 视频生成提示词（完整剧本已预填）· 2 开始运行（直接出片）', detail:'URL 自动带上 inspiration_id + 预填参数：场景模板=快速版、720p、9:16、BGM开、水印关、参考图像已带。'},
     {t:'按需微调', d:'换产品/品牌时改提示词里的产品名与画面描述；参考图换成自己的产品图；时长记得改 15 秒内（08 号铁律）。'},
@@ -498,7 +503,8 @@ function renderView(scroll){
   const tipsHtml = c.tips ? '<div class="tip" style="background:#fef2f2;border-color:#fecaca;color:#991b1b"><b>⚠️ 避坑清单</b>' + c.tips.map(t=>'· '+esc(t)).join('<br>') + '</div>' : '';
   const imgTop = c.image ? '<div style="margin-top:14px"><img src="' + c.image + '" alt="示意" style="max-width:100%;border:1px solid var(--line);border-radius:10px"><div class="imgnote">📷 ' + esc(c.imageNote) + '</div></div>' : '';
   $('#view').innerHTML =
-    '<div class="hero"><h1>' + c.icon + ' ' + esc(c.title) + '</h1>'
+    '<div class="kbanner"><span>🏆 <b>勋章成就系统</b>：完成教程步骤解锁勋章（' + badgeCount() + '/17 枚），学完一章点亮一枚，集齐成为「数果AI 全栈大师」</span><button class="go" onclick="openBadgeWall()">查看勋章墙 →</button></div>'
+    + '<div class="hero"><h1>' + c.icon + ' ' + esc(c.title) + '</h1>'
     + '<div style="margin-top:8px"><span class="badge b-ok">✅ ' + esc(c.status) + '</span><span class="badge b-url">🔗 ' + esc(c.url) + '</span></div>'
     + '<div class="desc">' + esc(c.desc) + '</div>' + imgTop + '</div>'
     + '<div class="steps"><h2>分步操作（点击每步展开）</h2><div class="stip">共 ' + c.steps.length + ' 步 · 点击步骤卡片展开详细说明与配图 · 底部可标记完成</div>'
