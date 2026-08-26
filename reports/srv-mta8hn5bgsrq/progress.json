@@ -1,17 +1,17 @@
 {
-  "customer": "正康运动康复",
-  "track": "运动康复",
+  "customer": "台湾乔本生活",
+  "track": "美容抗衰/皮肤管理",
   "status": "running",
-  "percent": 64,
-  "doneCount": 7,
+  "percent": 9,
+  "doneCount": 1,
   "total": 11,
   "currentStage": {
-    "key": "service",
-    "name": "服务内容"
+    "key": "need",
+    "name": "客户需求"
   },
   "nextStage": {
-    "key": "result",
-    "name": "代运营后数据变化"
+    "key": "analysis",
+    "name": "客户分析"
   },
   "stages": [
     {
@@ -23,50 +23,50 @@
     {
       "key": "need",
       "name": "客户需求",
-      "status": "done",
-      "percent": 100
+      "status": "doing",
+      "percent": 50
     },
     {
       "key": "analysis",
       "name": "客户分析",
-      "status": "done",
-      "percent": 100
+      "status": "todo",
+      "percent": 0
     },
     {
       "key": "account",
       "name": "账号分析",
-      "status": "done",
-      "percent": 100
+      "status": "todo",
+      "percent": 0
     },
     {
       "key": "data",
       "name": "数据分析",
-      "status": "done",
-      "percent": 100
+      "status": "todo",
+      "percent": 0
     },
     {
       "key": "service",
       "name": "服务内容",
-      "status": "doing",
-      "percent": 50
+      "status": "todo",
+      "percent": 0
     },
     {
       "key": "plan",
       "name": "策划方案",
-      "status": "done",
-      "percent": 100
+      "status": "todo",
+      "percent": 0
     },
     {
       "key": "strategy",
       "name": "应对策略",
-      "status": "done",
-      "percent": 100
+      "status": "todo",
+      "percent": 0
     },
     {
       "key": "implement",
       "name": "实际实施步骤",
-      "status": "doing",
-      "percent": 50
+      "status": "todo",
+      "percent": 0
     },
     {
       "key": "result",
@@ -81,5 +81,5 @@
       "percent": 0
     }
   ],
-  "updatedAt": "2026-08-26T15:13:39.720Z"
+  "updatedAt": "2026-08-26T15:13:39.723Z"
 }
