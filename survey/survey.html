@@ -222,8 +222,9 @@ function loadSurvey(){
         document.getElementById('error-page').classList.remove('hidden');
         return;
       }
-      if(res.survey.status === 'submitted'){
-        // 已提交过
+      var isPublic = res.survey.mode === 'public';
+      if(!isPublic && res.survey.status === 'submitted'){
+        // 已提交过（仅限 single 模式；public 表单保持可填）
         var ct = res.survey.classifiedType || '个人客户';
         var badge = ct === '公司客户' ? 'b-purple' : 'b-gray';
         document.getElementById('submitted-ctype').innerHTML = '<span class="badge ' + badge + '">' + esc(ct) + '</span>';
