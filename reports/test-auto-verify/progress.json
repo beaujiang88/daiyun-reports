@@ -1,17 +1,17 @@
 {
-  "customer": "步长倍佳",
-  "track": "日化·消毒/除臭喷雾",
+  "customer": "测试客户-自动分析验证",
+  "track": "餐饮·烤鱼",
   "status": "running",
-  "percent": 55,
-  "doneCount": 6,
+  "percent": 9,
+  "doneCount": 1,
   "total": 11,
   "currentStage": {
-    "key": "account",
-    "name": "账号分析"
+    "key": "need",
+    "name": "客户需求"
   },
   "nextStage": {
-    "key": "result",
-    "name": "代运营后数据变化"
+    "key": "analysis",
+    "name": "客户分析"
   },
   "stages": [
     {
@@ -23,50 +23,50 @@
     {
       "key": "need",
       "name": "客户需求",
-      "status": "done",
-      "percent": 100
+      "status": "doing",
+      "percent": 50
     },
     {
       "key": "analysis",
       "name": "客户分析",
-      "status": "done",
-      "percent": 100
+      "status": "todo",
+      "percent": 0
     },
     {
       "key": "account",
       "name": "账号分析",
-      "status": "doing",
-      "percent": 50
+      "status": "todo",
+      "percent": 0
     },
     {
       "key": "data",
       "name": "数据分析",
-      "status": "done",
-      "percent": 100
+      "status": "todo",
+      "percent": 0
     },
     {
       "key": "service",
       "name": "服务内容",
-      "status": "doing",
-      "percent": 50
+      "status": "todo",
+      "percent": 0
     },
     {
       "key": "plan",
       "name": "策划方案",
-      "status": "done",
-      "percent": 100
+      "status": "todo",
+      "percent": 0
     },
     {
       "key": "strategy",
       "name": "应对策略",
-      "status": "done",
-      "percent": 100
+      "status": "todo",
+      "percent": 0
     },
     {
       "key": "implement",
       "name": "实际实施步骤",
-      "status": "doing",
-      "percent": 50
+      "status": "todo",
+      "percent": 0
     },
     {
       "key": "result",
@@ -81,5 +81,5 @@
       "percent": 0
     }
   ],
-  "updatedAt": "2026-08-26T04:10:32.548Z"
+  "updatedAt": "2026-08-26T04:10:32.555Z"
 }
