@@ -1,13 +1,13 @@
 {
-  "customer": "步长倍佳",
-  "track": "日化·消毒/除臭喷雾",
+  "customer": "正康运动康复",
+  "track": "运动康复",
   "status": "running",
-  "percent": 55,
-  "doneCount": 6,
+  "percent": 64,
+  "doneCount": 7,
   "total": 11,
   "currentStage": {
-    "key": "account",
-    "name": "账号分析"
+    "key": "service",
+    "name": "服务内容"
   },
   "nextStage": {
     "key": "result",
@@ -35,8 +35,8 @@
     {
       "key": "account",
       "name": "账号分析",
-      "status": "doing",
-      "percent": 50
+      "status": "done",
+      "percent": 100
     },
     {
       "key": "data",
@@ -81,5 +81,5 @@
       "percent": 0
     }
   ],
-  "updatedAt": "2026-08-26T02:04:11.568Z"
+  "updatedAt": "2026-08-26T02:04:11.570Z"
 }
