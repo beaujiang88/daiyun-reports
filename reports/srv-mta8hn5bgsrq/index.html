@@ -274,7 +274,8 @@ var CUST="台湾乔本生活";
 var CUSTID="srv-mta8hn5bgsrq";
 var FB_URL="";
 var PUB="https://beaujiang88.github.io/daiyun-reports/reports";
-var PUB_LINK=PUB?PUB+"/"+CUSTID+"/index.html":"";
+var VER="1787802591642";
+var PUB_LINK=PUB?PUB+"/"+CUSTID+"/index.html?v="+VER:"";
 function shareUrl(){return PUB_LINK||location.href}
 function $(i){return document.getElementById(i)}
 function openShare(){$("mask").classList.add("on");$("sheet").classList.add("on");if(navigator.share)$("sysShare").style.display="flex"}
