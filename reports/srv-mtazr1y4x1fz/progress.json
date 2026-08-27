@@ -1,17 +1,17 @@
 {
-  "customer": "七公烤鱼",
-  "track": "餐饮·烤鱼",
+  "customer": "台湾乔本生活",
+  "track": "自媒体、主持人、大健康",
   "status": "running",
-  "percent": 64,
-  "doneCount": 7,
+  "percent": 9,
+  "doneCount": 1,
   "total": 11,
   "currentStage": {
-    "key": "service",
-    "name": "服务内容"
+    "key": "need",
+    "name": "客户需求"
   },
   "nextStage": {
-    "key": "implement",
-    "name": "实际实施步骤"
+    "key": "analysis",
+    "name": "客户分析"
   },
   "stages": [
     {
@@ -23,44 +23,44 @@
     {
       "key": "need",
       "name": "客户需求",
-      "status": "done",
-      "percent": 100
-    },
-    {
-      "key": "analysis",
-      "name": "客户分析",
-      "status": "done",
-      "percent": 100
-    },
-    {
-      "key": "account",
-      "name": "账号分析",
-      "status": "done",
-      "percent": 100
-    },
-    {
-      "key": "data",
-      "name": "数据分析",
-      "status": "done",
-      "percent": 100
-    },
-    {
-      "key": "service",
-      "name": "服务内容",
       "status": "doing",
       "percent": 50
     },
     {
+      "key": "analysis",
+      "name": "客户分析",
+      "status": "todo",
+      "percent": 0
+    },
+    {
+      "key": "account",
+      "name": "账号分析",
+      "status": "todo",
+      "percent": 0
+    },
+    {
+      "key": "data",
+      "name": "数据分析",
+      "status": "todo",
+      "percent": 0
+    },
+    {
+      "key": "service",
+      "name": "服务内容",
+      "status": "todo",
+      "percent": 0
+    },
+    {
       "key": "plan",
       "name": "策划方案",
-      "status": "done",
-      "percent": 100
+      "status": "todo",
+      "percent": 0
     },
     {
       "key": "strategy",
       "name": "应对策略",
-      "status": "done",
-      "percent": 100
+      "status": "todo",
+      "percent": 0
     },
     {
       "key": "implement",
@@ -81,5 +81,5 @@
       "percent": 0
     }
   ],
-  "updatedAt": "2026-08-27T03:56:48.424Z"
+  "updatedAt": "2026-08-27T03:56:48.441Z"
 }

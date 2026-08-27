@@ -187,8 +187,7 @@ var CUST="叶芝彤";
 var CUSTID="seed-yezhitong";
 var FB_URL="";
 var PUB="https://beaujiang88.github.io/daiyun-reports/reports";
-var VER="1787802591639";
-var PUB_LINK=PUB?PUB+"/"+CUSTID+"/index.html?v="+VER:"";
+var PUB_LINK=PUB?PUB+"/"+CUSTID+"/index.html":"";
 function shareUrl(){return PUB_LINK||location.href}
 function $(i){return document.getElementById(i)}
 function openShare(){$("mask").classList.add("on");$("sheet").classList.add("on");if(navigator.share)$("sysShare").style.display="flex"}
