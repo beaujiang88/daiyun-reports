@@ -119,6 +119,7 @@ th{background:#f9fafb;color:var(--muted);font-weight:600}
 </style>
 </head>
 <body>
+<script>/* 缓存穿透自愈：无 ?v= 的裸链接自动跳转到带版本号地址，避免用户/客户看到旧缓存 */try{if(!/[\?&]v=/.test(location.search)){location.replace(location.pathname+'?v='+Date.now())}}catch(e){}</script>
 <header>
   <div class="brand">
     <div class="logo">AI</div>
