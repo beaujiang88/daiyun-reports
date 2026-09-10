@@ -2,12 +2,12 @@
   "customer": "康曲星",
   "track": "养生",
   "status": "running",
-  "percent": 55,
-  "doneCount": 6,
+  "percent": 45,
+  "doneCount": 5,
   "total": 11,
   "currentStage": {
-    "key": "account",
-    "name": "账号分析"
+    "key": "need",
+    "name": "客户需求"
   },
   "nextStage": {
     "key": "result",
@@ -23,8 +23,8 @@
     {
       "key": "need",
       "name": "客户需求",
-      "status": "done",
-      "percent": 100
+      "status": "doing",
+      "percent": 50
     },
     {
       "key": "analysis",
@@ -81,5 +81,5 @@
       "percent": 0
     }
   ],
-  "updatedAt": "2026-09-10T19:56:57.568Z"
+  "updatedAt": "2026-09-10T20:02:39.419Z"
 }
