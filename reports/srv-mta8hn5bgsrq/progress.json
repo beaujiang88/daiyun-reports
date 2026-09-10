@@ -1,17 +1,17 @@
 {
-  "customer": "七公烤鱼",
-  "track": "餐饮·烤鱼",
+  "customer": "台湾乔本生活伊宁",
+  "track": "美容抗衰/皮肤管理",
   "status": "running",
-  "percent": 64,
-  "doneCount": 7,
+  "percent": 55,
+  "doneCount": 6,
   "total": 11,
   "currentStage": {
-    "key": "service",
-    "name": "服务内容"
+    "key": "account",
+    "name": "账号分析"
   },
   "nextStage": {
-    "key": "implement",
-    "name": "实际实施步骤"
+    "key": "result",
+    "name": "代运营后数据变化"
   },
   "stages": [
     {
@@ -35,8 +35,8 @@
     {
       "key": "account",
       "name": "账号分析",
-      "status": "done",
-      "percent": 100
+      "status": "doing",
+      "percent": 50
     },
     {
       "key": "data",
@@ -65,8 +65,8 @@
     {
       "key": "implement",
       "name": "实际实施步骤",
-      "status": "todo",
-      "percent": 0
+      "status": "doing",
+      "percent": 50
     },
     {
       "key": "result",
@@ -81,5 +81,5 @@
       "percent": 0
     }
   ],
-  "updatedAt": "2026-09-10T19:39:31.335Z"
+  "updatedAt": "2026-09-10T19:39:31.342Z"
 }
