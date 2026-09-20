@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>数果AI 使用说明中心</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --blue:#2563eb; --violet:#7c3aed; --green:#16a34a; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+    background: linear-gradient(160deg, #f8fafc 0%, #eef2ff 100%);
+    color: #1e293b; min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center;
+    padding: 32px 16px 48px;
+  }
+  .wrap { width: 100%; max-width: 880px; }
+  header.top { text-align: center; margin-bottom: 28px; }
+  .top .crown {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 76px; height: 76px; border-radius: 22px;
+    background: linear-gradient(135deg, var(--violet), var(--blue));
+    color: #fff; font-size: 38px; box-shadow: 0 10px 26px rgba(37,99,235,.28);
+    margin-bottom: 14px;
+  }
+  .top h1 { font-size: 26px; font-weight: 800; letter-spacing: .5px; }
+  .top p { margin-top: 8px; color: #64748b; font-size: 14.5px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } }
+  a.card {
+    display: flex; flex-direction: column; text-decoration: none; color: inherit;
+    background: #fff; border: 1px solid #e6e9f2; border-radius: 20px;
+    padding: 26px 24px 22px; min-height: 220px; position: relative; overflow: hidden;
+    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  }
+  a.card::before {
+    content: ""; position: absolute; inset: 0 0 auto 0; height: 5px; opacity: .9;
+  }
+  a.card.c1::before { background: linear-gradient(90deg, var(--violet), var(--blue)); }
+  a.card.c2::before { background: linear-gradient(90deg, var(--green), var(--blue)); }
+  a.card:hover { transform: translateY(-5px); box-shadow: 0 16px 38px rgba(30,41,59,.14); border-color: #c7d2fe; }
+  .card .ic { font-size: 40px; margin-bottom: 12px; }
+  .card h2 { font-size: 19px; font-weight: 750; margin-bottom: 8px; }
+  .card .desc { font-size: 14px; line-height: 1.65; color: #475569; flex: 1; }
+  .card .go {
+    margin-top: 16px; font-weight: 700; font-size: 14.5px;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  a.card.c1 .go { color: var(--violet); }
+  a.card.c2 .go { color: var(--green); }
+  .card .tag {
+    position: absolute; top: 18px; right: 18px; font-size: 11px; font-weight: 600;
+    color: #94a3b8; background: #f1f5f9; border-radius: 999px; padding: 4px 10px;
+  }
+  footer { margin-top: 34px; text-align: center; color: #94a3b8; font-size: 12.5px; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <div class="crown">📚</div>
+      <h1>数果AI 使用说明中心</h1>
+      <p>客户教程 + 功能手册，一处直达</p>
+    </header>
+
+    <main class="grid">
+      <a class="card c1" href="index.html" target="_blank" rel="noopener">
+        <span class="tag">分步实操</span>
+        <div class="ic">📘</div>
+        <h2>客户教程页</h2>
+        <div class="desc">数字人 / 短视频 / 漫剧广告 / 智能体 的可交互图文分步教程，跟着做就能出片。</div>
+        <span class="go">进入教程 →</span>
+      </a>
+
+      <a class="card c2" href="shuguo-ai-manual.html" target="_blank" rel="noopener">
+        <span class="tag">完整手册</span>
+        <div class="ic">📗</div>
+        <h2>功能操作说明书</h2>
+        <div class="desc">数果AI 云端工作台完整手册：界面总览、8 大功能模块、能力清单、10 条实战配方与 FAQ。</div>
+        <span class="go">打开手册 →</span>
+      </a>
+    </main>
+
+    <footer>更新于 2026-09-20 · 数果AI 团队</footer>
+  </div>
+</body>
+</html>
