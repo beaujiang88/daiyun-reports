@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>漫剧 / 短剧推广 · 完整可执行操作方案 v1.0</title>
+<title>漫剧 / 短剧推广 · 完整可执行操作方案 v1.1</title>
 <style>
 :root{--ink:#1c2330;--sub:#5a6478;--line:#e3e7ef;--bg:#f6f8fb;--card:#fff;
 --accent:#c2542e;--accent2:#8a4bbf;--ok:#2e8b57;--warn:#c2842e;--blue:#2e6b8b}
@@ -60,7 +60,7 @@ footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);color:v
 @media print{body{background:#fff}.wrap{max-width:none;padding:0}}
 </style></head>
 <body><div class="wrap">
-<header><h1>漫剧 / 短剧推广 · 完整可执行操作方案 v1.0</h1><div class="meta">2026-10-05 ｜ 数果AI 方案库 ｜ 手机/微信可直接打开</div></header>
+<header><h1>漫剧 / 短剧推广 · 完整可执行操作方案 v1.1</h1><div class="meta">2026-10-05 ｜ 数果AI 方案库 ｜ 手机/微信可直接打开</div></header>
 <blockquote>
 <p><strong>合并来源</strong>：<code>漫剧星图/</code> 全部 15 份文件（作战方案 v1/v2、4 份实地调研、快手一手实测、产能与 SOP、能力清单、技术评估、授权模板）＋ 2026-10-05 抖音「短剧发行人计划」站内实测与官方公告核证
 <strong>编制日期</strong>：2026-10-05　｜　<strong>适用角色</strong>：自己做号、用混剪漫剧/短剧片段做推广视频赚结算的剪手 / 小工作室
@@ -739,8 +739,9 @@ python3 tools/asr_transcribe.py 漫剧星图/素材/&lt;剧名&gt;/EP01.mp4
 </table>
 <h3>7.4 技术路线的结论</h3>
 <ul>
-<li><strong>vphone（虚拟 iPhone 远程驱动）</strong>：能完整操作快手 App（含点任务页投稿），但<strong>需改 SIP、需 Mac 常开、最大未知是「虚拟设备会不会被风控识别」</strong>。结论：<strong>先花小钱试蚁小二，再决定要不要上 vphone</strong>（蚁小二验证成本几乎为零）【查证】</li>
-<li><strong>Meta Muse</strong>：<strong>干不了这个活</strong>（四条理由，按致命程度），但原文有一个「意外发现」——我们自己的产线就是同一类东西【查证】</li>
+<li><strong>vphone（虚拟 iPhone 远程驱动）</strong>：<strong>结论是「否决」</strong>——原架构评估文件的判断是「大概率不通，建议放弃这条路」。三个硬约束都在你这台 Mac 上：① M4/16GB 内存跑 VM（默认 8CPU/8192MB/64GB 盘）会挤爆；② 须进 macOS 恢复模式改 SIP；③ Mac 须常开且进程不能被杀（已知进程被回收、端口漂移）。决定性证据来自项目自身文档/issue：商业 App 必崩或被 FairPlay 挡、多个相关 issue 均 closed as not planned、App Store 在 VM 内不工作、主二进制（微信 504MiB / TikTok 544MiB）启动即崩；<strong>唯一可用形态是越狱 VM，而反检测补丁自 2026-09-28 起默认关闭</strong>【查证】</li>
+<li><strong>替代顺序（按推荐度）</strong>：① 蚁小二官方通道 + 真机/半自动（<strong>先验证「发布能否计入任务」，成本近零</strong>）→ ② 真机常驻 + 半自动 → ③ Android 云手机（阿里云无影 65–239 元/月，<strong>无 iOS</strong>）→ ④ 纯人工投稿（约 3 分钟/条）【查证】</li>
+<li><strong>Meta Muse</strong>：<strong>干不了这个活</strong>（四条理由：仅美加开放须 Meta 账号；跑在 Meta 美国云端、无 API 只能浏览器模拟，而快手核心发布在移动 App 且对境外 IP 风控极严；平台主动拦智能体；<strong>不解决两个真卡点</strong>——快手是否认可这种发布方式、以及 30s–10min 解说型二创的产能）。<strong>意外发现</strong>：Muse 的形态来自开源项目 OpenClaw（Meta 官方承认），架构是「harness + Markdown 配置文件」——<strong>我们自己的云端 DSH + AGENTS.md + 技能库/知识库就是同一形态，且更适配这个场景</strong>。唯一值得单拿的是 <strong>Muse Spark 1.3 已开放 API</strong>（兼容 OpenAI SDK、可走 OpenRouter、按 token 计费）【查证】</li>
 </ul>
 <hr />
 <h2>8. 90 天落地路线（每阶段有「不达标就停」的闸门）</h2>
@@ -912,6 +913,87 @@ python3 tools/asr_transcribe.py 漫剧星图/素材/&lt;剧名&gt;/EP01.mp4
 </tr>
 </tbody>
 </table>
+<hr />
+<h2>附录 C · 四份「研究」文件的规则细节（数字原样保留）</h2>
+<blockquote>
+<p>本附录由 6 份研究报告蒸馏而来，<strong>所有数字均标注出处文件与章节</strong>。凡标 <code>❓</code> 者为原文明确「查不到」，<strong>不可当规则引用</strong>。</p>
+</blockquote>
+<h3>C.1 巨量星图：入驻与任务门槛是分开的【查证·星图§1.2–1.5】</h3>
+<p><strong>入驻本身无粉丝要求；门槛在「开通具体任务」上：</strong></p>
+<table>
+<thead>
+<tr>
+<th>任务类型</th>
+<th>粉丝门槛</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="lab">指派任务</td>
+<td><strong>≥10 万粉</strong></td>
+</tr>
+<tr>
+<td class="lab">直播投稿</td>
+<td>≥1 千粉 ＋ 有效粉 ≥200 ＋ 近 14 天 ≥3 场、每场 ≥25min</td>
+</tr>
+<tr>
+<td class="lab">招募（一口价）</td>
+<td><strong>1 万 ≤ 粉 ≤ 500 万</strong> ＋ 有效粉 ≥500</td>
+</tr>
+<tr>
+<td class="lab">星广联投</td>
+<td>≥1 万粉 ＋ 有效粉 ≥500</td>
+</tr>
+<tr>
+<td class="lab">星川</td>
+<td>1 千 ≤ 粉 ≤ 100 万 ＋ 有效粉 ≥500</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>实名要求：<strong>≥18 周岁</strong>、禁未成年；<strong>同一身份证/法人仅 2 个账号</strong>；MCN 非必须【§1.3–1.4】</li>
+<li>任务类型全景：指派 / 投稿 / 招募 / 星广联投 / 星川 / 直播投稿【§2.1】；短剧侧＝达人定制短剧（短剧招商广场）/ 抖音小程序分佣任务 / 短剧发行人计划 / 红果演员双发【§2.2–2.6】</li>
+</ul>
+<h3>C.2 巨量星图：结算、验收与「保留期」坑【查证·星图§2.5、§3.1–3.5】</h3>
+<ul>
+<li><strong>未验收 7 个自然日自动验收</strong></li>
+<li>客户侧服务费：指派·共创·招募·招商短剧 <strong>5%</strong>；投稿 <strong>10%</strong></li>
+<li>个体达人扣 <strong>5%</strong>（10000 → 9500）；保底+佣金提现另付 3–5%</li>
+<li>短剧/小说小程序（2024-06-07 起）：云直通普通 <strong>70%</strong> / 专属 <strong>70–90%</strong> / <strong>未开通 1–29%</strong>；广告分成 70% / 70–90%</li>
+<li><strong>2026-09-20 起自动打款，仅绑银行卡</strong>；MCN 达人不可自行提现</li>
+<li>信用分初始 <strong>70</strong>（0–100），90 天行为数据周期</li>
+<li>⚠️ <strong>保留期</strong>：默认 30 天，可设 15/30/60/90 天或自定义 <strong>≤180 天</strong>；<strong>期内删除或设为「仅自己可见」会扣信用分</strong> → 直接影响后续接单资格</li>
+<li>⚠️ PC 端<strong>超 5 分钟不能绑定任务</strong></li>
+<li>定制短剧：单集报价系数 <strong>70%–120%</strong>、下单 <strong>2 集起</strong>、服务费＝单集报价 × <strong>5%</strong>【§2.2】</li>
+<li>媒体实证任务页硬要求：<strong>时长 30 秒–20 分钟、全程带剧名</strong>【§5.2】</li>
+</ul>
+<h3>C.3 快手：星任务 / 星视频 / 星火 的差别【查证·快手§1.2–1.7、§4】</h3>
+<ul>
+<li><strong>星视频 / 星直播</strong>＝<strong>CPT 一口价</strong>；<strong>星任务</strong>＝CPS / CPA / CPS+CPA，<strong>单次激活出价 0–100（2 位小数）</strong></li>
+<li>关键红利条款：<strong>首次激活后 180 天内</strong>，该用户的付费 + 看广告收入<strong>全部分成</strong>（分成＝整体流水分成比例）【§1.5、§4】</li>
+<li>星火计划：广告分成 ≥70%，达人到手 = A × 分成比例 × <strong>90%</strong>（平台收 10%）；每月 11–25 日收益 → 下月 1 日；上月 26–本月 10 日 → 本月 16 日</li>
+<li>⚠️ <strong>税务变化</strong>：2025-10-01 起非对公结算按<strong>劳务报酬累计预扣法</strong>、提现代扣【§1.7】→ 到账金额会低于账面，排产时要按税后算</li>
+<li>报价三段式：1–20s ≤ 21–60s ≤ 60s 以上；星直播按小时 ≤ 按天；未落在推荐区间会限制接单【§1.6】</li>
+<li>广告内容 <strong>≤ 整体视频 50%</strong>；电商/网服/游戏类<strong>前 10 秒无原创性禁</strong>【§5.2–5.3】</li>
+<li>禁「使用其他订单视频剪辑后完成任务视频」【§5.4】</li>
+</ul>
+<h3>C.4 红果：除了「门是关的」，还有两条会咬人的规则【查证·红果§2.5、§4.5】</h3>
+<ul>
+<li>红果金币兑现金约 <strong>33000 : 1</strong>，提现 <strong>3–5 天</strong></li>
+<li>⛔ <strong>连续 15 个自然日未进任务页或未领奖 → 福利过期、现金账户清零</strong>；禁外挂/群控/多账号</li>
+<li>2025 年 3 月全平台下架超 <strong>1219 部</strong>（红果 143 / 抖音 476 / 快手 600 余部）；红果 2025 年至今累计下架超 <strong>1200 部</strong></li>
+</ul>
+<h3>C.5 漫剧混剪：内容硬参数（可直接写进脚本规范）【查证·混剪§1.1、§2.3–2.4、§4.3】</h3>
+<ul>
+<li><strong>集数 41–60 集表现最佳</strong>；正片单集 <strong>≤5min</strong>，单部 <strong>100–150min</strong></li>
+<li>推广切片一线观察：<strong>大号常剪 20 分钟以上</strong></li>
+<li>标题套路：<strong>悬念式长标题 ＋ <code>#一口气看完 #漫剧 #爽文 #逆袭 #爽漫 #高能</code> ＋ 剧场名</strong></li>
+<li>0–30 秒结构见本方案 §2 阶段④</li>
+<li><strong>去重 16 条清单</strong>（原文）：剪辑顺序颠倒、变速 0.9 倍 → 抽帧 → 1.1 倍回速、镜像、滤镜特效、换 BGM、自制配音旁白、加字幕、比例裁切、画中画、贴纸、变焦特写、模糊虚化、文字动效、声音特效、逆行倒播</li>
+<li>原文声明：<strong>没有任何方法保证 100% 去重，且查重机制会不断变化</strong>；每个素材换不一样的 BGM 和开头，批量生成后逐条检查</li>
+</ul>
+<h3>C.6 明确「查不到」的清单（❓ 不可编造）</h3>
+<p>漫剧推广在各平台的<strong>官方任务名/入口/名额/结算口径</strong>；星图<strong>起结金额门槛与 T+N 天数</strong>；短剧漫剧<strong>官方 CPM/CPA 单价</strong>（含快手 CPS 佣金下限、起结门槛、到账周期——网传 70%/80% 出自自媒体，原文未采信）；<strong>官方素材包授权链与授权书文本</strong>；红果有无素材包通道；统一内容条文（不得剧透 / 加解说 / 指定话题 / 片头片尾标识 / 挂载小程序 / 诱导充值话术）；快手<strong>是否有「短剧发行人计划」</strong>；《定制短剧任务服务协议》正文；快手官方「违规搬运」细则页与 AI 魔改治理原公告（网传 10 分/14 天/30% <strong>不可当官方数字</strong>）；各平台对「漫剧混剪」的<strong>明确许可或禁止表述</strong>；番茄达人中心官方规则页与 0 粉 CPA；红果 CPA/邀新官方单价（8 元/12 元/25 元三个数字<strong>互相矛盾</strong>）；抖音漫剧 IP 库「50 万部 / 个人可申请」；账号健康分 2026 执行细则；剪映/CapCut 批量混剪官方文档；AI 混剪工具横向实测；广电总局针对漫剧的专门规定；2026 年漫剧市场规模数据；具名退场案例；搬运判定技术细节（MD5/指纹阈值）。</p>
 <hr />
 <blockquote>
 <p><strong>编制说明</strong>：本方案是对 <code>漫剧星图/</code> 既有 15 份文件的<strong>合并与操作化</strong>，不是重新调研。凡原文件标注【查证】的事实均原样保留并注明来源层级；凡【推断】与【待核】一律保留标注——<strong>不要把本方案里带【推断】的句子当平台规则引用</strong>。</p>

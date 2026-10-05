@@ -1,8 +1,8 @@
 {
   "slug": "20261005-manju-shortdrama-promo-master-sop",
-  "title": "漫剧 / 短剧推广 · 完整可执行操作方案 v1.0",
+  "title": "漫剧 / 短剧推广 · 完整可执行操作方案 v1.1",
   "date": "2026-10-05",
-  "summary": "合并漫剧星图15份文件：四通道决策矩阵、11阶段量产SOP、三平台规则速查、合规红线、台账模板、90天路线",
+  "summary": "合并漫剧星图15份文件：四通道决策矩阵、11阶段量产SOP、三平台规则速查、合规红线、台账模板、90天路线（含四份研究的规则细节附录）",
   "tags": [
     "漫剧",
     "短剧推广",
@@ -14,9 +14,10 @@
   ],
   "source": "/data/dsh-harness/users/18559638839/方案库/plans/20261005-manju-shortdrama-promo-master-sop/report.md",
   "createdAt": "2026-10-05T16:44:56",
-  "updatedAt": "2026-10-05T16:44:56",
+  "updatedAt": "2026-10-05T16:46:42",
   "files": [
     "index.html",
+    "meta.json",
     "report.md",
     "方案.md"
   ]
