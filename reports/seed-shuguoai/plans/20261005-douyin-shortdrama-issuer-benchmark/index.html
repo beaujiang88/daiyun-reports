@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>抖音短剧发行人 · 经营方式与赚钱模型对标分析</title>
+<style>
+:root{--ink:#1c2330;--sub:#5a6478;--line:#e3e7ef;--bg:#f6f8fb;--card:#fff;
+--accent:#c2542e;--accent2:#8a4bbf;--ok:#2e8b57;--warn:#c2842e;--blue:#2e6b8b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.78;font-size:16px;-webkit-text-size-adjust:100%}
+.wrap{max-width:1000px;margin:0 auto;padding:28px 18px 88px}
+header{border-bottom:3px solid var(--ink);padding-bottom:18px;margin-bottom:10px}
+header h1{font-size:23px;line-height:1.4}
+header .meta{color:var(--sub);margin-top:10px;font-size:13px;line-height:1.9}
+h1{font-size:22px}
+h2{font-size:19px;margin:36px 0 14px;padding-left:11px;border-left:5px solid var(--accent);line-height:1.5}
+h3{font-size:17px;margin:24px 0 10px;color:var(--accent2)}
+h4{font-size:16px;margin:16px 0 8px}
+p{margin:10px 0}
+ul,ol{margin:10px 0 10px 22px}
+li{margin:6px 0}
+blockquote{margin:16px 0;padding:13px 15px;background:#fff8f4;border-left:4px solid var(--accent);
+border-radius:0 8px 8px 0;color:#5c4438;font-size:15px}
+blockquote p{margin:4px 0}
+code{background:#eef2f8;padding:2px 6px;border-radius:5px;font-size:14px;
+font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;word-break:break-all}
+pre{background:#1c2330;color:#e8edf5;padding:14px 16px;border-radius:10px;overflow:auto;margin:16px 0}
+pre code{background:none;color:inherit;padding:0;font-size:13px;white-space:pre}
+.tw{margin:14px 0}
+table{border-collapse:collapse;width:100%;font-size:15px;background:var(--card);
+border:1px solid var(--line);border-radius:10px;overflow:hidden}
+th,td{border-bottom:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+th{background:#f0f4fa;font-weight:600}
+tr:last-child td{border-bottom:none}
+td:first-child,th:first-child{width:1%}
+hr{border:none;border-top:1px dashed var(--line);margin:30px 0}
+footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);color:var(--sub);font-size:12.5px;line-height:1.9}
+/* 手机上优先保证字号与可读性，绝不出现缩小字体 */
+@media (max-width:640px){
+  body{font-size:16.5px}
+  .wrap{padding:20px 14px 72px}
+  header h1{font-size:20px}
+  h2{font-size:18px}
+  h3{font-size:16.5px}
+  /* 表格 → 卡片式：每行变一张卡，表头用 data-label 内联 */
+  table,tbody,tr,td{display:block;width:100%}
+  table{border:none;background:none}
+  thead{display:none}
+  tr{background:var(--card);border:1px solid var(--line);border-radius:10px;
+     padding:10px 12px;margin:0 0 10px}
+  td{border:none;border-bottom:1px dashed var(--line);padding:6px 0;font-size:16px}
+  td:last-child{border-bottom:none}
+  td:first-child{width:auto}
+  td.lab{font-size:14px;font-weight:700;color:var(--accent2);padding-bottom:2px;border-bottom:none}
+  td::before{content:attr(data-label);display:block;font-size:12px;color:var(--sub);
+             font-weight:600;margin-bottom:2px}
+  td.lab::before,td:not([data-label])::before{content:none}
+}
+@media print{body{background:#fff}.wrap{max-width:none;padding:0}}
+</style></head>
+<body><div class="wrap">
+<header><h1>抖音短剧发行人 · 经营方式与赚钱模型对标分析</h1><div class="meta">2026-10-05 ｜ 数果AI 方案库 ｜ 手机/微信可直接打开</div></header>
+<blockquote>
+<p>调研日期：2026-10-05　|　数据来源：抖音站内实测采集（免登录通道，86 条真实视频卡片 + 3 个账号档案）＋ 抖音开放平台官方公告 ＋ 巨量星图帮助中心规则 ＋ 权威媒体报道
+采集脚本与原始数据：见本方案 <code>assets/</code> 与文末「附录 B」</p>
+</blockquote>
+<hr />
+<h2>0. 一句话结论</h2>
+<p><strong>短剧发行人 = 抖音把过去层层转授的「一级/二级授权」收编成统一 70% 分佣的自助任务池后，给推广者发的一个官方身份。</strong></p>
+<p>于是这个生意的赚钱重心已经从「剪切片赚分账」整体偏移。实测 86 条站内高互动内容里：</p>
+<table>
+<thead>
+<tr>
+<th>内容类型</th>
+<th>占比（约）</th>
+<th>代表</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="lab">教学 / 流程 / 授权入口（教人怎么干）</td>
+<td data-label="占比（约）"><strong>≈ 55%</strong></td>
+<td data-label="代表">西哥自媒体、贾哥自媒体、霞姐说创业</td>
+</tr>
+<tr>
+<td class="lab">剧场号 / 切片分发（真在拿分账）</td>
+<td data-label="占比（约）">≈ 20%</td>
+<td data-label="代表">迎春剧院（原小涵短剧）、磁力短剧、元元短剧</td>
+</tr>
+<tr>
+<td class="lab">工具 / AI / 素材供货</td>
+<td data-label="占比（约）">≈ 12%</td>
+<td data-label="代表">阿康AI自媒体、七瓦、风行视频小程序</td>
+</tr>
+<tr>
+<td class="lab">媒体报道 / 行业质疑</td>
+<td data-label="占比（约）">≈ 8%</td>
+<td data-label="代表">央视频、海报新闻、中新经纬</td>
+</tr>
+<tr>
+<td class="lab">真实收益反馈（多为劝退）</td>
+<td data-label="占比（约）">≈ 5%</td>
+<td data-label="代表">宫二「一个半月个人真实现状」</td>
+</tr>
+</tbody>
+</table>
+<p><strong>结论：这条赛道里「拍片的人」赚的是辛苦钱，「教人拍片」和「给拍片的人供货」才是这个赛道真正的现金流。</strong> 这不是我推的，是抖音自己的站内内容结构 + 权威媒体报道一起指向的事实。</p>
+<hr />
+<h2>1. 这个生意是什么（官方口径，非推测）</h2>
+<h3>1.1 官方承认的入口并列关系</h3>
+<p>抖音开放平台 2024-06-03 官方公告《【短剧、小说行业】抖音小程序分佣比例调整通知》原文：</p>
+<blockquote>
+<p>「通过新入口上线的任务可同时展示在**【星图任务大厅】、【短剧发行人计划】和【小程序推广计划】**，获得更大任务曝光」</p>
+</blockquote>
+<p>这句话是硬证据：<strong>「短剧发行人计划」是抖音官方产品，不是第三方包装出来的概念。</strong></p>
+<h3>1.2 分佣比例（官方原文数字）</h3>
+<p>同一份公告给出的分佣表：</p>
+<table>
+<thead>
+<tr>
+<th>结算方式</th>
+<th>任务条件</th>
+<th>任务类型</th>
+<th>分成比例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="lab">付费分佣</td>
+<td data-label="任务条件">开通云直通</td>
+<td data-label="任务类型">普通任务</td>
+<td data-label="分成比例"><strong>固定 70%</strong></td>
+</tr>
+<tr>
+<td class="lab">付费分佣</td>
+<td data-label="任务条件">开通云直通</td>
+<td data-label="任务类型">专属任务</td>
+<td data-label="分成比例"><strong>70%–90%</strong></td>
+</tr>
+<tr>
+<td class="lab">付费分佣</td>
+<td data-label="任务条件">未开通云直通</td>
+<td data-label="任务类型">普通/专属</td>
+<td data-label="分成比例">1%–29%</td>
+</tr>
+<tr>
+<td class="lab">广告分成</td>
+<td data-label="任务条件">—</td>
+<td data-label="任务类型">普通任务</td>
+<td data-label="分成比例"><strong>固定 70%</strong></td>
+</tr>
+<tr>
+<td class="lab">广告分成</td>
+<td data-label="任务条件">—</td>
+<td data-label="任务类型">专属任务</td>
+<td data-label="分成比例"><strong>70%–90%</strong></td>
+</tr>
+</tbody>
+</table>
+<p>并且明确：星图账户（抖音小程序分佣任务）<strong>无需预充值</strong>，直接按 <code>用户有效付费金额 × 分佣比例</code> 或 <code>用户广告消耗金额 × 分成比例</code> 结算。</p>
+<blockquote>
+<p>⚠️ 注意最后两栏：<strong>没开通云直通（企业版担保支付）的小程序，分佣只有 1%–29%。</strong> 选剧前必须先看这部剧的结算通道，否则同样 10 万播放，到手可能差 3–70 倍。这是绝大多数教学视频不会讲的一条。</p>
+</blockquote>
+<h3>1.3 达人侧操作路径（多源一致）</h3>
+<pre><code>抖音 App → 搜索「短剧发行人」/「短剧发行人计划」
+  → 进小程序（或 巨量星图 → 任务广场）
+  → 潜力任务榜 / 任务榜 → 选剧 → 看任务说明 → 同意授权
+  → 复制素材网盘链接 → 下载原片
+  → 二创剪辑（必须二创，禁止搬运）→ 挂载小程序/链接 → 发布
+  → 用户付费充值 / 看广告 → 分账进入收益账户
+</code></pre>
+<hr />
+<h2>2. 钱从哪来：五条收入线（把「怎么赚钱」拆到底）</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>收入线</th>
+<th>结算口径</th>
+<th>关键数字</th>
+<th>谁在赚</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="lab">1</td>
+<td data-label="收入线"><strong>付费分佣（CPS，主流）</strong></td>
+<td data-label="结算口径">用户充值解锁剧集 → 按<strong>有效付费金额</strong>分账</td>
+<td data-label="关键数字">70%（专属任务最高 90%）</td>
+<td data-label="谁在赚">剧场号、切片号</td>
+</tr>
+<tr>
+<td class="lab">2</td>
+<td data-label="收入线"><strong>广告分成（IAA）</strong></td>
+<td data-label="结算口径">免费短剧用户看广告解锁 → 按<strong>广告消耗金额</strong>分账</td>
+<td data-label="关键数字">70%</td>
+<td data-label="谁在赚">低粉新手、免费剧矩阵</td>
+</tr>
+<tr>
+<td class="lab">3</td>
+<td data-label="收入线"><strong>流量奖励</strong></td>
+<td data-label="结算口径">达到一定点击量的平台小额激励</td>
+<td data-label="关键数字">补贴性质，金额小</td>
+<td data-label="谁在赚">有量级才拿得到</td>
+</tr>
+<tr>
+<td class="lab">4</td>
+<td data-label="收入线"><strong>星图商单 / 招商短剧</strong></td>
+<td data-label="结算口径">品牌植入剧情，按集 / 整剧报价</td>
+<td data-label="关键数字">达人单集报价系数 70%–120%；平台对客户收 5% 服务费；达人侧再扣 3%（MCN）或 5%（自然人/PGC）</td>
+<td data-label="谁在赚">有粉丝量的短剧垂类达人</td>
+</tr>
+<tr>
+<td class="lab">5</td>
+<td data-label="收入线"><strong>平台外变现（真正的钱）</strong></td>
+<td data-label="结算口径">卖课收徒、二级授权分发、工具/素材、代运营、矩阵号转卖</td>
+<td data-label="关键数字">学费 1988 元 / 人被公开写在视频里</td>
+<td data-label="谁在赚">教学号、入口号、工具方</td>
+</tr>
+</tbody>
+</table>
+<p><strong>收益周期</strong>：媒体报道口径为<strong>视频发布后 60 天</strong>（含充值分账 + 广告分账 + 流量奖励三部分）。
+<strong>重要事实</strong>：第 4 条（招商短剧）来自巨量星图官方规则页，属「品牌植入商单」线，与发行人计划的 CPS 线<strong>不是同一件事</strong>，但常被教学视频混着讲。</p>
+<hr />
+<h2>3. 谁在赚：四类玩家（附真实账号实测档案）</h2>
+<h3>A 类 · 内容型发行人（真在拍片拿分账）—— 赚辛苦钱</h3>
+<p><strong>实测档案：迎春剧院</strong>（搜索「小涵短剧」命中，主页数据以实际显示为准）</p>
+<ul>
+<li>账号总获赞 <strong>86.1 万+</strong></li>
+<li>作品标题高度模板化，反复出现：&quot;看了五分钟就陷进去，太紧凑了&quot; / &quot;看了第一集，想看第二集，打脸一波接着一波&quot; / &quot;点击视频下方链接，即可免费观看完整版剧集&quot; / &quot;打破付费壁垒，这部剧现已免费开放&quot;</li>
+<li><strong>经营方式</strong>：剧场号矩阵 + 日更多集 + 标题主打「情绪上头 + 免费钩子」，全部挂载导流到小程序</li>
+</ul>
+<p><strong>同赛道大号量级</strong>（抖音搜索「短剧发行人」用户 tab 实测）：磁力短剧 734.9 万粉、小涵短剧 525.3 万粉、小清短剧 485.4 万粉、元元短剧 462.0 万粉、菠萝短剧 380.7 万粉、磊少短剧 282.0 万粉。</p>
+<p><strong>这类人的真实处境</strong>（权威媒体报道《微短剧推广为啥不赚钱了》，中国经济周刊 2025-11-13）：</p>
+<blockquote>
+<p>「一顿操作如猛虎，一看收益两块五」「这是半个月累积的」（可提现收益为三位数）</p>
+</blockquote>
+<p>同一篇报道称：靠纯推广赚钱的达人已不多，<strong>&quot;都是卖课程的&quot;</strong>。</p>
+<h3>B 类 · 教学型发行人（教人怎么干）—— 实测最稳的一条</h3>
+<p><strong>实测档案：西哥自媒体</strong></p>
+<ul>
+<li>账号总获赞 <strong>41.8 万+</strong></li>
+<li>主页作品是一套完整的<strong>内容矩阵</strong>（我抓到的 15 条，全部围绕同一业务拆解）：
+<ul>
+<li>认知层：《短剧有没有前景》《短剧播放不行怎么办》《播放不行因为什么》</li>
+<li>操作层：《三分钟深度认识短剧二次原创》《解说和混剪有什么区别》《不要把搬运当成二创》</li>
+<li>避坑层：《短剧搬运会踩哪些坑 5 分钟搞懂》《做短剧重点是作品过审号不违规》</li>
+<li>信任层：《一镜到底展示短剧后台》《解答短剧问题》</li>
+</ul>
+</li>
+<li><strong>爆款证据</strong>：同账号多条高互动——《三分钟教你做星图短剧任务变现》5540 赞、《短剧入口更新，接任务下素材》3537 赞、《一分钟学会短剧授权》1430 赞、《短剧授权接任务下素材》1273 赞、《一分钟教会你短剧如何接任务》1202 赞</li>
+<li><strong>经营方式</strong>：<strong>一条业务拆成 15+ 个知识点循环发</strong>，每条视频的钩子都是&quot;学不会/踩坑/入口变了&quot;，评论区与私域承接教学与工具。这就是这套赛道最标准、最可复制的打法。</li>
+</ul>
+<p><strong>同类账号</strong>：霞姐说创业《短剧发行人计划全流程，简单3步你也能学会》2579 赞；向南自媒体；季平聊短视频；平安健康。（搜「星图短剧任务」视频 tab 前排几乎被这类账号占满）</p>
+<h3>C 类 · 授权 / 入口型（做拉新与二级分发）</h3>
+<p><strong>实测档案：贾哥自媒体</strong></p>
+<ul>
+<li>账号总获赞 <strong>200.6 万+</strong></li>
+<li>爆款：《带剧达人官方授权入口来啦，赶紧收藏起来！》<strong>9041 赞</strong>；《短剧授权平台入口来喽》5803 赞；《带剧达人官方授权入口！0粉丝如何做短剧推广？》4780 赞</li>
+<li><strong>经营方式</strong>：不拍剧，只做「入口」——用&quot;官方授权&quot;&quot;0 粉也能做&quot;&quot;赶紧收藏&quot;这类钩子把人吸进私域，再对接第三方授权平台（站内高频出现 <strong>u客直谈</strong>）做分发或收徒。</li>
+</ul>
+<p><strong>同类</strong>：天耀轻创业笔记《0粉短剧受权》662 赞；王丝丝《普通人怎么拿短剧推广授权：这4个渠道我亲测好用》1101 赞；初夏、小U不知道。</p>
+<blockquote>
+<p>⚠️ 这一类是<strong>风险最集中</strong>的：官方公告明说授权本身免费，凡收「授权费 / 代理费 / 保证金」的，基本是中间商加价。</p>
+</blockquote>
+<h3>D 类 · 供货型（工具、素材、AI）</h3>
+<ul>
+<li><strong>阿康AI自媒体</strong>《别再砸钱花算力做 ai 短剧，试试这个低成本就能获取分成的邪修玩法》787 赞 —— AI 短剧降本路线</li>
+<li><strong>七瓦</strong>《不上班的100种赚钱方式——短剧推广！》2009 赞（带「王牌智剪AI」工具）</li>
+<li><strong>风行视频小程序</strong>《短剧推广如何获取免费授权，如何挂载小程序变现，保姆级教程》815 赞</li>
+<li>站内&quot;大家还在搜&quot;反复出现：<code>短剧二创软件免费</code>、<code>ai短剧推广</code>、<code>短剧推广视频</code> —— 需求侧明确存在</li>
+</ul>
+<p><strong>经营方式</strong>：不参与分账，赚的是<strong>工具订阅费 / 素材费 / 小程序服务费</strong>，旱涝保收。</p>
+<hr />
+<h2>4. 收入模型测算（推算，非实测，务必看清口径）</h2>
+<p>以 CPS 线为例，单条视频收益 ≈ <code>播放量 × 挂载点击率 × 付费转化率 × 客单价 × 70%</code></p>
+<table>
+<thead>
+<tr>
+<th>档位</th>
+<th>播放量</th>
+<th>挂载点击率</th>
+<th>付费率</th>
+<th>客单价</th>
+<th>单条毛收入（×70% 后）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="lab">冷启动</td>
+<td data-label="播放量">1 万</td>
+<td data-label="挂载点击率">3%</td>
+<td data-label="付费率">1%</td>
+<td data-label="客单价">30 元</td>
+<td data-label="单条毛收入（×70% 后）">≈ 6 元</td>
+</tr>
+<tr>
+<td class="lab">起量</td>
+<td data-label="播放量">10 万</td>
+<td data-label="挂载点击率">5%</td>
+<td data-label="付费率">2%</td>
+<td data-label="客单价">30 元</td>
+<td data-label="单条毛收入（×70% 后）">≈ 21 元</td>
+</tr>
+<tr>
+<td class="lab">小爆</td>
+<td data-label="播放量">100 万</td>
+<td data-label="挂载点击率">6%</td>
+<td data-label="付费率">2.5%</td>
+<td data-label="客单价">30 元</td>
+<td data-label="单条毛收入（×70% 后）">≈ 315 元</td>
+</tr>
+<tr>
+<td class="lab">大爆</td>
+<td data-label="播放量">1000 万</td>
+<td data-label="挂载点击率">8%</td>
+<td data-label="付费率">3%</td>
+<td data-label="客单价">30 元</td>
+<td data-label="单条毛收入（×70% 后）">≈ 5040 元</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>表中点击率/付费率/客单价为<strong>行业经验区间的假设值，不是我们实测的数字</strong>。它的用途是看结构：<strong>这条线极度依赖&quot;爆款&quot;</strong>，不爆就接近于零；所谓&quot;矩阵日更 3 集 × 多账号&quot;就是把爆款概率乘上 N 次。这也解释了为什么多数人的真实收益是三位数（见第 3 节报道引用）。</p>
+</blockquote>
+<p>对比之下，B/C 类（教学、授权）<strong>单条爆款的收益是&quot;人&quot;而不是&quot;播放&quot;</strong>：9041 赞的入口视频，其价值不在播放分成，而在于它能带来多少私域人头。</p>
+<hr />
+<h2>5. 门槛、红线与当下变化（决定&quot;现在还能不能做&quot;）</h2>
+<h3>5.1 门槛</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>口径</th>
+<th>来源性质</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="lab">加入发行人计划</td>
+<td data-label="口径">0 粉可加入</td>
+<td data-label="来源性质">站内达人自述，多源一致</td>
+</tr>
+<tr>
+<td class="lab">开挂载 / 接任务推广权限</td>
+<td data-label="口径"><strong>有效粉丝 500 人</strong>、实名认证、近 3 个月无违规</td>
+<td data-label="来源性质">行业媒体报道（bianews）+ 站内多源一致</td>
+</tr>
+<tr>
+<td class="lab">部分剧 / 通道</td>
+<td data-label="口径">有说法称 1000 粉才开推广权限</td>
+<td data-label="来源性质">第三方教程（必集客），<strong>非官方，存疑</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>建议以 500 有效粉丝为准备线</strong>，别按&quot;0 粉就能接单&quot;去做计划。</p>
+<h3>5.2 硬红线（违反直接限流/封禁）</h3>
+<ol>
+<li><strong>必须二创</strong>：直接搬运 = 限流。站内高赞教学反复强调「不要把搬运当成二创」「短剧不二创拿不到结果」。</li>
+<li><strong>时长与规范</strong>：出品方对二创时长有明确要求（实测报道某剧为 <strong>30 秒 – 20 分钟</strong>，另有剧要求 <strong>60 秒 – 20 分钟</strong>），<strong>全程必须带剧名</strong>，禁止恶俗、违背公序良俗内容。</li>
+<li><strong>挂载必须走官方</strong>：抖音曾关闭短剧类小程序的「水下挂载 / 跨来链接」能力（站内多条视频在传此事），非官方通道随时归零。</li>
+<li><strong>官方授权免费</strong>：任何「付费授权 / 付费代理 / 保证金」都是中间商。</li>
+</ol>
+<h3>5.3 行业结构性变化（这是最该看懂的）</h3>
+<p>媒体报道《微短剧推广为啥不赚钱了》给出的判断链，我认为是本次调研最有价值的一段：</p>
+<ul>
+<li>过去：出品方找推广团队 → 一级授权 → 二级授权层层分账，推广方还拿&quot;新用户注册奖励&quot;</li>
+<li>现在：<strong>出品方直接在抖音开小程序，用户不用跳转</strong>，拉新奖励取消；抖音官方的发行人计划把<strong>所有剧统一成 70% 分账</strong>，用标准化规则取代了层级授权</li>
+<li>结果 1：<strong>中间商（一级授权团队）失去生存空间 → 转做切片培训，赚培训费</strong></li>
+<li>结果 2：门槛低 → 海量新人涌入 → 蛋糕被分薄 → <strong>广告模式（免费看剧）超过付费模式成为主流回收方式</strong></li>
+<li>结果 3：监管收紧（广电总局《关于进一步加强网络微短剧管理 实施创作提升计划有关工作的通知》；红果 2025 年累计拦截下架超 1200 部违规微短剧）</li>
+</ul>
+<p><strong>一句话：平台标准化必然吃掉中间商，剩下的钱流向前端的&quot;内容供给&quot;和后端的&quot;教人做这件事&quot;——而后者门槛更低、现金流更快。</strong></p>
+<hr />
+<h2>6. 对标提炼：3 个可直接抄的套路</h2>
+<h3>套路 1 · 一条业务拆成 15 条知识点（西哥自媒体模型）</h3>
+<p>把「短剧二创」拆成认知层 / 操作层 / 避坑层 / 信任层四类选题，每类 3–5 条，循环发。每条只讲一个最小知识点，标题用问句+痛点（&quot;播放不行因为什么&quot;）。
+→ <strong>可迁移</strong>：任何一项代运营业务，都能按这四层拆成 15 条内容矩阵。</p>
+<h3>套路 2 · 入口型钩子（贾哥自媒体模型）</h3>
+<p>标题结构固定为：<code>【官方/最新】+【授权/入口/免费】+【0粉也能做/赶紧收藏】</code>
+→ 强收藏、强私信，适合把人吸进私域。<strong>注意合规</strong>：不得虚构&quot;官方&quot;身份。</p>
+<h3>套路 3 · 剧场号标题模板（迎春剧院模型）</h3>
+<p>情绪上头 + 悬念断点 + 免费钩子：</p>
+<ul>
+<li><code>看了五分钟就陷进去，太紧凑了，至今没人能抵抗这部好剧！</code></li>
+<li><code>看了第一集，想看第二集，打脸一波接着一波，力荐</code></li>
+<li><code>点击视频下方链接，即可免费观看完整版剧集</code>
+→ 这是把&quot;钩子（H1 消费观对立 / 悬念断点）&quot;模板用到极致的批量生产法，一个模板换剧名就能复用。</li>
+</ul>
+<hr />
+<h2>7. 对我们的启示（数果AI / 门店代运营）</h2>
+<ol>
+<li><strong>这条赛道的钱在&quot;教&quot;和&quot;供&quot;，不在&quot;拍&quot;</strong>——和我们的定位一致：卖结果、卖服务，不卖教材。</li>
+<li><strong>平台标准化的路径会重演</strong>：任何平台一旦自己做了中间环节，靠信息差吃饭的中间商必被挤掉。我们的护城河必须是&quot;结果交付能力&quot;，不是&quot;信息差&quot;。</li>
+<li><strong>可直接借用的两个动作</strong>：
+<ul>
+<li>内容矩阵法（套路 1）：把门店代运营拆成 15 条知识点做账号；</li>
+<li>选品先行法：发行人计划里&quot;先看潜力任务榜再动手&quot;的顺序，正是我们给门店做选题时该有的纪律（先看数据再拍）。</li>
+</ul>
+</li>
+<li><strong>反面教材价值</strong>：这个赛道 55% 的内容在教人怎么入行，说明<strong>供给端极度拥挤、需求端（真能赚钱的位置）稀缺</strong>。任何&quot;低门槛高收益&quot;的赛道描述，都要先看它的内容结构再决定进不进。</li>
+</ol>
+<hr />
+<h2>附录 A · 主要信息来源</h2>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>来源</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="lab">官方公告</td>
+<td data-label="来源"><a href="https://developer.open-douyin.com/forum/bulletin/post/665d6c605eaaf48630d540c4">抖音开放平台《【短剧、小说行业】抖音小程序分佣比例调整通知》</a>（2024-06-03）</td>
+<td data-label="用途">发行人计划存在性 + 70%/70%–90% 分佣 + 无需预充值</td>
+</tr>
+<tr>
+<td class="lab">官方规则</td>
+<td data-label="来源"><a href="https://www.xingtu.cn/help-center/mcn/137752">巨量星图《&quot;招商短剧&quot;任务管理规则》</a></td>
+<td data-label="用途">招商短剧线的报价与技术服务费</td>
+</tr>
+<tr>
+<td class="lab">官方规则</td>
+<td data-label="来源"><a href="https://www.xingtu.cn/help-center/author/123414">巨量星图《达人定制短剧介绍》</a></td>
+<td data-label="用途">定制短剧单集报价系数 70%–120%</td>
+</tr>
+<tr>
+<td class="lab">权威媒体</td>
+<td data-label="来源"><a href="https://paper.people.com.cn/zgjjzk/pc/content/202511/13/content_30119319.html">中国经济周刊《微短剧推广为啥不赚钱了》</a>（2025-11-13）</td>
+<td data-label="用途">60 天结算周期、二创要求、层级授权变迁、真实收益、培训变现</td>
+</tr>
+<tr>
+<td class="lab">行业媒体</td>
+<td data-label="来源"><a href="https://bianews.com/news/details?id=182507">鞭牛士：抖音小程序短视频挂载达人门槛抬高（有效粉丝500人）</a></td>
+<td data-label="用途">挂载门槛</td>
+</tr>
+<tr>
+<td class="lab">站内实测</td>
+<td data-label="来源">抖音免登录采集（本次，86 条卡片 + 3 个账号档案）</td>
+<td data-label="用途">样板账号与内容结构</td>
+</tr>
+</tbody>
+</table>
+<h2>附录 B · 本次采集方法与原始数据</h2>
+<ul>
+<li><strong>采集通道</strong>：<code>so.douyin.com/s?keyword=...</code>（免登录，含站内 AI 摘要与图文/视频卡片）＋ <code>m.douyin.com/shipin/&lt;id&gt;</code>（免登录分享页 SSR，含相关推荐）＋ <code>m.douyin.com/share/user/&lt;sec_uid&gt;</code>（主页作品枚举）。PC 站 <code>www.douyin.com/search</code> 在服务器侧命中验证码，故弃用。</li>
+<li><strong>关键词</strong>：短剧发行人 / 短剧发行人计划 / 星图短剧任务 / 短剧发行人怎么赚钱 / 带剧达人 / 短剧推广授权（各取 综合·视频·用户 三标签）</li>
+<li><strong>样本量</strong>：86 条去重视频卡片（含标题/作者/互动数）；3 个账号档案（西哥自媒体 41.8万获赞、贾哥自媒体 200.6万获赞、迎春剧院 86.1万获赞）</li>
+<li><strong>数据文件</strong>：<code>assets/douyin-samples.csv</code>、<code>assets/douyin-samples.json</code></li>
+</ul>
+<blockquote>
+<p><strong>口径提醒</strong>：「抖音站内 AI 摘要」是抖音自家模型生成的内容，本次仅用作线索，凡结论均已回溯到官方公告或权威媒体，未采信其数字。</p>
+</blockquote>
+
+<footer>方案库 · 数果AI ｜ 本页支持手机直接打开（微信内置浏览器已实测）｜ 发布脚本 <code>方案库/publish_plan.py</code></footer>
+</div></body></html>
